@@ -15,7 +15,8 @@ class CreateTenantMsTable extends Migration
     {
         Schema::create('tb_tenant', function (Blueprint $table) {
             $table->id();
-
+            
+            $table->string('id_tenant')->nullable();
             $table->string('nama_pemilik')->nullable();
             $table->string('nama_tenant')->nullable();
             $table->string('email')->nullable();
@@ -23,9 +24,9 @@ class CreateTenantMsTable extends Migration
             $table->string('lokasi_kantin')->nullable();
             $table->string('nama_rekening')->nullable();
             $table->integer('no_rekening')->nullable();
-            $table->string('online')->nullable();
 
-            $table->string('status')->nullable();
+            $table->string('status');
+            $table->string('is_active');
 
 
             $table->timestamps();

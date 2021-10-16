@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Food\FoodController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
     // Route Menu
-
+    Route::get('/food', [FoodController::class, 'index'])->name('Food');
 
     // Route Users
 

@@ -18,7 +18,6 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="{{ asset('softui') }}/css/nucleo-svg.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css"/>
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('softui') }}/css/soft-ui-dashboard.css" rel="stylesheet" />
 
@@ -56,10 +55,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('softui') }}/js/soft-ui-dashboard.min.js"></script>
-
-    @stack('js')
-    
-    @livewireScripts
+      @livewireScripts
     
 </body>
 </html>

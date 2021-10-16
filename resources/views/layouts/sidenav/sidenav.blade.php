@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  {{ Route::currentRouteName() == 'Dashboard' ? 'active' : '' }}" href="../pages/dashboard.html">
+          <a class="nav-link  {{ Route::currentRouteName() == 'Dashboard' ? 'active' : '' }}" href="{{ url('/dashboard') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -34,7 +34,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Menu Managements</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Route::currentRouteName() == 'food' ? 'active' : '' }} " href="../pages/tables.html">
+          <a class="nav-link {{ Route::currentRouteName() == 'Food' ? 'active' : '' }} " href="{{ url('/food')}}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>

@@ -26,6 +26,7 @@
 </head>
 <body class="g-sidenav-show bg-gray-100">
     @include('layouts.sidenav.sidenav')
+    
     <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
         @include('layouts.topnav.topnav')
         <div class="container-fluid py-4">
@@ -40,6 +41,7 @@
     
     <script src="{{ asset('softui') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('softui') }}/js/core/bootstrap.min.js"></script>
+    <script src="{{ asset('softui') }}/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="{{ asset('softui') }}/js/plugins/smooth-scrollbar.min.js"></script>
     <script>
           var win = navigator.platform.indexOf('Win') > -1;
@@ -55,6 +57,10 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('softui') }}/js/soft-ui-dashboard.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       @livewireScripts
     
 </body>

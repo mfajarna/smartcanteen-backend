@@ -7,8 +7,8 @@
                         <h6>Data List Tenant Smart Canteen</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
-                        <a class="btn btn-link text-success text-gradient px-3 mb-0 mt-2" href="javascript:;"><i class="fas fa-plus me-2"></i>Tambah</a>
-                        <button class="btn btn-link text-success text-gradient px-3 mb-0 mt-2" id="button_nonaktif_all" onClick="editOnClick()" disabled><i class="fas fa-pencil-alt me-2"></i>Ubah</button>
+                        {{-- <a class="btn btn-link text-success text-gradient px-3 mb-0 mt-2" href="javascript:;"><i class="fas fa-plus me-2"></i>Tambah</a>
+                        <button class="btn btn-link text-success text-gradient px-3 mb-0 mt-2" id="button_nonaktif_all" onClick="editOnClick()" disabled><i class="fas fa-pencil-alt me-2"></i>Ubah</button> --}}
                         <button class="btn btn-link text-success text-gradient px-3 mb-0 mt-2" id="buttonview_nonaktif_all" onClick="viewOnClick()" disabled><i class="fas fa-eye me-2"></i>Lihat</button>
                         <button class="btn btn-link text-danger text-gradient px-3 mb-0 mt-2" id="buttondelete_nonaktif_all" onClick="hapusOnClick()" disabled><i class="fas fa-trash me-2"></i>Hapus</button>
                         <div class="table-responsive mt-1 px-2 p-0">
@@ -32,6 +32,8 @@
 
     @push('js')
         <script>
+            let isChecked = 0;
+            
             $(document).ready(function(){
                 var t = $('#table-data').DataTable({
                     processing: true,
@@ -57,21 +59,25 @@
                         },
                         {
                             "targets": 1,
+                            "class": "text-sm",
                             data: "id_tenant",
                             name: "id_tenant"
                         },
                         {
                             "targets": 2,
+                            "class": "text-sm",
                             data: 'nama_tenant',
                             name: 'nama_tenant'
                         },
                         {
                             "targets": 3,
+                            "class": "text-sm",
                             data: "nama_pemilik",
                             name: "nama_pemilik"
                         },
                         {
                             "targets": 4,
+                            "class": "text-sm",
                             data: "lokasi_kantin",
                             name: "lokasi_kantin"
                         }
@@ -80,12 +86,12 @@
 
                 $("#table-data tbody").on('click', '.cb-child', function(){
                          $('input.cb-child').not(this).prop('checked', false);
-                         let yangDiCheck = $("#table_data tbody .cb-child:checked");
-                         let button_non_aktif_status = (yangDiCheck.length>0);
+                         let isChecked = $("#table-data tbody .cb-child:checked");
+                         let button_non_aktif_status = (isChecked.length>0);
                          $("#button_nonaktif_all").prop('disabled', !button_non_aktif_status);
                          $("#buttonview_nonaktif_all").prop('disabled', !button_non_aktif_status);
                          $("#buttondelete_nonaktif_all").prop('disabled', !button_non_aktif_status);
-                    });
+                });
             });
         </script>
     @endpush

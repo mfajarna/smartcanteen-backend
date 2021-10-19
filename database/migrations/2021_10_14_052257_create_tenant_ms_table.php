@@ -23,8 +23,13 @@ class CreateTenantMsTable extends Migration
             $table->string('no_telp')->nullable();
             $table->string('lokasi_kantin')->nullable();
             $table->string('nama_rekening')->nullable();
-            $table->integer('no_rekening')->nullable();
-
+            $table->string('no_rekening')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            
             $table->string('status');
             $table->string('is_active');
 

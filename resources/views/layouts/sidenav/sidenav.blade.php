@@ -31,7 +31,7 @@
           </a>
         </li>
         <li class="nav-item mt-3">
-            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Menu Managements</h6>
+            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Canteen Managements</h6>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ Route::currentRouteName() == 'Food' ? 'active' : '' }} " href="{{ url('/food')}}">
@@ -54,7 +54,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="../pages/billing.html">
+          <a class="nav-link {{ Route::currentRouteName() == 'Tenant' ? 'active' : '' }}  " href="{{ url('/tenant') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>

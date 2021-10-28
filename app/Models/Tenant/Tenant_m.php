@@ -4,17 +4,24 @@ namespace App\Models\Tenant;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\Tenant_m as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class Tenant_m extends Model
+class Tenant_m extends Authenticatable
 {
     use HasFactory;
     use HasApiTokens;
     use HasProfilePhoto;
     use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
 
     protected $table = "tb_tenant";
 
@@ -61,7 +68,7 @@ class Tenant_m extends Model
     protected $appends = [
         'profile_photo_url',
     ];
-    
+
 
     public function getCreatedAttribute($value)
     {

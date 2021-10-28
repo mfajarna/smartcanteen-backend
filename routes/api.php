@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::post('rrr', [TenantController::class, 'register']);
+
 });
 
-Route::post('registerTenant', [TenantController::class, 'register']);
+Route::post('tenantauth', [TenantController::class, 'register']);

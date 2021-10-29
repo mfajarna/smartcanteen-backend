@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Actions\Fortify\PasswordValidationRules;
-use App\Helpers\ResponseFormatter;
-use App\Http\Controllers\Controller;
-use App\Models\Tenant\Tenant_m;
 use Exception;
 use Illuminate\Http\Request;
+use App\Models\Tenant\Tenant_m;
+use App\Helpers\ResponseFormatter;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Actions\Fortify\PasswordValidationRules;
+use Illuminate\Support\Facades\Auth;
 
 class TenantController extends Controller
 {
@@ -27,12 +29,13 @@ class TenantController extends Controller
                 'nama_rekening' => 'required|string',
                 'no_rekening' => 'required|string',
                 'status' => 'required|string',
-                'is_active' => 'required|string'
+                'is_active' => 'required|string',
+                'password' => 'required|string',
             ]);
 
             $tenant = Tenant_m::create([
                 'id_tenant' => $data['id_tenant'],
-                'nama_pemilik' => $data['nama_pemilik'], 
+                'nama_pemilik' => $data['nama_pemilik'],
                 'nama_tenant' => $data['nama_tenant'],
                 'email' => $data['email'],
                 'no_telp' => $data['no_telp'],
@@ -41,6 +44,7 @@ class TenantController extends Controller
                 'no_rekening' => $data['no_rekening'],
                 'status' => "active",
                 'is_active' => "1",
+                'password' => Hash::make($data['password']),
             ]);
 
             $tokenResult = $tenant->createToken('authToken')->plainTextToken;
@@ -56,5 +60,25 @@ class TenantController extends Controller
                 'error' => $error
             ], 'Authentication Failed', 500);
         }
+    }
+
+    public function fetch(Request $request)
+    {
+        return ResponseFormatter::success($request->user(), 'Data Profile Berhasil DiAmbil');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $data = $request->all();
+
+        $user = Auth::user();
+        $user->update($data);
+
+        return ResponseFormatter::success($user, 'Data Berhasil Di Update!');
+    }
+
+    public function updatePhoto(Request $request)
+    {
+
     }
 }

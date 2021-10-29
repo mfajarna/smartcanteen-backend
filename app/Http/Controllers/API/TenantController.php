@@ -9,8 +9,6 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\PasswordValidationRules;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Authtenant;
 
 class TenantController extends Controller

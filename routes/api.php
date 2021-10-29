@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function(){
+    Route::get('fetchtenant', [TenantController::class, 'fetch']);
 
 });
 
 Route::post('tenantauth', [TenantController::class, 'register']);
+Route::post('tenantlogin', [TenantController::class, 'login']);

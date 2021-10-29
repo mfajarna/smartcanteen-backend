@@ -30,7 +30,7 @@ class TenantController extends Controller
                 'no_rekening' => 'required|string',
                 'status' => 'required|string',
                 'is_active' => 'required|string',
-                'password' => 'required|string',
+
             ]);
 
             $tenant = Tenant_m::create([
@@ -44,7 +44,7 @@ class TenantController extends Controller
                 'no_rekening' => $data['no_rekening'],
                 'status' => "active",
                 'is_active' => "1",
-                'password' => Hash::make($data['password']),
+
             ]);
 
             $tokenResult = $tenant->createToken('authToken')->plainTextToken;
@@ -78,7 +78,5 @@ class TenantController extends Controller
     }
 
     public function updatePhoto(Request $request)
-    {
-
-    }
+    {}
 }

@@ -16,10 +16,10 @@
                                 <thead>
                                   <tr>
                                     <th width="5%"><input type="checkbox" id="head-cb"></th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID Tenant</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Tenant</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pemilik</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lokasi Kantin</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">ID Tenant</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Tenant</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Pemilik</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Lokasi Kantin</th>
                                   </tr>
                                 </thead>
                             </table>
@@ -33,7 +33,7 @@
     @push('js')
         <script>
             let isChecked = 0;
-            
+
             $(document).ready(function(){
                 var t = $('#table-data').DataTable({
                     processing: true,
@@ -46,7 +46,7 @@
                     ajax:{
                         url: "{{ route('tenant-user.index') }}"
                     },
-                    
+
                     columnDefs:[
                         {targets: '_all', visible: true},
                         {

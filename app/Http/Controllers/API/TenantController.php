@@ -29,7 +29,7 @@ class TenantController extends Controller
 
         $credentials = request(['email', 'password']);
 
-        if(!Auth::attempt($credentials)){
+        if(!Authtenant::attempt($credentials)){
             return ResponseFormatter::error([
                'message' => 'Unauthorized'
             ], 'Authentication Failed', 500);

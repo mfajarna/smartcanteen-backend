@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\PasswordValidationRules;
 use Illuminate\Support\Facades\Authtenant;
+use Illuminate\Support\Facades\Auth;
 
 class TenantController extends Controller
 {
@@ -28,7 +29,7 @@ class TenantController extends Controller
 
         $credentials = request(['email', 'password']);
 
-        if(!Authtenant::attempt($credentials)){
+        if(!Auth::attempt($credentials)){
             return ResponseFormatter::error([
                'message' => 'Unauthorized'
             ], 'Authentication Failed', 500);

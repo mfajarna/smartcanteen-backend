@@ -15,9 +15,17 @@ class MenuController extends Controller
 
     public function all(Request $request)
     {
+        try{
+
+            $model = Menu_m::latest()->get();
+
+            return ResponseFormatter::success($model, 'Berhasil ambil Data Menu');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal ambil Data Menu');
+        }
 
     }
-
 
     public function addMenu(Request $request)
     {
@@ -123,7 +131,6 @@ class MenuController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Gagal Menampilkan Data');
         }
     }
-
 
     public function deleteMenu(Request $request, $id)
     {

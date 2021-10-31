@@ -16,8 +16,14 @@ class MenuController extends Controller
     public function all(Request $request)
     {
         try{
+            $category = $request->input('category');
 
-            $model = Menu_m::latest()->get();
+            if($category)
+            {
+
+            }
+
+            $model = Menu_m::query();
 
             return ResponseFormatter::success($model, 'Berhasil ambil Data Menu');
         }catch(Exception $e)

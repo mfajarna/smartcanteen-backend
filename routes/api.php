@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('updateProfileTenant', [TenantController::class, 'updateProfile']);
     Route::post('tenant/photo', [TenantController::class, 'updatePhoto']);
     Route::post('tenant/logout', [TenantController::class, 'logout']);
+    Route::get('tenant/idtenant', [TenantController::class, 'getIdTenant']);
 
 
 });

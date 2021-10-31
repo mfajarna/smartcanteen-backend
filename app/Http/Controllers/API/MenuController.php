@@ -25,7 +25,10 @@ class MenuController extends Controller
             {
                 $model = Menu_m::where('category', $category)->get();
             }
-
+            if($status)
+            {
+                $model = Menu_m::where('category', $status)->get();
+            }
 
             return ResponseFormatter::success($model, 'Berhasil ambil Data Menu');
         }catch(Exception $e)

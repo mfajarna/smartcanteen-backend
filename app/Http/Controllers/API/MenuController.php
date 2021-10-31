@@ -19,7 +19,7 @@ class MenuController extends Controller
                 'category' => 'required|string',
                 'ingredients' => 'required|string',
                 'price' => 'required|integer',
-                'is_active' => 'required|string'
+                'is_active' => 'required|integer'
             ]);
 
             $menu = Menu_m::create([

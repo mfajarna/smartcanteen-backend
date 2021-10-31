@@ -108,8 +108,16 @@ class MenuController extends Controller
         try{
 
             $model = Menu_m::find($id);
-            return ResponseFormatter::success($model, 'Berhasil Ambil Data');
 
+            if($model == null){
+                return ResponseFormatter::error([
+                    null,
+                    'Data Menu Tidak Ada',
+                    404
+                ]);
+            }else{
+                return ResponseFormatter::success($model, 'Berhasil Ambil Data');
+            }
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Menampilkan Data');

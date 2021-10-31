@@ -157,7 +157,7 @@ class TenantController extends Controller
             $value_code = substr($find_code,15);
             $code = (int) $value_code;
             $code = $code + 1;
-            $return_value = "TELU/TENANT/".str_pad($code,3,"0",STR_PAD_LEFT);
+            $return_value = "TELU/TENANT/".str_pad($code,4,"0",STR_PAD_LEFT);
         }else{
             $return_value = "TELU/TENANT/0001";
         }

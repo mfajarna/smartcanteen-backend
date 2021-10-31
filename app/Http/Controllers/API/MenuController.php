@@ -103,6 +103,20 @@ class MenuController extends Controller
         }
     }
 
+    public function detailMenu(Request $request, $id)
+    {
+        try{
+
+            $model = Menu_m::find($id);
+            return ResponseFormatter::success($model, 'Berhasil Ambil Data');
+
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Menampilkan Data');
+        }
+    }
+
+
     public function deleteMenu(Request $request, $id)
     {
         try{

@@ -16,7 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function(){
+
+    // Route API Tenant
     Route::get('fetchtenant', [TenantController::class, 'fetch']);
+    Route::post('updateProfileTenant', [TenantController::class, 'updateProfile']);
+    Route::post('tenant/photo', [TenantController::class, 'updatePhoto']);
+    Route::post('tenant/logout', [TenantController::class, 'logout']);
+
 
 });
 

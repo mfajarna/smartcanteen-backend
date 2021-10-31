@@ -23,7 +23,7 @@ class MenuController extends Controller
 
             if($category)
             {
-                $model->where('category', 'like', '%'. $category . '%')->orderBy('created_at', 'DESC')->first();
+                $model = Menu_m::where('category', $category)->get();
             }
 
 

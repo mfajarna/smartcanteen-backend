@@ -29,6 +29,7 @@ class MenuController extends Controller
                 'ingredients' => $request->ingredients,
                 'price' => $request->price,
                 'rating' => 0,
+                'picturePath' => $request->picturePath,
                 'is_active' => $request->is_active
             ]);
 

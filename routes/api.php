@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\API\MenuController;
 use App\Http\Controllers\API\TenantController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +28,9 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('menu/input', [MenuController::class, 'addMenu']);
     Route::post('menu/updatePhoto/{id}', [MenuController::class, 'updatePhoto']);
     Route::post('menu/updateMenu/{id}', [MenuController::class, 'updateMenu']);
+    Route::post('menu/deleteMenu/{id}', [MenuController::class, 'deleteMenu']);
+
+
 
 });
 

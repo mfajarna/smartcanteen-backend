@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
 {
+
+    public function all(Request $request)
+    {
+
+    }
+
+
     public function addMenu(Request $request)
     {
         try{
@@ -93,6 +100,20 @@ class MenuController extends Controller
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data');
+        }
+    }
+
+    public function deleteMenu(Request $request, $id)
+    {
+        try{
+            $model = Menu_m::find($id);
+
+            $model->each->delete();
+
+            return ResponseFormatter::success($model, 'Berhasil Delete Data');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Delete Data');
         }
     }
 }

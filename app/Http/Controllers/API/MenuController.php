@@ -7,6 +7,8 @@ use App\Models\Menu\Menu_m;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Tenant_m;
+use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
 {
@@ -36,6 +38,30 @@ class MenuController extends Controller
             return ResponseFormatter::success($menu, 'Berhasil input data Menu');
         }catch(Exception $e){
             return ResponseFormatter::error($e->getMessage(),'Gagal Input Data Menu');
+        }
+    }
+
+        public function updatePhoto(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Photo Fails', 401);
+        }
+
+        if ($request->file('file')) {
+
+            $file = $request->file->store('assets/user', 'public');
+
+            //store your file into database
+
+            $transaksi = Tenant_m::find($id);
+            $transaksi->picturePath = $file;
+            $transaksi->update();
+
+            return ResponseFormatter::success([$file],'File successfully uploaded');
         }
     }
 }

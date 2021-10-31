@@ -57,7 +57,7 @@ class MenuController extends Controller
 
             //store your file into database
 
-            $transaksi = Tenant_m::find($id);
+            $transaksi = Menu_m::find($id);
             $transaksi->picturePath = $file;
             $transaksi->update();
 

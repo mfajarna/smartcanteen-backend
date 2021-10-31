@@ -19,7 +19,7 @@ class MenuController extends Controller
             $category = $request->input('category');
             $status = $request->input('is_active');
 
-            $model = Menu_m::query();
+            $model = Menu_m::latest()->get();
 
             if($category)
             {

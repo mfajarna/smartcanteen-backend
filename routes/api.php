@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function(){
     // Route API Menu
     Route::post('menu/input', [MenuController::class, 'addMenu']);
     Route::post('menu/updatePhoto/{id}', [MenuController::class, 'updatePhoto']);
+    Route::post('menu/updateMenu/{id}', [MenuController::class, 'updateMenu']);
 
 });
 

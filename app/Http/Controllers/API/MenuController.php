@@ -41,7 +41,7 @@ class MenuController extends Controller
         }
     }
 
-        public function updatePhoto(Request $request, $id)
+    public function updatePhoto(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'file' => 'required|image:jpeg,png,jpg|max:2048',
@@ -62,6 +62,37 @@ class MenuController extends Controller
             $transaksi->update();
 
             return ResponseFormatter::success([$file],'File successfully uploaded');
+        }
+    }
+
+    Public function updateMenu(Request $request, $id)
+    {
+        try
+        {
+            $request->validate([
+                'name' => 'required|string' ,
+                'category' => 'required|string',
+                'ingredients' => 'required|string',
+                'price' => 'required|integer',
+                'is_active' => 'required|integer'
+            ]);
+
+
+            $model = Menu_m::findOrFail($id);
+
+            $model->name = $request->name;
+            $model->category = $request->category;
+            $model->ingredients = $request->ingredients;
+            $model->price = $request->price;
+            $model->is_active = $request->is_active;
+
+            $model->save();
+
+            return ResponseFormatter::success($model, 'Berhasil update data');
+
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Update Data');
         }
     }
 }

@@ -17,13 +17,15 @@ class MenuController extends Controller
     {
         try{
             $category = $request->input('category');
+            $status = $request->input('is_active');
+
+            $model = Menu_m::query();
 
             if($category)
             {
-
+                $model->where('category', 'like', '%'. $category . '%')->orderBy('created_at', 'DESC')->first();
             }
 
-            $model = Menu_m::query();
 
             return ResponseFormatter::success($model, 'Berhasil ambil Data Menu');
         }catch(Exception $e)

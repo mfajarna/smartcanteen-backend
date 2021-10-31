@@ -108,7 +108,7 @@ class MenuController extends Controller
         try{
             $model = Menu_m::find($id);
 
-            // $model->each->delete();
+            $model->delete();
 
             return ResponseFormatter::success($model, 'Berhasil Delete Data');
         }catch(Exception $e)

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\MenuController;
 use App\Http\Controllers\API\TenantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('tenant/logout', [TenantController::class, 'logout']);
     Route::get('tenant/idtenant', [TenantController::class, 'getIdTenant']);
 
+    // Route API Menu
+    Route::post('menu/input', [MenuController::class, 'addMenu']);
 
 });
 

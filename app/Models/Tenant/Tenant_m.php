@@ -4,7 +4,7 @@ namespace App\Models\Tenant;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\Tenant_m as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -24,6 +24,7 @@ class Tenant_m extends Authenticatable
      */
 
     protected $table = "tb_tenant";
+    protected $guard = 'tenant_m';
 
     protected $fillable = [
         'id_tenant',

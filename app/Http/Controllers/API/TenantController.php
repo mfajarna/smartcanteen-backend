@@ -29,11 +29,12 @@ class TenantController extends Controller
 
         $credentials = request(['email', 'password']);
 
-        if(!Authtenant::attempt($credentials)){
+        if(!Auth::guard('tenant_m')->attempt($credentials)){
             return ResponseFormatter::error([
                'message' => 'Unauthorized'
             ], 'Authentication Failed', 500);
         }
+
 
         $user = Tenant_m::where('email', $request->email)->first();
         if(!Hash::check($request->password, $user->password)){

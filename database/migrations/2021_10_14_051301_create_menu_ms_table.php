@@ -25,7 +25,7 @@ class CreateMenuMsTable extends Migration
             $table->integer('rating')->nullable();
             $table->string('picturePath')->nullable();
 
-            $table->integer('is_active'); // active or not active for food or etc
+            $table->string('is_active'); // active or not active for food or etc
 
             $table->timestamps();
         });

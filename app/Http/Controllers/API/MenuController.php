@@ -28,6 +28,7 @@ class MenuController extends Controller
             if($status)
             {
                 $model = Menu_m::where('is_active', $status)->get();
+
             }
 
             return ResponseFormatter::success($model, 'Berhasil ambil Data Menu');

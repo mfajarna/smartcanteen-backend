@@ -35,6 +35,7 @@ class Tenant_m extends Authenticatable
         'lokasi_kantin',
         'nama_rekening',
         'no_rekening',
+        'nama_bank',
         'status',
         'is_active',
         'password'

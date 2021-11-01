@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('updateProfileTenant', [TenantController::class, 'updateProfile']);
     Route::post('tenant/photo', [TenantController::class, 'updatePhoto']);
     Route::post('tenant/logout', [TenantController::class, 'logout']);
-    
+
 
     // Route API Menu
     Route::post('menu/input', [MenuController::class, 'addMenu']);

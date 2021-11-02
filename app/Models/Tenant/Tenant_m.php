@@ -33,6 +33,7 @@ class Tenant_m extends Authenticatable
         'email',
         'no_telp',
         'lokasi_kantin',
+        'desc_kantin',
         'nama_rekening',
         'no_rekening',
         'nama_bank',

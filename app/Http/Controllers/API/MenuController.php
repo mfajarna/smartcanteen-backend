@@ -20,15 +20,15 @@ class MenuController extends Controller
             $category = $request->input('category');
             $status = $request->input('is_active');
 
-            $model = Menu_m::latest()->get();
+            $model = Menu_m::query();
 
             if($category)
             {
-                $model = Menu_m::where('category', $category)->get();
+                $model->where('category','like', '%' . $category . '%')->orderBy('created_at', 'DESC')->first();
             }
             if($status)
             {
-                $model = Menu_m::where('is_active', $status)->get();
+                $model->where('is_active','like', '%' . $status . '%')->orderBy('created_at', 'DESC')->first();
 
             }
 

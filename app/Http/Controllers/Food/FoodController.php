@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Food;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu\Menu_m;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
@@ -24,7 +25,19 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        $find_code = Menu_m::max('kode_menu');
+
+        if($find_code)
+        {
+            $value_code = substr($find_code,13);
+            $code = (int) $value_code;
+            $code = $code + 1;
+            $return_value = "TELU/MENU/".str_pad($code,4,"0",STR_PAD_LEFT);
+        }else{
+            $return_value = "TELU/MENU/0001";
+        }
+
+
     }
 
     /**

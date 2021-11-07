@@ -9915,7 +9915,7 @@ fieldset:disabled .btn {
 }
 
 .bg-gray-200 {
-  background-color: #f0f0f0 !important;
+  background-color: #e9ecef !important;
 }
 
 .bg-gray-300 {
@@ -9944,10 +9944,6 @@ fieldset:disabled .btn {
 
 .bg-gray-900 {
   background-color: #212529 !important;
-}
-
-.bg-gray-custom {
-  background-color: #f0f0f0 !important;
 }
 
 .bg-gradient {

@@ -90,15 +90,16 @@
                         },
                     ]
                 })
+                    $("#table-data tbody").on('click', '.cb-child', function(){
+                    $('input.cb-child').not(this).prop('checked', false);
+                    let isChecked = $("#table-data tbody .cb-child:checked");
+                    let button_non_aktif_status = (isChecked.length>0);
+                    $("#button_nonaktif_all").prop('disabled', !button_non_aktif_status);
+                    $("#buttonview_nonaktif_all").prop('disabled', !button_non_aktif_status);
+                    $("#buttondelete_nonaktif_all").prop('disabled', !button_non_aktif_status);
+                    });
             });
-                $("#table-data tbody").on('click', '.cb-child', function(){
-                $('input.cb-child').not(this).prop('checked', false);
-                let isChecked = $("#table-data tbody .cb-child:checked");
-                let button_non_aktif_status = (isChecked.length>0);
-                $("#button_nonaktif_all").prop('disabled', !button_non_aktif_status);
-                $("#buttonview_nonaktif_all").prop('disabled', !button_non_aktif_status);
-                $("#buttondelete_nonaktif_all").prop('disabled', !button_non_aktif_status);
-                });
+
         </script>
     @endpush
 </x-dashboard>

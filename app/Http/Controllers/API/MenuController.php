@@ -5,9 +5,10 @@ namespace App\Http\Controllers\API;
 use Exception;
 use App\Models\Menu\Menu_m;
 use Illuminate\Http\Request;
+use App\Models\Tenant\Tenant_m;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
-use App\Models\Tenant\Tenant_m;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
@@ -37,6 +38,34 @@ class MenuController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Gagal ambil Data Menu');
         }
 
+    }
+
+    public function fetchByTenant(Request $request)
+    {
+        try{
+            $category = $request->input('category');
+            $status = $request->input('is_active');
+
+            $model = Menu_m::with('tenant')->where('id_tenant', Auth::user()->id);
+
+            if($category)
+            {
+                $model = Menu_m::where('category', $category)
+                                ->where('id_tenant', Auth::user()->id)
+                                ->get();
+            }
+            if($status)
+            {
+                $model = Menu_m::where('is_active', $status)
+                ->where('id_tenant', Auth::user()->id)
+                ->get();
+            }
+
+            return ResponseFormatter::success($model, 'Berhasil ambil Data Menu');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal ambil Data Menu');
+        }
     }
 
     public function addMenu(Request $request)

@@ -50,18 +50,20 @@ class MenuController extends Controller
             $category = $request->input('category');
             $status = $request->input('is_active');
 
-            $model = Menu_m::with('tenant')->where('id_tenant', Auth::user()->id)->get();
+            $model = Menu_m::with('tenant')->where('id_tenant', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
 
             if($category)
             {
                 $model = Menu_m::where('category', $category)
                                 ->where('id_tenant', Auth::user()->id)
+                                ->where('category','like', '%' . $category . '%')
                                 ->get();
             }
             if($status)
             {
                 $model = Menu_m::where('is_active', $status)
                                 ->where('id_tenant', Auth::user()->id)
+                                ->where('is_active','like', '%' . $status . '%')
                                 ->get();
             }
 

@@ -23,6 +23,7 @@ class Menu_m extends Model
         'price',
         'rating',
         'picturePath',
+        'kode_menu',
         'is_active'
     ];
 

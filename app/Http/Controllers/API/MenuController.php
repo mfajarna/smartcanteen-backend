@@ -94,6 +94,7 @@ class MenuController extends Controller
                 'price' => $request->price,
                 'rating' => 0,
                 'picturePath' => $request->picturePath,
+                'kode_menu' => $request->kode_menu,
                 'is_active' => $request->is_active
             ]);
 

@@ -46,7 +46,7 @@ class MenuController extends Controller
             $category = $request->input('category');
             $status = $request->input('is_active');
 
-            $model = Menu_m::with('tenant')->where('id_tenant', Auth::user()->id);
+            $model = Menu_m::with('tenant')->where('id_tenant', Auth::user()->id)->get();
 
             if($category)
             {

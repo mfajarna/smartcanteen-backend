@@ -168,4 +168,20 @@ class TenantController extends Controller
 
         return ResponseFormatter::success($return_value, 'Data Mengambil ID TENANT!');
     }
+
+    public function updateStatus(Request $request)
+    {
+        try{
+
+            $model = Tenant_m::where('id', Auth::user()->id)->get();
+
+            $model->status = $request->status;
+            $model->save();
+
+            return ResponseFormatter::success($model, 'Berhasil Update Data Status Tenant Menjadi ', $model->status);
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');
+        }
+    }
 }

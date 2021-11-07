@@ -193,6 +193,7 @@ class MenuController extends Controller
         }
     }
 
+
     public function updatePrice(Request $request, $id)
     {
         try{
@@ -201,7 +202,7 @@ class MenuController extends Controller
             $model->price = $request->price;
             $model->save();
 
-            return ResponseFormatter::success($model, 'Berhasil Update Data Price');
+            return ResponseFormatter::success($model, 'Berhasil Update Data Price '. $model->price);
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Price');
@@ -216,7 +217,7 @@ class MenuController extends Controller
             $model->is_active = $request->is_active;
             $model->save();
 
-            return ResponseFormatter::success($model, 'Berhasil Update Data Status Menjadi' . $model->is_active);
+            return ResponseFormatter::success($model, 'Berhasil Update Data Status Menjadi ' . $model->is_active);
         }catch(Exception $e)
         {
              return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');

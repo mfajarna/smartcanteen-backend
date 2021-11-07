@@ -26,9 +26,9 @@
 
 
 </head>
-<body class="g-sidenav-show bg-gray-100">
+<body class="g-sidenav-show bg-gray-200">
     @include('layouts.sidenav.sidenav')
-    
+
     <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
         @include('layouts.topnav.topnav')
         <div class="container-fluid py-4">
@@ -36,11 +36,11 @@
           @yield('content')
           @include('layouts.footer.footer')
         </div>
-    
-    
-        </main> 
-    
-    
+
+
+        </main>
+
+
     <script src="{{ asset('softui') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('softui') }}/js/core/bootstrap.min.js"></script>
     <script src="{{ asset('softui') }}/js/plugins/perfect-scrollbar.min.js"></script>
@@ -53,7 +53,7 @@
               }
               Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
           }
-  
+
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -69,6 +69,6 @@
 
     @stack('js')
     @livewireScripts
-    
+
 </body>
 </html>

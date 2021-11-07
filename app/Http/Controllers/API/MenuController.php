@@ -216,7 +216,7 @@ class MenuController extends Controller
             $model->is_active = $request->is_active;
             $model->save();
 
-            return ResponseFormatter::success($model, 'Berhasil Update Data Status Menjadi' . $model);
+            return ResponseFormatter::success($model, 'Berhasil Update Data Status Menjadi' . $model->is_active);
         }catch(Exception $e)
         {
              return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');

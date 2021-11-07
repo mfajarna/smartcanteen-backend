@@ -82,7 +82,7 @@ class MenuController extends Controller
                 'name' => 'required|string' ,
                 'category' => 'required|string',
                 'ingredients' => 'required|string',
-                'price' => 'required|integer',
+                'price' => 'required|string',
                 'is_active' => 'required|string'
             ]);
 
@@ -136,7 +136,7 @@ class MenuController extends Controller
                 'name' => 'required|string' ,
                 'category' => 'required|string',
                 'ingredients' => 'required|string',
-                'price' => 'required|integer',
+                'price' => 'required|string',
                 'is_active' => 'required|string'
             ]);
 

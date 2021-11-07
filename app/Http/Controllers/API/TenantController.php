@@ -173,10 +173,10 @@ class TenantController extends Controller
     {
         try{
 
-            $model = Tenant_m::where('id', Auth::user()->id)->get();
+            $model = Tenant_m::findOrFail(Auth::user()->id);
 
             $model->status = $request->status;
-            $model->update();
+            $model->save();
 
             return ResponseFormatter::success($model, 'Berhasil Update Data Status Tenant Menjadi ', $model->status);
         }catch(Exception $e)

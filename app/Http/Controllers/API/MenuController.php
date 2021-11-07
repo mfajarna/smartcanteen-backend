@@ -202,7 +202,7 @@ class MenuController extends Controller
             $model->price = $request->price;
             $model->save();
 
-            return ResponseFormatter::success($model, 'Berhasil Update Data Price '. $model->price);
+            return ResponseFormatter::success($model->price, 'Berhasil Update Data Price '. $model->price);
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Price');
@@ -217,10 +217,40 @@ class MenuController extends Controller
             $model->is_active = $request->is_active;
             $model->save();
 
-            return ResponseFormatter::success($model, 'Berhasil Update Data Status Menjadi ' . $model->is_active);
+            return ResponseFormatter::success($model->is_active, 'Berhasil Update Data Status Menjadi ' . $model->is_active);
         }catch(Exception $e)
         {
              return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');
+        }
+    }
+
+    public function updatePhotoMenu(Request $request, $id)
+    {
+        try{
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|image:jpeg,png,jpg|max:2048',
+            ]);
+
+            if ($validator->fails()) {
+                return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Photo Fails', 401);
+            }
+
+            if ($request->file('file')) {
+
+            $file = $request->file->store('assets/user', 'public');
+
+            //store your file into database
+
+            $model = Menu_m::find($id);
+            $model->picturePath = $file;
+            $model->update();
+
+            return ResponseFormatter::success([$file],'Berhasil Update Foto Menu Makanan');
+        }
+
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Photo Menu');
         }
     }
 }

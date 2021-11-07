@@ -178,7 +178,7 @@ class TenantController extends Controller
             $model->status = $request->status;
             $model->save();
 
-            return ResponseFormatter::success($model, 'Berhasil Update Data Status Tenant Menjadi ', $model->status);
+            return ResponseFormatter::success($model->status, 'Berhasil Update Data Status Tenant Menjadi ' . $model->status);
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');

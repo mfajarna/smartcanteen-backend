@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('menu/fetchByTenant', [MenuController::class, 'fetchByTenant']);
     Route::post('menu/update/price/{id}', [MenuController::class, 'updatePrice']);
     Route::post('menu/update/status/{id}', [MenuController::class, 'updateStatus']);
+    Route::post('menu/update/photo/{id}', [MenuController::class], 'updatePhotoMenu');
 
 
 });

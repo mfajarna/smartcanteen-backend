@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('menu/update/price/{id}', [MenuController::class, 'updatePrice']);
     Route::post('menu/update/status/{id}', [MenuController::class, 'updateStatus']);
     Route::post('menu/update/photo/{id}', [MenuController::class, 'updatePhotoMenu']);
+    Route::get('menu/getKodeMenu', [MenuController::class, 'getKodeMenu']);
 
 
 });

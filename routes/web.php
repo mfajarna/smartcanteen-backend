@@ -23,13 +23,15 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    
+
     // Route Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
     // Route Menu
-    Route::get('/food', [FoodController::class, 'index'])->name('Food');
+    Route::get('/menu', [FoodController::class, 'index'])->name('Menu');
+    Route::resource('menu-resource', FoodController::class);
+
 
 
     // Route Tenant

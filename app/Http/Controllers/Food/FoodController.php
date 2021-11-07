@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Food;
 use App\Http\Controllers\Controller;
 use App\Models\Menu\Menu_m;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class FoodController extends Controller
 {
@@ -15,7 +16,18 @@ class FoodController extends Controller
      */
     public function index()
     {
-        return view('food.index');
+         $model = Menu_m::with('tenant')->get();
+
+        if(request()->ajax())
+        {
+            $model = Menu_m::with('tenant')->get();
+
+            return DataTables::of($model)->make(true);
+        }
+
+        return view('food.index', [
+            'model' => $model
+        ]);
     }
 
     /**

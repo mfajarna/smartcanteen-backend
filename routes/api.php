@@ -32,6 +32,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('menu/deleteMenu/{id}', [MenuController::class, 'deleteMenu']);
     Route::get('menu/fetch', [MenuController::class, 'all']);
     Route::get('menu/fetchByTenant', [MenuController::class, 'fetchByTenant']);
+    Route::post('menu/update/price/{id}', [MenuController::class, 'updatePrice']);
+    Route::post('menu/update/status/{id}', [MenuController::class, 'updateStatus']);
 
 
 });

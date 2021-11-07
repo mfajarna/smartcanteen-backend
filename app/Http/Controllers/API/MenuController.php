@@ -192,4 +192,34 @@ class MenuController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Gagal Delete Data');
         }
     }
+
+    public function updatePrice(Request $request, $id)
+    {
+        try{
+            $model = Menu_m::findOrFail($id);
+
+            $model->price = $request->price;
+            $model->save();
+
+            return ResponseFormatter::success($model, 'Berhasil Update Data Price');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Price');
+        }
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        try{
+            $model = Menu_m::findOrFail($id);
+
+            $model->is_active = $request->is_active;
+            $model->save();
+
+            return ResponseFormatter::success($model, 'Berhasil Update Data Status Menjadi' . $model);
+        }catch(Exception $e)
+        {
+             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');
+        }
+    }
 }

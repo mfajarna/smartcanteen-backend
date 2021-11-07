@@ -20,7 +20,7 @@ class MenuController extends Controller
             $category = $request->input('category');
             $status = $request->input('is_active');
 
-            $model = Menu_m::query();
+            $model = Menu_m::latest()->get();
 
             if($category)
             {
@@ -57,8 +57,8 @@ class MenuController extends Controller
             if($status)
             {
                 $model = Menu_m::where('is_active', $status)
-                ->where('id_tenant', Auth::user()->id)
-                ->get();
+                                ->where('id_tenant', Auth::user()->id)
+                                ->get();
             }
 
             return ResponseFormatter::success($model, 'Berhasil ambil Data Menu');

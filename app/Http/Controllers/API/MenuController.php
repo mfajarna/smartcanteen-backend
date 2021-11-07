@@ -24,11 +24,11 @@ class MenuController extends Controller
 
             if($category)
             {
-                $model->where('category','like', '%' . $category . '%')->orderBy('created_at', 'DESC')->first();
+                $model = Menu_m::query()->where('category','like', '%' . $category . '%')->orderBy('created_at', 'DESC')->first();
             }
             if($status)
             {
-                $model->where('is_active','like', '%' . $status . '%')->orderBy('created_at', 'DESC')->first();
+                 $model = Menu_m::query()->where('is_active','like', '%' . $status . '%')->orderBy('created_at', 'DESC')->first();
 
             }
 

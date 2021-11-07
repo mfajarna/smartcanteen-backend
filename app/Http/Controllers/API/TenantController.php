@@ -176,7 +176,7 @@ class TenantController extends Controller
             $model = Tenant_m::where('id', Auth::user()->id)->get();
 
             $model->status = $request->status;
-            $model->save();
+            $model->update();
 
             return ResponseFormatter::success($model, 'Berhasil Update Data Status Tenant Menjadi ', $model->status);
         }catch(Exception $e)

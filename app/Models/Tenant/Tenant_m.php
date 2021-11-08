@@ -38,6 +38,7 @@ class Tenant_m extends Authenticatable
         'no_rekening',
         'nama_bank',
         'status',
+        'rating',
         'is_active',
         'password'
     ];

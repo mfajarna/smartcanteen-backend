@@ -89,6 +89,7 @@ class TenantController extends Controller
                 'nama_bank' => $data['nama_bank'],
                 'status' => "active",
                 'is_active' => "1",
+                'rating' => 0.0,
                 'password' => Hash::make($data['password']),
             ]);
 

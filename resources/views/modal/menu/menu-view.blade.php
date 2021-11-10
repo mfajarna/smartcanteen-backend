@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3 mt-4">
                         <img src="" class="avatar avatar-xxl me-3" width="200px" height="200px" id="img_makanan" class="rounded-image">
                     </div>
                     <div class="col-sm-8">

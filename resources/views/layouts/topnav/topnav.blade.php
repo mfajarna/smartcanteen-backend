@@ -16,23 +16,33 @@
 
           </div>
         </div>
-        <ul class="navbar-nav dropdown justify-content-end">
-          <li class="nav-item dropdown-toggle d-flex align-items-center">
-            <a href="#" class="nav-link text-body font-weight-bold px-0" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user cursor-pointer me-sm-1"></i>
-              <span class="d-sm-inline d-none">{{ auth()->user()->name }}</span>
-            </a>
-            <ul class="dropdown-menu  dropdown-menu-end" aria-labelledby="dropdownProfile">
-              <li class="mb-2">
-                <x-jet-dropdown-link href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-              <span>{{ __('Logout') }}</span>
-              </x-jet-dropdown-link>
-              </li>
+        <ul class="navbar-nav justify-content-end">
+            <ul class="dropdown">
+                <li class="nav-item dropdown-toggle d-flex align-items-center">
+                    <a href="#" class="nav-link text-body font-weight-bold px-0" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user cursor-pointer me-sm-1"></i>
+                    <span class="d-sm-inline d-none">{{ auth()->user()->name }}</span>
+                    </a>
+                    <ul class="dropdown-menu  dropdown-menu-end" aria-labelledby="dropdownProfile">
+                    <li class="mb-2">
+                        <x-jet-dropdown-link href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                    <span>{{ __('Logout') }}</span>
+                    </x-jet-dropdown-link>
+                    </li>
+                    </ul>
+                </li>
             </ul>
-          </li>
-        
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </a>
+            </li>
           <li class="nav-item px-3 d-flex align-items-center">
             <a href="{{ route('profile.show') }}" class="nav-link text-body p-0">
               <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
@@ -47,7 +57,7 @@
                 <a class="dropdown-item border-radius-md" href="javascript:;">
                   <div class="d-flex py-1">
                     <div class="my-auto">
-                      
+
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="text-sm font-weight-normal mb-1">

@@ -2,14 +2,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title" id="title-tenant"></h6>
+                <h6 class="modal-title" id="title-menu"></h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <img src="" id="img_makanan">
+                        <img src="" id="img_makanan" width="900px" height="600px">
                     </div>
+                </div>
+                <div class="col-sm-6">
+                    <p id="nama_makanan"></p>
                 </div>
             </div>
             <div class="modal-footer">

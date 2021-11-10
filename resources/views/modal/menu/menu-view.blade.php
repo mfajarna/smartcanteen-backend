@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <img src="" id="img_makanan" width="900px" height="600px">
+                        <img src="" id="img_makanan">
                     </div>
                 </div>
                 <div class="col-sm-6">

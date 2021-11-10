@@ -52,6 +52,8 @@
                     data: {id:id},
                     success: function(res)
                     {
+                        console.log(res)
+
                         $('#title_menu').text('Kode Menu' + res[0].kode_menu)
                         $("#img_makanan").attr("src", res[0].picturePath)
                         $('#nama_makanan').text(res[0].name)

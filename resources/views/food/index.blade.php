@@ -52,7 +52,7 @@
                     data: {id:id},
                     success: function(res)
                     {
-                        console.log(res)
+                        $("#img_makanan").attr("src", res[0].picturePath)
                     }
                 })
             }

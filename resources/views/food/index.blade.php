@@ -29,10 +29,39 @@
                 </div>
             </div>
         </div>
+
+        @include('modal.menu.menu-view')
     @endsection
     @push('js')
         <script>
             let isChecked = 0;
+
+            function viewOnClick()
+            {
+                let checkbox_terpilih = $('#table-data tbody .cb-child:checked');
+                let id = []
+                $.each(checkbox_terpilih, function(index, elm){
+                    id.push(elm.value)
+                })
+
+                $('#ModalView').modal('show')
+
+                $.ajax({
+                    method: 'get',
+                    url: '{{ route("menu.view") }}',
+                    data: {id:id},
+                    success: function(res)
+                    {
+                        console.log(res)
+                    }
+                })
+            }
+
+            function closeModal()
+            {
+                $('#ModalView').modal('hide');
+            }
+
 
             $(document).ready(function () {
                 var t = $('#table-data').DataTable({

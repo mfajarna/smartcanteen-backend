@@ -32,6 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Route Menu
     Route::get('/menu', [FoodController::class, 'index'])->name('Menu');
     Route::resource('menu-resource', FoodController::class);
+    Route::get('menu/view', [FoodController::class, 'view'])->name('menu.view');
 
 
 

@@ -107,4 +107,13 @@ class FoodController extends Controller
     {
         //
     }
+
+    public function view(Request $request)
+    {
+        $id = $request->input('id');
+
+        $model = Menu_m::findOrFail($id);
+
+        return response()->json($model);
+    }
 }

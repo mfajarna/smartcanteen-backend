@@ -90,4 +90,13 @@ class TenantController extends Controller
     {
         //
     }
+
+    public function view(Request $request)
+    {
+        $id = $request->input('id');
+
+        $model = Tenant_m::findOrfail($id);
+
+        return response()->json($model);
+    }
 }

@@ -112,7 +112,7 @@ class FoodController extends Controller
     {
         $id = $request->input('id');
 
-        $model = Menu_m::findOrFail($id);
+        $model = Menu_m::with('tenant')->where('id', $id)->get();
 
         return response()->json($model);
     }

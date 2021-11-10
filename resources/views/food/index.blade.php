@@ -52,11 +52,17 @@
                     data: {id:id},
                     success: function(res)
                     {
-                        console.log(res)
+                        var price = res[0].price
+                        var rupiah = (price/1000).toFixed(3)
 
-                        $('#title_menu').text('Kode Menu' + res[0].kode_menu)
+                        $("#menu_title").text('Kode Menu: '+ res[0].kode_menu);
                         $("#img_makanan").attr("src", res[0].picturePath)
                         $('#nama_makanan').text(res[0].name)
+                        $('#category').text(res[0].category)
+                        $('#ingredients').text(res[0].ingredients)
+                        $('#price').text('Rp. ' + rupiah)
+                        $('#rating').text(res[0].rating)
+                        $('#nama_tenant').text(res[0].tenant.nama_tenant)
                     }
                 })
             }

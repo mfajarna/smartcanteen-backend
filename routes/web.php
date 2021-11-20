@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Food\FoodController;
 use App\Http\Controllers\Tenant\TenantController;
+use App\Http\Controllers\Transaction\TransactionController;
 use App\Http\Livewire\Tenant\ViewTenant;
 use Illuminate\Support\Facades\Route;
 
@@ -45,4 +46,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
     // Route Menu
+
+    // Route Transactions
+    Route::get('/transactions', [TransactionController::class, 'index'])->name('Transactions');
+    Route::resource('transaction-users', TransactionController::class);
 });

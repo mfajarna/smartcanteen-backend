@@ -15,6 +15,7 @@ class CreateTransactionMsTable extends Migration
     {
         Schema::create('tb_transactions', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_user');
             $table->integer('id_menu');
             $table->integer('id_tenant');
             $table->string('status');

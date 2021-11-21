@@ -41,7 +41,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // Route API Transaction
     Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
-    Route::post('transactions/add', [TransactionsController::class, 'addTransaction']);
+    Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
 });
 
 Route::post('tenantauth', [TenantController::class, 'register']);

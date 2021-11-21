@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\MenuController;
 use App\Http\Controllers\API\TenantController;
+use App\Http\Controllers\API\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,9 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('menu/update/photo/{id}', [MenuController::class, 'updatePhotoMenu']);
     Route::get('menu/getKodeMenu', [MenuController::class, 'getKodeMenu']);
 
-
+    // Route API Transaction
+    Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
+    Route::post('transactions/add', [TransactionsController::class, 'addTransaction']);
 });
 
 Route::post('tenantauth', [TenantController::class, 'register']);

@@ -19,6 +19,7 @@ class MenuController extends Controller
         try{
             $category = $request->input('category');
             $status = $request->input('is_active');
+            $category_menu = $request->input('category_menu');
 
             $model = Menu_m::orderBy('created_at', 'DESC')->get();
 
@@ -34,6 +35,13 @@ class MenuController extends Controller
                             ->where('is_active','like', '%' . $status . '%')
                             ->orderBy('created_at', 'DESC')->get();
 
+            }
+
+            if($category_menu)
+            {
+                $model = Menu_m::query()
+                            ->where('is_active','like', '%' . $category_menu . '%')
+                            ->orderBy('created_at', 'DESC')->get();
             }
 
             return ResponseFormatter::success($model, 'Berhasil ambil Data Menu');
@@ -83,6 +91,7 @@ class MenuController extends Controller
                 'category' => 'required|string',
                 'ingredients' => 'required|string',
                 'price' => 'required|integer',
+                'category_menu' => 'required|string',
                 'is_active' => 'required|string'
             ]);
 
@@ -93,6 +102,7 @@ class MenuController extends Controller
                 'ingredients' => $request->ingredients,
                 'price' => $request->price,
                 'rating' => 0,
+                'category_menu' => $request->category_menu,
                 'picturePath' => $request->picturePath,
                 'kode_menu' => $request->kode_menu,
                 'is_active' => $request->is_active
@@ -137,6 +147,7 @@ class MenuController extends Controller
                 'category' => 'required|string',
                 'ingredients' => 'required|string',
                 'price' => 'required|integer',
+                'category_menu' => 'required|string',
                 'is_active' => 'required|string'
             ]);
 
@@ -147,6 +158,7 @@ class MenuController extends Controller
             $model->category = $request->category;
             $model->ingredients = $request->ingredients;
             $model->price = $request->price;
+            $model->category_menu = $request->category_menu;
             $model->is_active = $request->is_active;
 
             $model->save();

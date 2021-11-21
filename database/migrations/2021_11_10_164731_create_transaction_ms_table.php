@@ -15,11 +15,16 @@ class CreateTransactionMsTable extends Migration
     {
         Schema::create('tb_transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
+            $table->string('kode_transaksi');
+            $table->integer('id_user')->nullable();
+            $table->string('nama_pelanggan');
+            $table->string('nim')->nullable();
             $table->integer('id_menu');
             $table->integer('id_tenant');
             $table->string('status');
             $table->string('method');
+            $table->integer('quantity');
+            $table->string('total');
 
             $table->timestamps();
         });

@@ -49,5 +49,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Route Transactions
     Route::get('/transactions', [TransactionController::class, 'index'])->name('Transactions');
-    Route::resource('transaction-users', TransactionController::class);
+    Route::resource('transaction-user', TransactionController::class);
 });

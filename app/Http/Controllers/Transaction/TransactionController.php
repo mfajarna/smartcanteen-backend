@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Transaction;
 
 use App\Http\Controllers\Controller;
+use App\Models\transaction\Transaction_m;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
 {
@@ -14,6 +16,12 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        if(request()->ajax()){
+            $model = Transaction_m::latest()->get();
+
+            return DataTables::of($model)->make(true);
+        }
+
         return view('transactions.index');
     }
 

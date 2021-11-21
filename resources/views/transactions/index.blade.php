@@ -104,10 +104,11 @@
                                 <thead>
                                   <tr>
                                     <th width="5%"><input type="checkbox" id="head-cb"></th>
-                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Kode Tenant</th>
-                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Tenant</th>
-                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Pemilik</th>
-                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Lokasi Kantin</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Kode Transaksi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Pelanggan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Pesanan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Tanggal Transaksi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Status</th>
                                   </tr>
                                 </thead>
                             </table>
@@ -116,6 +117,79 @@
                 </div>
             </div>
         </div>
-
     @endsection
+
+    @push('js')
+        <script>
+            let isChecked = 0;
+            $(document).ready(function(){
+
+                var t = $('#table-data').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    "order":[
+                        [1, "asc"],
+                        [2, "asc"],
+                        [3, "asc"],
+                        [4, "asc"],
+                        [5, "asc"],
+                    ],
+                    ajax:{
+                        url: "{{ route('transaction-user.index') }}"
+                    },
+
+                    columnDefs:[
+                        {targets: '_all', visible: true},
+                        {
+                            "targets": 0,
+                            "class": "text-center",
+                                orderable: false,
+                                "render": function(data, type, row, meta){
+                                    return `<input type="checkbox" name="obat_checked[]"  class="cb-child" value="${row.id}">`;
+                        }
+                        },
+                        {
+                            "targets": 1,
+                            "class": "text-sm",
+                            data: "kode_transaction",
+                            name: "kode_transaction"
+                        },
+                        {
+                            "targets": 2,
+                            "class": "text-sm",
+                            data: 'nama_pelanggan',
+                            name: 'nama_pelanggan'
+                        },
+                        {
+                            "targets": 3,
+                            "class": "text-sm",
+                            data: "menu.name",
+                            name: "menu.name"
+                        },
+                        {
+                            "targets": 4,
+                            "class": "text-sm",
+                            data: "created_at",
+                            name: "created_at"
+                        },
+                        {
+                            "targets": 5,
+                            "class": "text-sm",
+                            data: "status",
+                            name: "status"
+                        }
+                    ]
+                });
+
+                $("#table-data tbody").on('click', '.cb-child', function(){
+                         $('input.cb-child').not(this).prop('checked', false);
+                         let isChecked = $("#table-data tbody .cb-child:checked");
+                         let button_non_aktif_status = (isChecked.length>0);
+                         $("#button_nonaktif_all").prop('disabled', !button_non_aktif_status);
+                         $("#buttonview_nonaktif_all").prop('disabled', !button_non_aktif_status);
+                         $("#buttondelete_nonaktif_all").prop('disabled', !button_non_aktif_status);
+                });
+            });
+        </script>
+    @endpush
 </x-dashboard>

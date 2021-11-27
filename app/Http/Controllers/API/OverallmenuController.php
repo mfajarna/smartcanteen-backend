@@ -46,7 +46,7 @@ class OverallmenuController extends Controller
                     ->where('id_tenant', $idTenant)
                     ->get();
 
-             return ResponseFormatter::success($query, 'Berhasil input data Overall menu');
+             return ResponseFormatter::success($query, 'Berhasil get data Overall menu');
 
         }catch(Exception $e)
         {

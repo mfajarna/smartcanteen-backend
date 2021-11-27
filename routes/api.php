@@ -4,6 +4,7 @@ use App\Http\Controllers\API\MenuController;
 use App\Http\Controllers\API\OverallmenuController;
 use App\Http\Controllers\API\TenantController;
 use App\Http\Controllers\API\TransactionController;
+use App\Http\Controllers\API\UsersmenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,8 +49,12 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('overall/add', [OverallmenuController::class, 'add']);
     Route::get('overall/fetch', [OverallmenuController::class, 'fetch']);
     Route::get('overall/getLastCountOrder', [OverallmenuController::class, 'getLastCountOrder']);
+
 });
 
 Route::post('tenantauth', [TenantController::class, 'register']);
 Route::post('tenantlogin', [TenantController::class, 'login']);
 Route::get('tenant/idtenant', [TenantController::class, 'getIdTenant']);
+
+// Route API Users
+Route::get('users/menu/fetch', [UsersmenuController::class, 'fetch']);

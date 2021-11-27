@@ -15,14 +15,17 @@ class UsersmenuController extends Controller
     {
         try{
             $category_menu = $request->input('category_menu');
-            $query = Menu_m::all();
+            $query = DB::table('tb_menu')
+                    ->select('*')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
 
             if($category_menu)
             {
                 $query = DB::table('tb_menu')
                         ->select('*')
                         ->where('category_menu', $category_menu)
-                        ->orderBy('created_at', 'asc')
+                        ->orderBy('created_at', 'desc')
                         ->get();
             }
 

@@ -22,7 +22,7 @@ class UsersmenuController extends Controller
                 $query = DB::table('tb_menu')
                         ->select('*')
                         ->where('category_menu', $category_menu)
-                        ->orderBy('created_at', 'desc')
+                        ->orderBy('created_at', 'asc')
                         ->get();
             }
 

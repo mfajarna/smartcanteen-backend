@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\MenuController;
+use App\Http\Controllers\API\OverallmenuController;
 use App\Http\Controllers\API\TenantController;
 use App\Http\Controllers\API\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,11 @@ Route::middleware('auth:sanctum')->group(function(){
     // Route API Transaction
     Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
     Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
+
+    // Overall Menu
+    Route::post('overall/add', [OverallmenuController::class, 'add']);
+    Route::get('overall/fetch', [OverallmenuController::class, 'fetch']);
+    Route::get('overall/getLastCountOrder', [OverallmenuController::class, 'getLastCountOrder']);
 });
 
 Route::post('tenantauth', [TenantController::class, 'register']);

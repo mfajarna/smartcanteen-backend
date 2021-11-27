@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Menu\Menu_m;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersmenuController extends Controller
 {
@@ -14,11 +15,15 @@ class UsersmenuController extends Controller
     {
         try{
             $category_menu = $request->input('category_menu');
-            $query = Menu_m::query();
+            $query = Menu_m::all();
 
             if($category_menu)
             {
-                $query->where('category_menu', 'like', '%' . $category_menu . '%')->orderBy('created_at', 'DESC')->first();
+                $query = DB::table('tb_menu')
+                        ->select('*')
+                        ->where('category_menu', $category_menu)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
             }
 
             return ResponseFormatter::success($query, 'Data Menu Berhasil diambil');

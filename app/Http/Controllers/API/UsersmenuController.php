@@ -35,4 +35,23 @@ class UsersmenuController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data');
         }
     }
+
+    public function fetchSeveralItems(Request $request)
+    {
+        try{
+            $limit = $request->input('limit', '5');
+            $category_menu = $request->input('category_menu');
+
+            $query = DB::table('tb_menu')
+                        ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
+                        ->where('category_menu', $category_menu)
+                        ->orderBy('tb_menu.created_at', 'desc')
+                        ->get();
+
+            return ResponseFormatter::success($query->paginate($limit), 'Data Menu Berhasil diambil');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data');
+        }
+    }
 }

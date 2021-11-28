@@ -25,7 +25,7 @@ class UsersmenuController extends Controller
                 $query = DB::table('tb_menu')
                         ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
                         ->where('category_menu', $category_menu)
-                        ->orderBy('created_at', 'desc')
+                        ->orderBy('tb_menu.created_at', 'desc')
                         ->get();
             }
 

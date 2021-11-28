@@ -17,6 +17,7 @@ class UsersmenuController extends Controller
             $category_menu = $request->input('category_menu');
             $query = DB::table('tb_menu')
                     ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
+                    ->select('*')
                     ->orderBy('created_at', 'desc')
                     ->latest()
                     ->get();

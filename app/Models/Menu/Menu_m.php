@@ -21,7 +21,7 @@ class Menu_m extends Model
         'category',
         'ingredients',
         'price',
-        'rating',
+        'ratingMenu',
         'picturePath',
         'category_menu',
         'kode_menu',

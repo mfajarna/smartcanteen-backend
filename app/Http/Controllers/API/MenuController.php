@@ -101,7 +101,7 @@ class MenuController extends Controller
                 'category' => $request->category,
                 'ingredients' => $request->ingredients,
                 'price' => $request->price,
-                'rating' => 0.0,
+                'ratingMenu' => 0.0,
                 'category_menu' => $request->category_menu,
                 'picturePath' => $request->picturePath,
                 'kode_menu' => $request->kode_menu,

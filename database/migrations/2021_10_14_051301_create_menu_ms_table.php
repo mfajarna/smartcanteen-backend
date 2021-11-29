@@ -22,7 +22,7 @@ class CreateMenuMsTable extends Migration
             $table->string('category')->nullable();
             $table->string('ingredients')->nullable();
             $table->integer('price')->nullable();
-            $table->integer('rating')->nullable();
+            $table->numeric('ratingMenu')->nullable();
             $table->string('picturePath')->nullable();
 
             $table->string('is_active'); // active or not active for food or etc

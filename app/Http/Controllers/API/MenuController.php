@@ -91,7 +91,6 @@ class MenuController extends Controller
                 'category' => 'required|string',
                 'ingredients' => 'required|string',
                 'price' => 'required|integer',
-                'rating' => 'required|numeric',
                 'category_menu' => 'required|string',
                 'is_active' => 'required|string'
             ]);

@@ -91,6 +91,7 @@ class MenuController extends Controller
                 'category' => 'required|string',
                 'ingredients' => 'required|string',
                 'price' => 'required|integer',
+                'rating' => 'required|numeric',
                 'category_menu' => 'required|string',
                 'is_active' => 'required|string'
             ]);
@@ -101,7 +102,7 @@ class MenuController extends Controller
                 'category' => $request->category,
                 'ingredients' => $request->ingredients,
                 'price' => $request->price,
-                'rating' => 0,
+                'rating' => 0.0,
                 'category_menu' => $request->category_menu,
                 'picturePath' => $request->picturePath,
                 'kode_menu' => $request->kode_menu,

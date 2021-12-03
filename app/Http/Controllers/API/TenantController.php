@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\PasswordValidationRules;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TenantController extends Controller
 {
@@ -180,6 +181,28 @@ class TenantController extends Controller
             $model->save();
 
             return ResponseFormatter::success($model->status, 'Berhasil Update Data Status Tenant Menjadi ' . $model->status);
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');
+        }
+    }
+
+    public function getTenant(Request $request)
+    {
+        try{
+            $lokasi_kantin = $request->input('lokasi_kantin');
+
+            $query = DB::table('tb_tenant')
+                    ->where('lokasi_kantin', $lokasi_kantin)
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(5);
+
+            return ResponseFormatter::success(
+                    $query,
+                    'Data List Berhasil Di Ambil!'
+        );
+
+
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');

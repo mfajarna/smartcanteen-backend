@@ -59,3 +59,6 @@ Route::get('tenant/idtenant', [TenantController::class, 'getIdTenant']);
 // Route API Users
 Route::get('users/menu/fetch', [UsersmenuController::class, 'fetch']);
 Route::get('users/menu/fetch/several', [UsersmenuController::class, 'fetchSeveralItems']);
+
+// Route API Get Tenant
+Route::get('tenant/fetch/several', [TenantController::class, 'getTenant']);

@@ -77,7 +77,7 @@ class TransactionController extends Controller
                         'total' => $value['total'],
                 ]);
 
-
+            return ResponseFormatter::success('Berhasil Mengambil Kode Transaksi ');
             }
 
 

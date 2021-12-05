@@ -80,7 +80,7 @@ class TransactionController extends Controller
                 ));
             }
 
-            Transaction_m::create($finalArray);
+            Transaction_m::insert($finalArray);
 
             return ResponseFormatter::success('Berhasil Mengambil Kode Transaksi ');
 

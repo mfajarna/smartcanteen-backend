@@ -34,38 +34,12 @@ class TransactionController extends Controller
     public function addTransaction(Request $request)
     {
         try{
-            // $request->validate([
-            //     'kode_transaksi' => 'required|string|unique:tb_transactions,kode_transaksi',
-            //     'id_user' => 'required|integer',
-            //     'nama_pelanggan' => 'required|string',
-            //     'nim' => 'required|integer',
-            //     'id_menu' => 'required|integer',
-            //     'id_tenant' => 'required|integer',
-            //     'status' => 'required|string',
-            //     'method' => 'required|string',
-            //     'quantity' => 'required|integer',
-            //     'total' => 'required|integer',
-            // ]);
-
-            // $menu = Transaction_m::create([
-            //     'kode_transaksi' => $request->kode_transaksi,
-            //     'id_user' => $request->id_user,
-            //     'nama_pelanggan' => $request->nama_pelanggan,
-            //     'nim' => $request->nim,
-            //     'id_menu' => $request->id_menu,
-            //     'id_tenant' => $request->id_tenant,
-            //     'status' => $request->status,
-            //     'method' => $request->method,
-            //     'quantity' => $request->quantity,
-            //     'total' => $request->total,
-            // ]);
-
             $menu = $request->all();
-            $finalArray = [];
+            $result = [];
 
             foreach($menu as $key => $value)
             {
-                array_push($finalArray, [
+                array_push($result, [
                         'kode_transaksi' => $value['kode_transaksi'],
                         'id_user' => $value['id_user'],
                         'nama_pelanggan' => $value['nama_pelanggan'],
@@ -80,8 +54,8 @@ class TransactionController extends Controller
                 ]);
             }
 
-            Transaction_m::insert($finalArray);
-            return ResponseFormatter::success($finalArray,'Berhasil Mengambil Kode Transaksi ');
+            Transaction_m::insert($result);
+            return ResponseFormatter::success($result,'Berhasil Mengambil Kode Transaksi ');
 
         }catch(Exception $e){
             return ResponseFormatter::error($e->getMessage(),'Gagal Input Data Transaksi');

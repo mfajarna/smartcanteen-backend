@@ -22,6 +22,8 @@ class Transaction_m extends Model
             'id_menu',
             'id_tenant',
             'status',
+            'catatan',
+            'phoneNumber',
             'method',
             'quantity',
             'total',

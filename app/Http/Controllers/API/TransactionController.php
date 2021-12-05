@@ -50,6 +50,8 @@ class TransactionController extends Controller
                         'method' => $value['method'],
                         'quantity' => $value['quantity'],
                         'total' => $value['total'],
+                        'catatan' => $value['catatan'],
+                        'phoneNumber' => $value['phoneNumber']
 
                 ]);
             }

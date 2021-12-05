@@ -62,7 +62,23 @@ class TransactionController extends Controller
 
             $menu = $request->all();
 
-            return ResponseFormatter::success($menu, 'Berhasil input data Transaksi');
+            foreach($menu as $item)
+            {
+                Transaction_m::create([
+                        'kode_transaksi' => $item->kode_transaksi,
+                        'id_user' => $item->id_user,
+                        'nama_pelanggan' => $item->nama_pelanggan,
+                        'nim' => $item->nim,
+                        'id_menu' => $item->id_menu,
+                        'id_tenant' => $item->id_tenant,
+                        'status' => $item->status,
+                        'method' => $item->method,
+                        'quantity' => $item->quantity,
+                        'total' => $item->total,
+                ]);
+            }
+
+            return ResponseFormatter::success( 'Berhasil input data Transaksi');
         }catch(Exception $e){
             return ResponseFormatter::error($e->getMessage(),'Gagal Input Data Transaksi');
         }

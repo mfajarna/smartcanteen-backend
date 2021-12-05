@@ -77,7 +77,7 @@ class TransactionController extends Controller
                 //         'total' => $item->total,
                 // ]);
 
-                return ResponseFormatter::success($item,'Berhasil input data Transaksi');
+                return ResponseFormatter::success($item->kode_transaksi,'Berhasil input data Transaksi');
             }
 
 

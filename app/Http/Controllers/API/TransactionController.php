@@ -62,7 +62,7 @@ class TransactionController extends Controller
 
             $menu = $request->all();
 
-            foreach($menu as $item)
+            foreach($menu as $key => $value)
             {
                 // Transaction_m::create([
                 //         'kode_transaksi' => $item->kode_transaksi,
@@ -77,7 +77,7 @@ class TransactionController extends Controller
                 //         'total' => $item->total,
                 // ]);
 
-                return ResponseFormatter::success($item->kode_transaksi,'Berhasil input data Transaksi');
+                return ResponseFormatter::success($value['kode_transaksi'],'Berhasil input data Transaksi');
             }
 
 

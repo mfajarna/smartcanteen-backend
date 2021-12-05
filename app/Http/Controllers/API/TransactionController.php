@@ -64,20 +64,20 @@ class TransactionController extends Controller
 
             foreach($menu as $key => $value)
             {
-                // Transaction_m::create([
-                //         'kode_transaksi' => $item->kode_transaksi,
-                //         'id_user' => $item->id_user,
-                //         'nama_pelanggan' => $item->nama_pelanggan,
-                //         'nim' => $item->nim,
-                //         'id_menu' => $item->id_menu,
-                //         'id_tenant' => $item->id_tenant,
-                //         'status' => $item->status,
-                //         'method' => $item->method,
-                //         'quantity' => $item->quantity,
-                //         'total' => $item->total,
-                // ]);
+                Transaction_m::create([
+                        'kode_transaksi' => $value['kode_transaksi'],
+                        'id_user' => $value['id_user'],
+                        'nama_pelanggan' => $value['nama_pelanggan'],
+                        'nim' => $value['nim'],
+                        'id_menu' => $value['id_menu'],
+                        'id_tenant' => $value['id_tenant'],
+                        'status' => $value['status'],
+                        'method' => $value['method'],
+                        'quantity' => $value['quantity'],
+                        'total' => $value['total'],
+                ]);
 
-                return ResponseFormatter::success($value['kode_transaksi'],'Berhasil input data Transaksi');
+
             }
 
 

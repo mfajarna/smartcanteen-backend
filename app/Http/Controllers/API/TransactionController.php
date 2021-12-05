@@ -61,27 +61,28 @@ class TransactionController extends Controller
             // ]);
 
             $menu = $request->all();
+            $finalArray = array();
 
             foreach($menu as $key => $value)
             {
-                // Transaction_m::create([
-                //         'kode_transaksi' => $value['kode_transaksi'],
-                //         'id_user' => $value['id_user'],
-                //         'nama_pelanggan' => $value['nama_pelanggan'],
-                //         'nim' => $value['nim'],
-                //         'id_menu' => $value['id_menu'],
-                //         'id_tenant' => $value['id_tenant'],
-                //         'status' => $value['status'],
-                //         'method' => $value['method'],
-                //         'quantity' => $value['quantity'],
-                //         'total' => $value['total'],
-                // ]);
+                array_push($finalArray, array(
+                        'kode_transaksi' => $value['kode_transaksi'],
+                        'id_user' => $value['id_user'],
+                        'nama_pelanggan' => $value['nama_pelanggan'],
+                        'nim' => $value['nim'],
+                        'id_menu' => $value['id_menu'],
+                        'id_tenant' => $value['id_tenant'],
+                        'status' => $value['status'],
+                        'method' => $value['method'],
+                        'quantity' => $value['quantity'],
+                        'total' => $value['total'],
 
-
-            return ResponseFormatter::success($value,'Berhasil Mengambil Kode Transaksi ');
+                ));
             }
 
-            // return ResponseFormatter::success($menu,'Berhasil Mengambil Kode Transaksi ');
+            Transaction_m::create($finalArray);
+
+            return ResponseFormatter::success('Berhasil Mengambil Kode Transaksi ');
 
         }catch(Exception $e){
             return ResponseFormatter::error($e->getMessage(),'Gagal Input Data Transaksi');

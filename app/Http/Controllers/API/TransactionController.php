@@ -61,11 +61,11 @@ class TransactionController extends Controller
             // ]);
 
             $menu = $request->all();
-            $finalArray = array();
+            $finalArray = [];
 
             foreach($menu as $key => $value)
             {
-                array_push($finalArray, array(
+                array_push($finalArray, [
                         'kode_transaksi' => $value['kode_transaksi'],
                         'id_user' => $value['id_user'],
                         'nama_pelanggan' => $value['nama_pelanggan'],
@@ -77,12 +77,10 @@ class TransactionController extends Controller
                         'quantity' => $value['quantity'],
                         'total' => $value['total'],
 
-                ));
+                ]);
             }
 
-            Transaction_m::insert($finalArray);
-
-            return ResponseFormatter::success('Berhasil Mengambil Kode Transaksi ');
+            return ResponseFormatter::success($finalArray,'Berhasil Mengambil Kode Transaksi ');
 
         }catch(Exception $e){
             return ResponseFormatter::error($e->getMessage(),'Gagal Input Data Transaksi');

@@ -34,31 +34,33 @@ class TransactionController extends Controller
     public function addTransaction(Request $request)
     {
         try{
-            $request->validate([
-                'kode_transaksi' => 'required|string|unique:tb_transactions,kode_transaksi',
-                'id_user' => 'required|integer',
-                'nama_pelanggan' => 'required|string',
-                'nim' => 'required|integer',
-                'id_menu' => 'required|integer',
-                'id_tenant' => 'required|integer',
-                'status' => 'required|string',
-                'method' => 'required|string',
-                'quantity' => 'required|integer',
-                'total' => 'required|integer',
-            ]);
+            // $request->validate([
+            //     'kode_transaksi' => 'required|string|unique:tb_transactions,kode_transaksi',
+            //     'id_user' => 'required|integer',
+            //     'nama_pelanggan' => 'required|string',
+            //     'nim' => 'required|integer',
+            //     'id_menu' => 'required|integer',
+            //     'id_tenant' => 'required|integer',
+            //     'status' => 'required|string',
+            //     'method' => 'required|string',
+            //     'quantity' => 'required|integer',
+            //     'total' => 'required|integer',
+            // ]);
 
-            $menu = Transaction_m::create([
-                'kode_transaksi' => $request->kode_transaksi,
-                'id_user' => $request->id_user,
-                'nama_pelanggan' => $request->nama_pelanggan,
-                'nim' => $request->nim,
-                'id_menu' => $request->id_menu,
-                'id_tenant' => $request->id_tenant,
-                'status' => $request->status,
-                'method' => $request->method,
-                'quantity' => $request->quantity,
-                'total' => $request->total,
-            ]);
+            // $menu = Transaction_m::create([
+            //     'kode_transaksi' => $request->kode_transaksi,
+            //     'id_user' => $request->id_user,
+            //     'nama_pelanggan' => $request->nama_pelanggan,
+            //     'nim' => $request->nim,
+            //     'id_menu' => $request->id_menu,
+            //     'id_tenant' => $request->id_tenant,
+            //     'status' => $request->status,
+            //     'method' => $request->method,
+            //     'quantity' => $request->quantity,
+            //     'total' => $request->total,
+            // ]);
+
+            $menu = $request->all();
 
             return ResponseFormatter::success($menu, 'Berhasil input data Transaksi');
         }catch(Exception $e){

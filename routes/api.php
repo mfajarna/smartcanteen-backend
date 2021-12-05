@@ -41,11 +41,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('menu/update/photo/{id}', [MenuController::class, 'updatePhotoMenu']);
     Route::get('menu/getKodeMenu', [MenuController::class, 'getKodeMenu']);
 
-    // Route API Transaction
-    Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
-    Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
 
-
+    // Overall Menu
+    Route::post('overall/add', [OverallmenuController::class, 'add']);
+    Route::get('overall/fetch', [OverallmenuController::class, 'fetch']);
+    Route::get('overall/getLastCountOrder', [OverallmenuController::class, 'getLastCountOrder']);
 
 });
 
@@ -60,7 +60,6 @@ Route::get('users/menu/fetch/several', [UsersmenuController::class, 'fetchSevera
 // Route API Get Tenant
 Route::get('tenant/fetch/several', [TenantController::class, 'getTenant']);
 
-    // Overall Menu
-    Route::post('overall/add', [OverallmenuController::class, 'add']);
-    Route::get('overall/fetch', [OverallmenuController::class, 'fetch']);
-    Route::get('overall/getLastCountOrder', [OverallmenuController::class, 'getLastCountOrder']);
+    // Route API Transaction
+    Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
+    Route::post('transactions/add', [TransactionController::class, 'addTransaction']);

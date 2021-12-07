@@ -56,10 +56,12 @@ Route::get('tenant/idtenant', [TenantController::class, 'getIdTenant']);
 // Route API Users
 Route::get('users/menu/fetch', [UsersmenuController::class, 'fetch']);
 Route::get('users/menu/fetch/several', [UsersmenuController::class, 'fetchSeveralItems']);
+Route::get('users/menu/fetch/byTenant', [UsersmenuController::class, 'fetchByTenant']);
 
 // Route API Get Tenant
 Route::get('tenant/fetch/several', [TenantController::class, 'getTenant']);
 
-    // Route API Transaction
-    Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
-    Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
+// Route API Transaction
+Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
+Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
+

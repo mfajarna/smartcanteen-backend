@@ -54,6 +54,7 @@ class OverallmenuController extends Controller
         }
     }
 
+
     public function getLastCountOrder(Request $request)
     {
         try{

@@ -82,7 +82,19 @@ class UsersmenuController extends Controller
                     ->where('tb_menu.id_tenant', $idTenant)
                     ->where('category', $category)
                     ->orderBy('tb_menu.created_at', 'desc')
-                    ->select(['tb_menu.is_active'])
+                    ->select(
+                        [
+                            'tb_menu.id',
+                            'tb_menu.id_tenant',
+                            'tb_menu.name',
+                            'tb_menu.category',
+                            'tb_menu.ingredients',
+                            'tb_menu.price',
+                            'tb_menu.ratingMenu',
+                            'tb_menu.picturePath',
+                            'tb_menu.is_active',
+                            'tb_menu.category_menu',
+                        ])
                     ->paginate(5);
             }
 

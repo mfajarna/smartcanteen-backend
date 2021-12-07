@@ -65,6 +65,15 @@ class UsersmenuController extends Controller
             $idTenant = $request->input('id_tenant');
             $category = $request->input('category');
 
+            if($idTenant)
+            {
+                $query = DB::table('tb_menu')
+                    ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
+                    ->where('tb_menu.id_tenant', $idTenant)
+                    ->orderBy('tb_menu.created_at', 'desc')
+                    ->paginate(5);
+            }
+
             $query = DB::table('tb_menu')
                     ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
                     ->where('tb_menu.id_tenant', $idTenant)

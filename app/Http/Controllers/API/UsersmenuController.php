@@ -62,11 +62,11 @@ class UsersmenuController extends Controller
     public function fetchByTenant(Request $request)
     {
         try{
-            $idMenu = $request->input('id_menu');
             $idTenant = $request->input('id_tenant');
 
             $query = DB::table('tb_menu')
                     ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
+                    ->where('id_tenant', $idTenant)
                     ->orderBy('tb_menu.created_at', 'desc')
                     ->paginate(5);
 

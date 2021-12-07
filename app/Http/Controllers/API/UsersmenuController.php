@@ -66,7 +66,7 @@ class UsersmenuController extends Controller
 
             $query = DB::table('tb_menu')
                     ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
-                    ->where('id_tenant', $idTenant)
+                    ->where('id', $idTenant)
                     ->orderBy('tb_menu.created_at', 'desc')
                     ->paginate(5);
 

@@ -71,6 +71,7 @@ class UsersmenuController extends Controller
                     ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
                     ->where('tb_menu.id_tenant', $idTenant)
                     ->orderBy('tb_menu.created_at', 'desc')
+                    ->select(['tb_menu.is_active'])
                     ->paginate(5);
             }
 
@@ -81,6 +82,7 @@ class UsersmenuController extends Controller
                     ->where('tb_menu.id_tenant', $idTenant)
                     ->where('category', $category)
                     ->orderBy('tb_menu.created_at', 'desc')
+                    ->select(['tb_menu.is_active'])
                     ->paginate(5);
             }
 

@@ -74,12 +74,16 @@ class UsersmenuController extends Controller
                     ->paginate(5);
             }
 
-            $query = DB::table('tb_menu')
+            if($category && $idTenant)
+            {
+                $query = DB::table('tb_menu')
                     ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
                     ->where('tb_menu.id_tenant', $idTenant)
                     ->where('category', $category)
                     ->orderBy('tb_menu.created_at', 'desc')
                     ->paginate(5);
+            }
+
 
             return ResponseFormatter::success(
                     $query,

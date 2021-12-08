@@ -84,7 +84,7 @@ class UsersmenuController extends Controller
                             'tb_menu.is_active',
                             'tb_menu.category_menu',
                         ])
-                    ->paginate(5);
+                    ->get();
             }
 
             if($category && $idTenant)
@@ -107,7 +107,7 @@ class UsersmenuController extends Controller
                             'tb_menu.is_active',
                             'tb_menu.category_menu',
                         ])
-                    ->paginate(5);
+                    ->get();
             }
 
 

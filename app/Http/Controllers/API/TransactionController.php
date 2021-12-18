@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\transaction\Transaction_m;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -61,6 +62,50 @@ class TransactionController extends Controller
 
         }catch(Exception $e){
             return ResponseFormatter::error($e->getMessage(),'Gagal Input Data Transaksi');
+        }
+    }
+
+    public function checkOrderByTenant(Request $request)
+    {
+        try{
+            $status = $request->input('status');
+
+            $model = Transaction_m::with(['menu','tenant'])
+                                 ->where('id_tenant', Auth::user()->id)
+                                 ->where('status', $status)
+                                 ->orderBy('created_at', 'DESC')
+                                 ->get();
+
+            return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
+
+        }catch(Exception $e){
+             return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Orderan');
+        }
+    }
+
+    public function changeStatusOrder(Request $request, $id)
+    {
+        try{
+            $transactions = Transaction_m::findOrFail($id);
+            $transactions->status = $request->status;
+            $transactions->save();
+
+            if($transactions)
+            {
+                return ResponseFormatter::success(
+                    $transactions,
+                    'Status berhasil diubah'
+                );
+            }else{
+                return ResponseFormatter::error([
+                    null,
+                    'Data Tidak Ada',
+                    404
+                ]);
+            }
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Update Status Order');
         }
     }
 

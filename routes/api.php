@@ -47,6 +47,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('overall/fetch', [OverallmenuController::class, 'fetch']);
     Route::get('overall/getLastCountOrder', [OverallmenuController::class, 'getLastCountOrder']);
 
+
+    // Transactions Tenant Side
+    Route::get('transactions/tenant/fetch', [TransactionController::class, 'checkOrderByTenant']); // Check Transaction order by tenant
+    Route::post('transactions/tenant/updateStatus/{id}', [TransactionController::class, 'changeStatusOrder']); // Update Status Transactions
+
 });
 
 Route::post('tenantauth', [TenantController::class, 'register']);

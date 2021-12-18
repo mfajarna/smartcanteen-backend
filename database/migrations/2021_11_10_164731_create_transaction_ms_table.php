@@ -25,7 +25,6 @@ class CreateTransactionMsTable extends Migration
             $table->string('method');
             $table->integer('quantity');
             $table->string('total');
-
             $table->timestamps();
         });
     }

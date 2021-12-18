@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\Menu\Menu_m;
+use App\Models\transaction\Transaction_m;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -120,6 +121,51 @@ class UsersmenuController extends Controller
 
         }catch(Exception $e){
             return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data OverallMenu');
+        }
+    }
+
+    public function checkTransactionUsers(Request $request)
+    {
+        try{
+            $status = $request->input('status');
+            $nim = $request->input('nim');
+
+            $model = Transaction_m::with(['menu','tenant'])
+                     ->where('nim', $nim)
+                     ->where('status', $status)
+                     ->get();
+
+            return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Transaksi Users');
+        }
+    }
+
+    public function cancelStatusOrder($id)
+    {
+        try{
+            $model = Transaction_m::findOrFail($id);
+
+            $model->status = "CANCEL ORDER";
+            $model->save();
+
+             if($model)
+            {
+                return ResponseFormatter::success(
+                    $model,
+                    'Status berhasil diubah'
+                );
+            }else{
+                return ResponseFormatter::error([
+                    null,
+                    'Data Tidak Ada',
+                    404
+                ]);
+            }
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Update Status');
         }
     }
 }

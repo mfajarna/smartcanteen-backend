@@ -70,3 +70,8 @@ Route::get('tenant/fetch/several', [TenantController::class, 'getTenant']);
 Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
 Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
 
+
+// Route API Transactions By User
+Route::get('transactions/user/fetch', [UsersmenuController::class,'checkTransactionUsers']); // Fetch Transactions Order on User
+Route::post('transactsion/user/updateStatus/{id}', [UsersmenuController::class, 'cancelStatusOrder']); // Update Status Cancel Order
+

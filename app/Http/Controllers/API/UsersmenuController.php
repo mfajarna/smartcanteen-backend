@@ -46,6 +46,26 @@ class UsersmenuController extends Controller
             $query = DB::table('tb_menu')
                         ->join('tb_tenant', 'tb_menu.id_tenant', '=', 'tb_tenant.id')
                         ->where('category_menu', $category_menu)
+                        ->select([
+                            'tb_menu.id',
+                            'tb_tenant.id',
+                            'tb_tenant.nama_pemilik',
+                            'tb_tenant.nama_tenant',
+                            'tb_tenant.lokasi_kantin',
+                            'tb_tenant.status',
+                            'tb_tenant.is_active',
+                            'tb_tenant.desc_kantin',
+                            'tb_tenant.rating',
+                            'tb_menu.id_tenant',
+                            'tb_menu.name',
+                            'tb_menu.category',
+                            'tb_menu.ingredients',
+                            'tb_menu.price',
+                            'tb_menu.ratingMenu',
+                            'tb_menu.picturePath',
+                            'tb_menu.is_active',
+                            'tb_menu.category_menu',
+                        ])
                         ->orderBy('tb_menu.created_at', 'desc')
                         ->paginate(5);
 

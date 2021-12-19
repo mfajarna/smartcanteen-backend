@@ -48,7 +48,7 @@ class UsersmenuController extends Controller
                         ->where('category_menu', $category_menu)
                         ->select([
                             'tb_menu.id',
-                            'tb_tenant.id',
+                            'tb_menu.id_tenant',
                             'tb_tenant.nama_pemilik',
                             'tb_tenant.nama_tenant',
                             'tb_tenant.lokasi_kantin',
@@ -56,7 +56,6 @@ class UsersmenuController extends Controller
                             'tb_tenant.is_active',
                             'tb_tenant.desc_kantin',
                             'tb_tenant.rating',
-                            'tb_menu.id_tenant',
                             'tb_menu.name',
                             'tb_menu.category',
                             'tb_menu.ingredients',

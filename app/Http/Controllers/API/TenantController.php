@@ -208,4 +208,51 @@ class TenantController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data Status');
         }
     }
+
+    public function updateRating(Request $request, $id)
+    {
+        try{
+            $model = Tenant_m::findOrFail($id);
+            $model->rating = $request->rating;
+            $model->save();
+
+            return ResponseFormatter::success($model->rating, 'Berhasil Update Data Rating Tenant Menjadi ' .  $model->rating);
+
+        }catch(Exception $e)
+        {
+             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data rating');
+        }
+    }
+
+    public function updatePerhitunganAkhir(Request $request, $id)
+    {
+        try{
+            $model = Tenant_m::findOrFail($id);
+            $model->perhitungan_akhir = $request->perhitungan_akhir;
+            $model->save();
+
+            return ResponseFormatter::success($model->perhitungan_akhir, 'Berhasil Update Data perhitungan_akhir Tenant Menjadi ' .  $model->perhitungan_akhir);
+
+        }catch(Exception $e)
+        {
+             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data rating');
+        }
+    }
+
+    public function updateTotalJumlahOrder(Request $request, $id)
+    {
+        try{
+            $model = Tenant_m::findOrFail($id);
+            $model->total_jumlah_order = $request->total_jumlah_order;
+            $model->save();
+
+            return ResponseFormatter::success($model->total_jumlah_order, 'Berhasil Update Data total_jumlah_order Tenant Menjadi ' .  $model->total_jumlah_order);
+
+        }catch(Exception $e)
+        {
+             return ResponseFormatter::error($e->getMessage(),'Gagal Update Data rating');
+        }
+    }
+
+
 }

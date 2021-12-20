@@ -40,7 +40,9 @@ class Tenant_m extends Authenticatable
         'status',
         'rating',
         'is_active',
-        'password'
+        'password',
+        'perhitungan_akhir',
+        'total_jumlah_order'
     ];
 
         /**

@@ -161,12 +161,12 @@ class UsersmenuController extends Controller
         }
     }
 
-    public function cancelStatusOrder($id)
+    public function cancelStatusOrder(Request $request, $id)
     {
         try{
             $model = Transaction_m::findOrFail($id);
 
-            $model->status = "CANCEL ORDER";
+            $model->status = $request->status;
             $model->save();
 
              if($model)

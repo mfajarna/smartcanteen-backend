@@ -123,7 +123,7 @@
         <script>
             let isChecked = 0;
             $(document).ready(function(){
-
+                $.fn.dataTable.ext.errMode = 'none';
                 var t = $('#table-data').DataTable({
                     processing: true,
                     serverSide: true,

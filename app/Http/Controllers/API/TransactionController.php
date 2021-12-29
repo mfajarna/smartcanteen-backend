@@ -50,6 +50,7 @@ class TransactionController extends Controller
                         'status' => $value['status'],
                         'method' => $value['method'],
                         'quantity' => $value['quantity'],
+                        'created_at' => $value['created_at'],
                         'total' => $value['total'],
                         'catatan' => $value['catatan'],
                         'phoneNumber' => $value['phoneNumber']

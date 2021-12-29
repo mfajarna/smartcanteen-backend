@@ -151,8 +151,8 @@
                         {
                             "targets": 1,
                             "class": "text-sm",
-                            data: "kode_transaction",
-                            name: "kode_transaction"
+                            data: "kode_transaksi",
+                            name: "kode_transaksi"
                         },
                         {
                             "targets": 2,

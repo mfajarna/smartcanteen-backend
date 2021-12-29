@@ -48,7 +48,6 @@ class UsersmenuController extends Controller
                         ->select([
                             'tb_menu.id',
                             'tb_menu.id_tenant',
-                            'tb_tenant.id_tenant',
                             'tb_tenant.nama_pemilik',
                             'tb_tenant.nama_tenant',
                             'tb_tenant.lokasi_kantin',
@@ -88,7 +87,6 @@ class UsersmenuController extends Controller
                         ->select([
                             'tb_menu.id',
                             'tb_menu.id_tenant',
-                            'tb_tenant.id_tenant',
                             'tb_tenant.nama_pemilik',
                             'tb_tenant.nama_tenant',
                             'tb_tenant.lokasi_kantin',

@@ -17,7 +17,7 @@ class TransactionController extends Controller
     public function index()
     {
         if(request()->ajax()){
-            $model = Transaction_m::latest()->get();
+            $model = Transaction_m::with(['menu','tenant'])->get();
 
             return DataTables::of($model)->make(true);
         }

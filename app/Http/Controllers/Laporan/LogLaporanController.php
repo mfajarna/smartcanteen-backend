@@ -25,7 +25,7 @@ class LogLaporanController extends Controller
                     ->join('users', 'tb_loglaporan.user_id', '=', 'users.id')
                     ->select(
                         'users.name',
-                        DB::raw("DATE_FORMAT(tb_loglaporan.created_at, '%d-%m-%Y %H:%i:%s') as tanggal")
+                        DB::raw("DATE_FORMAT(tb_loglaporan.created_at, '%M-%d %H:%i:%s') as tanggal")
                     )
                     ->orderBy('tb_loglaporan.created_at', 'DESC')
                     ->get();

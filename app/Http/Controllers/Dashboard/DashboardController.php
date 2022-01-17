@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -19,7 +22,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pages.v2.Dashboard.index');
+        $last_activity = DB::table('sessions')->where('user_id', Auth::user()->id)->first();
+
+        $ip = $last_activity->ip_address;
+        $epoch = $last_activity->last_activity;
+        $time = new DateTime($epoch);
+        $last_act = $time->format('M d H:i:s');
+
+
+        return view('pages.v2.Dashboard.index', compact('last_act','ip'));
     }
 
     /**

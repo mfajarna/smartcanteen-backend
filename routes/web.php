@@ -22,61 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-// Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
-//     // Route::resource('dashboard', DashboardController::class);
-
-
-
-
-
-
-
-
-
-
-
-//     // // Route Dashboard
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-
-    // // Route Menu
-    // Route::get('/menu', [FoodController::class, 'index'])->name('Menu');
-    // Route::resource('menu-resource', FoodController::class);
-    // Route::get('menu/view', [FoodController::class, 'view'])->name('menu.view');
-
-
-
-    // // Route Tenant
-    // Route::get('/tenant', [TenantController::class,'index'])->name('Tenant');
-    // Route::resource('tenant-user', TenantController::class);
-    // Route::get('tenant/view', [TenantController::class, 'view'])->name('tenant.view');
-
-    // // Route Users
-
-
-    // // Route Menu
-
-    // // Route Transactions
-    // Route::get('/transactions', [TransactionController::class, 'index'])->name('Transactions');
-    // Route::resource('transaction-user', TransactionController::class);
-// });
-
-// Route::middleware(['auth:sanctum', 'verified', 'roleaccess:2,3'])->group(function () {
-
-
-//     Route::group([
-//         'prefix' => 'superadmin',
-//         'as' => 'superadmin.'
-//     ], function(){
-//         Route::resource('dashboard', DashboardController::class);
-//     });
-
-// });
-
-
 Route::resource('/', LandingController::class);
 
 

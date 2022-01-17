@@ -22,6 +22,7 @@ class TransactionController extends Controller
         $transaction_day = Transaction_m::whereDate('created_at' , '=', $date)
                                             ->where('status', 'SUCCESS')
                                             ->count();
+        $transaksi_sukses = Transaction_m::where('status', 'SUCCESS')->count();
 
         if(request()->ajax())
         {
@@ -57,7 +58,7 @@ class TransactionController extends Controller
                     ->make(true);
         }
 
-        return view('pages.v2.Dashboard.Transaction.index', compact('transaction_pending','total_transaction','transaction_day'));
+        return view('pages.v2.Dashboard.Transaction.index', compact('transaksi_sukses','transaction_pending','total_transaction','transaction_day'));
     }
 
     /**

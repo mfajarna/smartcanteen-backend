@@ -47,7 +47,7 @@
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         <p class="text-muted fw-medium">Total Penjualan</p>
-                                        <h4 class="mb-0">{{ $total_penjualan[0]['total_penjualan'] }}</h4>
+                                        <h4 class="mb-0">{{ $total_penjualan[0]['total_penjualan'] == NULL ? 0 : $total_penjualan[0]['total_penjualan'] }}</h4>
                                     </div>
 
                                     <div class="flex-shrink-0 align-self-center ">

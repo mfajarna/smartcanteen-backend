@@ -46,7 +46,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium">Transaksi Sukses </p>
-                                    <h4 class="mb-0">$35,723</h4>
+                                    <h4 class="mb-0">{{ $transaksi_sukses }}</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center ">

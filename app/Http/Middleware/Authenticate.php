@@ -2,7 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Auth;
+
 
 class Authenticate extends Middleware
 {
@@ -15,7 +18,18 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            return url('/');
         }
+
+        $superadmin = User::where('username', 'superadmin')->first();
+
+        // redirect to homepage after login
+        if($superadmin->hasRole('superadmin'))
+        {
+            return url('/admin/dashboard');
+        }else{
+            return url('/');
+        }
+
     }
 }

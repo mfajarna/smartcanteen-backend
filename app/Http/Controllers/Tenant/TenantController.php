@@ -19,10 +19,24 @@ class TenantController extends Controller
         if(request()->ajax()){
             $model = Tenant_m::all();
 
-            return DataTables::of($model)->make(true);
+            return DataTables::of($model)
+                    ->addColumn('action', function($tipe)
+                        {
+                            $button = "<div class='d-flex gap-3 align-center'>";
+
+                            $button .= "<a href='javascript:void(0);' name='edit' id=' ". $tipe->id ." ' class='button text-success'><i class='mdi mdi-pencil font-size-18'></i></a>";
+
+                            $button .= "<a href='javascript:void(0);' name='delete' id='" . $tipe->id ."' class='button text-danger'><i class='mdi mdi-delete font-size-18'></i></a>";
+
+                            $button .= "</div>";
+
+                            return $button;
+                        })
+                    ->rawColumns(['action'])
+                    ->make(true);
         }
 
-        return view('tenant.index');
+        return view('pages.v2.Dashboard.Tenant.index');
     }
 
     /**

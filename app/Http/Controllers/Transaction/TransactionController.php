@@ -16,13 +16,48 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        if(request()->ajax()){
-            $model = Transaction_m::with(['menu','tenant'])->get();
+        $transaction_pending = Transaction_m::where('status', 'PENDING')->count();
+        $total_transaction = Transaction_m::all()->count();
+        $date = date('Y-m-d');
+        $transaction_day = Transaction_m::whereDate('created_at' , '=', $date)
+                                            ->where('status', 'SUCCESS')
+                                            ->count();
 
-            return DataTables::of($model)->make(true);
+        if(request()->ajax())
+        {
+            $model = Transaction_m::with('menu')->latest()->get();
+
+
+            return DataTables::of($model)
+                        ->addColumn('action', function($tipe)
+                        {
+                            $button = "<div class='d-flex gap-3 align-center'>";
+
+                            $button .= "<a href='javascript:void(0);' name='edit' id=' ". $tipe->id ." ' class='button text-success'><i class='mdi mdi-pencil font-size-18'></i></a>";
+
+                            $button .= "<a href='javascript:void(0);' name='delete' id='" . $tipe->id ."' class='button text-danger'><i class='mdi mdi-delete font-size-18'></i></a>";
+
+                            $button .= "</div>";
+
+                            return $button;
+                        })
+                        ->addColumn('status_order', function($tipe)
+                        {
+                            if($tipe->status === 'PENDING')
+                            {
+                                $status = '<span class="badge badge-pill badge-soft-warning font-size-11">' . $tipe->status  . '</span>';
+
+                            }else{
+                                $status = '<span class="badge badge-pill badge-soft-success font-size-11">' . $tipe->status  . '</span>';
+                            }
+
+                            return $status;
+                        })
+                    ->rawColumns(['action', 'status_order'])
+                    ->make(true);
         }
 
-        return view('transactions.index');
+        return view('pages.v2.Dashboard.Transaction.index', compact('transaction_pending','total_transaction','transaction_day'));
     }
 
     /**

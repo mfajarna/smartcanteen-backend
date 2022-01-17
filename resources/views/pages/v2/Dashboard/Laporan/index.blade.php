@@ -153,11 +153,11 @@
                         location.href='/admin/laporan_export/'+ tgl_awal + '/' + tgl_akhir
 
                         $.ajax({
-                            url: "{{ url('/admin/sendlog') }}",
+                            url: "{{ route('admin.laporan.sendlog')}}",
                             method: "GET",
                             success:function(res)
                             {
-                                location.reload();
+
                             }
                         })
 

@@ -169,6 +169,7 @@ return [
         /*
          * Package Service Providers...
          */
+         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
 
         /*
@@ -240,7 +241,7 @@ return [
         'DataTables' => \Yajra\DataTables\Facades\DataTables::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'LaravelEntrust'   => Shanmuga\LaravelEntrust\Facades\LaravelEntrustFacade::class,
-
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ],
 
 ];

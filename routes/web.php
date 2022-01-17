@@ -33,9 +33,11 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
 
         // Tenant
         Route::resource('tenant', TenantController::class);
+        Route::get('view', [TenantController::class,'view'])->name('tenant.view');
 
         // Menu
         Route::resource('menu', FoodController::class);
+        Route::get('view-menu', [FoodController::class,'view'])->name('menu.view');
 
         // Transaksi
         Route::resource('transaction', TransactionController::class);
@@ -46,7 +48,8 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
         Route::get('laporan_csv', [LaporanController::class, 'exportcsv'])->name('laporan.exportexcel');
 
         Route::resource('log_laporan', LogLaporanController::class);
-            Route::get('sendlog', [LaporanController::class, 'sendlog'])->name('admin.laporan.sendlog');
+            Route::get('sendlog', [LaporanController::class, 'sendlog'])->name('laporan.sendlog');
+
 
     }
 );

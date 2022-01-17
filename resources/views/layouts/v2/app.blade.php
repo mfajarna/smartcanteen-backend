@@ -30,6 +30,8 @@
 
                         @include('components.v2.Dashboard.breadcumb')
 
+                         @include('sweetalert::alert')
+
                         @yield('content')
 
                     </div>

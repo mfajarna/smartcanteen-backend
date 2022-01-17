@@ -24,12 +24,7 @@ class Authenticate extends Middleware
         $superadmin = User::where('username', 'superadmin')->first();
 
         // redirect to homepage after login
-        if($superadmin->hasRole('superadmin'))
-        {
-            return url('/admin/dashboard');
-        }else{
-            return url('/');
-        }
+
 
     }
 }

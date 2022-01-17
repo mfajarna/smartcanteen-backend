@@ -32,7 +32,14 @@ class TenantController extends Controller
 
                             return $button;
                         })
-                    ->rawColumns(['action'])
+                    ->addColumn('detail', function($tipe)
+                    {
+                            $button = '<button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" id="detail">
+                                                        View Details
+                                        </button>';
+                            return $button;
+                    })
+                    ->rawColumns(['action', 'detail'])
                     ->make(true);
         }
 

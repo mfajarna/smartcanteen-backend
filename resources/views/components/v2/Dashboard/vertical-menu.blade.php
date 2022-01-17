@@ -7,6 +7,7 @@
             <div id="sidebar-menu">
                 <!-- Left Menu Start -->
                 <ul class="metismenu list-unstyled" id="side-menu">
+                    @if(auth()->user()->role === "superadmin")
                     <li class="menu-title" key="t-menu">Menu</li>
 
                     <li>
@@ -55,6 +56,9 @@
                             <li><a href="{{ route('admin.log_laporan.index') }}" key="t-full-calendar">Log Laporan</a></li>
                         </ul>
                     </li>
+
+                    @endif
+
 
                 </ul>
             </div>

@@ -130,21 +130,13 @@ class LaporanController extends Controller
         //
     }
 
-    public function Loglaporan(Request $request)
-    {
-
-    }
-
     public function exportexcel($tgl_awal, $tgl_akhir)
     {
+
         return Excel::download(new LaporantransaksiExport($tgl_awal, $tgl_akhir), 'laporan_transaksi.xlsx');
 
     }
 
-    public function exportcsv()
-    {
-        return (new LaporantransaksiExport)->download('laporan_transaksi.csv', \Maatwebsite\Excel\Excel::CSV);
-    }
 
     public function sendlog(Request $request)
     {
@@ -153,5 +145,8 @@ class LaporanController extends Controller
         $model->user_id = Auth::user()->id;
         $model->save();
 
+
+
     }
+
 }

@@ -17,11 +17,14 @@
 
 @section('content')
 
+    @if (auth()->user()->role === 'superadmin')
         <div class="col mb-4">
             <button  id="buttonview_nonaktif_all" class="btn btn-dark waves-effect waves-light">
                 <i class="mdi mdi-plus-box-multiple-outline align-middle me-1"></i> Tambah
             </button >
         </div>
+    @endif
+        @include('modal.tenant.tenant-view')
 
         <div class="row">
             <div class="col-12">
@@ -39,6 +42,7 @@
                                     <th class="text-center">Nama Pemilik</th>
                                     <th class="text-center">Lokasi Kantin</th>
                                     <th class="text-center">Status</th>
+                                    <th class="text-center">Detail</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                                 </thead>
@@ -102,11 +106,23 @@
                             name: "is_active",
                             render: function(data, type, full, meta)
                                 {
-                                    return '<span class="badge badge-pill badge-soft-success font-size-11">'+ data +'</span>'
+                                    if(data == 1)
+                                    {
+                                        return '<span class="badge badge-pill badge-soft-success font-size-11"> Active</span>'
+                                    }else{
+                                        return '<span class="badge badge-pill badge-soft-danger font-size-11"> Non-Active</span>'
+                                    }
+
                                 }
                         },
                         {
                             "targets": 5,
+                            data: "detail",
+                            name: "detail",
+                            orderable: false
+                        },
+                        {
+                            "targets": 6,
                             "class": "text-sm",
                             data: "action",
                             name: "action",
@@ -115,7 +131,52 @@
                     ]
                 });
 
+                t.on('click', '#detail', function(){
+                    $tr = $(this).closest('tr');
+                        if($($tr).hasClass('child')){
+                            $tr = $tr.prev('.parent')
+                        }
 
+                    var data = t.row($tr).data();
+                    var id = data.id
+
+                    $('#ModalView').modal('show')
+
+
+                    $.ajax({
+                        url: '{{ route("admin.tenant.view") }}',
+                        method: 'get',
+                        data: {id:id},
+                        success: function(res)
+                        {
+                            $('#title-tenant').text('Tenant Kode: ' + res.id_tenant )
+                            $('#nama_tenant').text(res.nama_tenant)
+                            $('#nama_pemilik').text(res.nama_pemilik)
+                            $('#no_telp').text(res.no_telp)
+                            $('#lokasi_kantin').text(res.lokasi_kantin)
+                            $('#desc_kantin').text(res.desc_kantin)
+                            $('#jenis_bank').text(res.nama_bank)
+                            $('#no_rekening').text(res.no_rekening)
+                            $('#nama_rekening').text(res.nama_rekening)
+                            if(res.is_active == 1)
+                            {
+                                $('#status_tenant').text('Active')
+                                $('#status_tenant').removeClass( "badge badge-pill badge-soft-danger font-size-11" ).addClass( "badge badge-pill badge-soft-success font-size-11" );
+
+                            }else{
+                                 $('#status_tenant').text('Non-Active')
+                                 $('#status_tenant').removeClass( "badge badge-pill badge-soft-success font-size-11" ).addClass( "badge badge-pill badge-soft-danger font-size-11" );
+                            }
+
+
+                        }
+                    })
+                })
+
+                    function closeModal()
+                    {
+                        $('#ModalView').modal('hide');
+                    }
 
     </script>
 @endpush

@@ -40,6 +40,7 @@
                                     <th class="text-center">Kategori Menu</th>
                                     <th class="text-center">Nama Tenant</th>
                                     <th class="text-center">Status</th>
+                                    <th class="text-center">Detail</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                                 </thead>
@@ -50,14 +51,11 @@
                 </div>
             </div> <!-- end col -->
         </div>
-
+        @include('modal.menu.menu-view')
 @endsection
 
 @push('after-script')
     <script>
-        let isChecked = 0;
-
-
 
         $(document).ready(function () {
                 var t = $('#table-data').DataTable({
@@ -112,12 +110,57 @@
                         {
                             "targets": 5,
                             "class": "text-sm",
+                            data: "detail",
+                            name: "detail",
+                            orderable: false
+                        },
+                        {
+                            "targets": 6,
+                            "class": "text-sm",
                             data: "action",
                             name: "action",
                             orderable: false
                         }
                     ]
                 })
+
+                t.on('click', '#detail', function(){
+                    $tr = $(this).closest('tr');
+                        if($($tr).hasClass('child')){
+                            $tr = $tr.prev('.parent')
+                        }
+
+                    var data = t.row($tr).data();
+                    var id = data.id;
+
+                     $('#ModalView').modal('show')
+
+                $.ajax({
+                    method: 'get',
+                    url: '{{ route("admin.menu.view") }}',
+                    data: {id:id},
+                    success: function(res)
+                    {
+                        var price = res[0].price
+                        var rupiah = (price/1000).toFixed(3)
+
+                        $("#menu_title").text('Kode Menu: '+ res[0].kode_menu);
+                        $("#img_makanan").attr("src", res[0].picturePath)
+                        $('#nama_makanan').text(res[0].name)
+                        $('#category').text(res[0].category)
+                        $('#ingredients').text(res[0].ingredients)
+                        $('#price').text('Rp. ' + rupiah)
+                        $('#rating').text(res[0].rating)
+                        $('#nama_tenant').text(res[0].tenant.nama_tenant)
+                    }
+                })
+                })
+
+
+                function closeModal()
+                    {
+                        $('#ModalView').modal('hide');
+                    }
 
             });
     </script>

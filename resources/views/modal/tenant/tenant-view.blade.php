@@ -9,43 +9,43 @@
                 <ul class="list-group">
                     <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                         <div class="d-flex flex-column">
-                            <h6 class="mb-2">Informasi Tenant</h6>
+                            <h5 class="mb-2">Informasi Tenant</h5>
 
                             <span class="mb-2 text-xs">
-                                Nama Tenant : 
+                                Nama Tenant :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="nama_tenant"></span>
                             </span>
                             <span class="mb-2 text-xs">
-                                Nama Pemilik : 
+                                Nama Pemilik :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="nama_pemilik"></span>
                             </span>
                             <span class="mb-2 text-xs">
-                                No Telepon : 
+                                No Telepon :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="no_telp"></span>
                             </span>
                             <span class="mb-2 text-xs">
-                                Lokasi Kantin : 
+                                Lokasi Kantin :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="lokasi_kantin"></span>
                             </span>
                             <span class="mb-2 text-xs">
-                                Deskripsi Kantin : 
+                                Deskripsi Kantin :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="desc_kantin"></span>
                             </span>
                             <span class="mb-2 text-xs">
-                                Jenis Bank : 
+                                Jenis Bank :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="jenis_bank"></span>
                             </span>
                             <span class="mb-2 text-xs">
-                                No Rekening : 
+                                No Rekening :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="no_rekening"></span>
                             </span>
                             <span class="mb-2 text-xs">
-                                Nama Rekening : 
+                                Nama Rekening :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="nama_rekening"></span>
                             </span>
                             <span class="mb-2 text-xs">
-                                Status Tenant : 
-                                <span class="text-dark font-weight-bold ms-sm-2" id="status"></span>
+                                Status Tenant :
+                                <span class="badge badge-pill badge-soft-success font-size-11" id="status_tenant"></span>
                             </span>
                         </div>
                     </li>

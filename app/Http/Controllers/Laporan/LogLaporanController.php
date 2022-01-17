@@ -30,7 +30,7 @@ class LogLaporanController extends Controller
                     ->orderBy('tb_loglaporan.created_at', 'DESC')
                     ->get();
 
-        return view('pages.v2.Dashboard.Laporan.LogLaporan.index', compact('model'));
+        return view('pages.v2.Dashboard.Laporan.Loglaporan.index', compact('model'));
     }
 
     /**

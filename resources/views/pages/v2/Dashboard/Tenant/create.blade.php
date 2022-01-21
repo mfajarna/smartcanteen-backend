@@ -26,7 +26,7 @@
                         <h4 class="card-title mb-2">Tambah Tenant Baru</h4>
                         <p class="card-title-desc">tolong isi semua data dibawah ini</p>
 
-                        @include('components.v2.Dashboard.tenant.form')
+                        @include('components.v2.Dashboard.Tenant.form')
             </div> <!-- end col -->
         </div>
 

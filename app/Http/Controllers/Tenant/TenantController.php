@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Tenant;
 
-use App\Http\Controllers\Controller;
-use App\Models\Tenant\Tenant_m;
 use Illuminate\Http\Request;
+use App\Models\Tenant\Tenant_m;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class TenantController extends Controller
 {
@@ -53,7 +55,19 @@ class TenantController extends Controller
      */
     public function create()
     {
-        return view('tenant.create');
+        $find_code = Tenant_m::max('id_tenant');
+
+        if($find_code)
+        {
+            $value_code = substr($find_code,13);
+            $code = (int) $value_code;
+            $code = $code + 1;
+            $return_value = "TELU/TENANT/".str_pad($code,4,"0",STR_PAD_LEFT);
+        }else{
+            $return_value = "TELU/TENANT/0001";
+        }
+
+        return view('pages.v2.Dashboard.Tenant.create', compact('return_value'));
     }
 
     /**
@@ -64,7 +78,58 @@ class TenantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+                'kode_tenant_submit' => 'required|string|max:255|unique:tb_tenant,id_tenant',
+                'nama_pemilik_submit' => 'required|string|max:255',
+                'nama_tenant_submit' => 'required|string|max:255',
+                'email_submit' => 'required|email|unique:tb_tenant,email',
+                'no_telp_submit' => 'required|string|max:12',
+                'lokasi_kantin_submit' => 'required|string',
+                'desc_kantin_submit' => 'required|string|max:10000',
+                'nama_rekening_submit' => 'required|string',
+                'no_rekening_submit' => 'required|string',
+                'nama_bank_submit' => 'required|string',
+                'jangka_waktu_kontrak_submit'  => 'required|string|max:255',
+                'sharing_submit'     => 'required|string',
+                'qris_barcode_submit'  => 'required|file:jpg,jpeg,png|max:2048',
+                'file_kontrak_submit'  => 'required|mimes:pdf|max:2048',
+        ]);
+
+
+        $tenant = new Tenant_m();
+        $tenant->id_tenant = $request->kode_tenant_submit;
+        $tenant->nama_pemilik = $request->nama_pemilik_submit;
+        $tenant->nama_tenant = $request->nama_tenant_submit;
+        $tenant->email = $request->email_submit;
+        $tenant->no_telp = $request->no_telp_submit;
+        $tenant->lokasi_kantin = $request->lokasi_kantin_submit;
+        $tenant->desc_kantin = $request->desc_kantin_submit;
+        $tenant->nama_rekening = $request->nama_rekening_submit;
+        $tenant->no_rekening = $request->no_rekening_submit;
+        $tenant->nama_bank = $request->nama_bank_submit;
+        $tenant->jangka_waktu_kontrak = $request->jangka_waktu_kontrak_submit;
+        $tenant->sharing = $request->sharing_submit;
+        $tenant->jangka_waktu_kontrak = $request->jangka_waktu_kontrak_submit;
+
+
+        $tenant->password = Hash::make('Admin123');
+        $tenant->rating = 0;
+        $tenant->perhitungan_akhir = 0;
+        $tenant->total_jumlah_order = 0;
+        $tenant->status = "Tersedia";
+        $tenant->is_active = 1;
+
+        $path_qris = $request->file('qris_barcode_submit')->store('assets/file/qris', 'public');
+        $path_kontrak = $request->file('file_kontrak_submit')->store('assets/file/file_kontrak', 'public');
+
+        $tenant->qris_barcode = $path_qris;
+        $tenant->file_kontrak = $path_kontrak;
+
+        $tenant->save();
+
+
+        toast()->success('Berhasil Menyimpan Data');
+        return redirect()->route('admin.tenant.index');
     }
 
     /**

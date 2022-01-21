@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(LogLaporan::class);
     }
+
+    public function keluhan()
+    {
+        return $this->hasMany(Keluhan_m::class);
+    }
 }

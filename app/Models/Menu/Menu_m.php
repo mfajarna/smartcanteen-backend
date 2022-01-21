@@ -28,6 +28,7 @@ class Menu_m extends Model
         'is_active'
     ];
 
+
     public function tenant()
     {
         return $this->hasOne(Tenant_m::class, 'id','id_tenant');

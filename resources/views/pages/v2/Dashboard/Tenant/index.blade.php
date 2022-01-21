@@ -17,11 +17,11 @@
 
 @section('content')
 
-    @if (auth()->user()->role === 'superadmin')
+    @if (auth()->user()->role === 'superadmin' ||  auth()->user()->role === 'admin1' )
         <div class="col mb-4">
-            <button  id="buttonview_nonaktif_all" class="btn btn-dark waves-effect waves-light">
+            <a href="{{ route('admin.tenant.create') }}" class="btn btn-dark waves-effect waves-light">
                 <i class="mdi mdi-plus-box-multiple-outline align-middle me-1"></i> Tambah
-            </button >
+            </a >
         </div>
     @endif
         @include('modal.tenant.tenant-view')

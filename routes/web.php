@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Food\FoodController;
+use App\Http\Controllers\KeluhanController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Laporan\LaporanController;
 use App\Http\Controllers\Laporan\LogLaporanController;
@@ -33,22 +34,27 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
 
         // Tenant
         Route::resource('tenant', TenantController::class);
-        Route::get('view', [TenantController::class,'view'])->name('tenant.view');
+            Route::get('view', [TenantController::class,'view'])->name('tenant.view');
+            Route::post('tenant-create',  [TenantController::class,'store'])->name('tenant.store');
 
         // Menu
         Route::resource('menu', FoodController::class);
-        Route::get('view-menu', [FoodController::class,'view'])->name('menu.view');
+            Route::get('view-menu', [FoodController::class,'view'])->name('menu.view');
 
         // Transaksi
         Route::resource('transaction', TransactionController::class);
+            Route::get('view-transaction', [TransactionController::class,'view'])->name('transaction.view');
 
         // Laporan
         Route::resource('laporan', LaporanController::class);
-        Route::get('laporan_export/{tgl_awal}/{tgl_akhir}', [LaporanController::class, 'exportexcel'])->name('laporan.exportexcel');
-        Route::get('laporan_csv', [LaporanController::class, 'exportcsv'])->name('laporan.exportexcel');
+            Route::get('laporan_export/{tgl_awal}/{tgl_akhir}', [LaporanController::class, 'exportexcel'])->name('laporan.exportexcel');
+            Route::get('laporan_csv', [LaporanController::class, 'exportcsv'])->name('laporan.exportexcel');
 
         Route::resource('log_laporan', LogLaporanController::class);
             Route::get('sendlog', [LaporanController::class, 'sendlog'])->name('laporan.sendlog');
+
+        // Keluhan
+        Route::resource('keluhan', KeluhanController::class);
 
 
     }

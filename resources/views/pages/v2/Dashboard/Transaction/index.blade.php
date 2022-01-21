@@ -17,6 +17,8 @@
 @endpush
 
 @section('content')
+
+@include('modal.transactions.transaction-view')
     <div class="row">
         <div class="col-xl-12">
             <div class="row">
@@ -119,6 +121,7 @@
                                     <th class="text-center">Nama Pesanan</th>
                                     <th class="text-center">Tanggal Transaksi</th>
                                     <th class="text-center">Status</th>
+                                    <th class="text-center">Detail</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                                 </thead>
@@ -129,7 +132,10 @@
                 </div>
             </div> <!-- end col -->
         </div>
+
+
     </div
+
 
 @endsection
 
@@ -191,6 +197,13 @@
                         {
                             "targets": 5,
                             "class": "text-sm",
+                            data: "detail",
+                            name: "detail",
+                            orderable: false,
+                        },
+                        {
+                            "targets": 6,
+                            "class": "text-sm",
                             data: "action",
                             name: "action",
                             orderable: false,
@@ -198,6 +211,58 @@
                     ]
 
         })
+
+        t.on('click', '#detail', function(){
+            $tr = $(this).closest('tr');
+                        if($($tr).hasClass('child')){
+                            $tr = $tr.prev('.parent')
+                        }
+
+            var data = t.row($tr).data();
+            var id = data.id
+
+
+            $('#ModalView').modal('show')
+
+
+            $.ajax({
+                    url: '{{ route("admin.transaction.view") }}',
+                    method: 'get',
+                    data: {id:id},
+                    success: function(res)
+                    {
+                        $('#title-tenant').text('Detail Transaksi: ' + res.kode_transaksi )
+                        $('#nama_pelanggan').text(res.nama_pelanggan)
+                        $('#nim').text(res.nim)
+                        $('#nama_menu').text(res.menu.name)
+                        $('#nama_tenant').text(res.tenant.nama_tenant)
+                        $('#status_pembelian').text(res.status)
+                        $('#method_pembelian').text(res.method)
+                        $('#jumlah_pembelian').text(res.quantity)
+                        $('#total_harga').text(res.total)
+                        $('#waktu_pembelian').text(res.created_at)
+
+                        if(res.is_active == 1)
+                        {
+                            $('#status_tenant').text('Active')
+                            $('#status_tenant').removeClass( "badge badge-pill badge-soft-danger font-size-11" ).addClass( "badge badge-pill badge-soft-success font-size-11" );
+
+                        }else{
+                                $('#status_tenant').text('Non-Active')
+                                $('#status_tenant').removeClass( "badge badge-pill badge-soft-success font-size-11" ).addClass( "badge badge-pill badge-soft-danger font-size-11" );
+                        }
+
+
+                    }
+                })
+        })
+
+
+        function closeModal()
+        {
+            $('#ModalView').modal('hide');
+        }
+
     </script>
 
 @endpush

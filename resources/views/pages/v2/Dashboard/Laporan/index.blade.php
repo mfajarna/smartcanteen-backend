@@ -14,6 +14,12 @@
     <!-- Responsive datatable examples -->
     <link href="{{ asset('/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/assets/libs/@chenfengyuan/datepicker/datepicker.min.css') }}">
+
 @endpush
 
 @section('content')
@@ -112,20 +118,47 @@
                                 <h4 class="card-title mb-2">Filter Laporan Transaksi</h4>
 
                                 <div class="row mt-4">
-                                    <div class="mb-3 col-lg-2">
+                                    {{-- <div class="mb-3 col-lg-2">
                                         <label for="example-datetime-local-input">Range Tanggal Awal</label>
                                         <input class="form-control" type="date" id="tgl_awal">
-                                    </div>
-                                    <div class="mb-3 col-lg-2">
+                                    </div> --}}
+                                    {{-- <div class="mb-3 col-lg-2">
                                         <label for="example-datetime-local-input">Range Tanggal Akhir</label>
                                         <input class="form-control" type="date"  id="tgl_akhir">
+                                    </div> --}}
+                                    <div class="col-xl-6 mb-4">
+                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container="#datepicker6">
+                                                <input type="text" class="form-control" id="tgl_awal" placeholder="Start Date">
+                                                <input type="text" class="form-control" id="tgl_akhir" placeholder="End Date">
+
+                                        </div>
                                     </div>
-                                    <div class="mb-3 col-lg-1 mt-4">
-                                        <a id="btn_export" target="_blank" class="btn btn-success waves-effect waves-light">
-                                            <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
-                                        </a>
+
+                                    <div class="col-xl-6 mb-4">
+
+                                            <a id="btn_export" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
+                                            </a>
+
                                     </div>
                                 </div>
+
+                            <div class="card-body">
+
+                            </div>
+
+                            <div class="card-body">
+
+                            </div>
+
+                            <div class="card-body">
+
+                            </div>
+
+                            <div class="card-body">
+
+                            </div>
+
                             </form>
 
                         </div>
@@ -139,6 +172,15 @@
 @push('after-script')
         <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js') }}" ></script>
         <script src="{{ url('https://cdn.datatables.net/plug-ins/1.11.3/dataRender/datetime.js') }}"></script>
+
+        <script src="{{ asset('/assets/libs/select2/js/select2.min.js') }}"></script>
+        <script src="{{ asset('/assets/js/pages/form-advanced.init.js') }}"></script>
+        <script src="{{ asset('/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/@chenfengyuan/datepicker/datepicker.min.js') }}"></script>
 
         <script>
             $(document).ready(function () {

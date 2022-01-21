@@ -42,7 +42,11 @@ class Tenant_m extends Authenticatable
         'is_active',
         'password',
         'perhitungan_akhir',
-        'total_jumlah_order'
+        'total_jumlah_order',
+        'jangka_waktu_kontrak',
+        'sharing',
+        'qris_barcode',
+        'file_kontrak'
     ];
 
         /**

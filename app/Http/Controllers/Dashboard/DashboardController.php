@@ -6,6 +6,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Tenant_m;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -25,12 +26,29 @@ class DashboardController extends Controller
         $last_activity = DB::table('sessions')->where('user_id', Auth::user()->id)->first();
 
         $ip = $last_activity->ip_address;
-        $epoch = $last_activity->last_activity;
-        $time = new DateTime($epoch);
-        $last_act = $time->format('M d H:i:s');
+
+        $jumlah_tenant = Tenant_m::where('is_active', 1)->count();
+
+        $dataGrafik = Tenant_m::select(
+            DB::raw("COUNT(CASE lokasi_kantin WHEN 'Fakultas Ilmu Terapan' THEN 1 ELSE NULL END) AS fit"),
+            DB::raw("COUNT(CASE lokasi_kantin WHEN 'Fakultas Teknik' THEN 1 ELSE NULL END) AS fk"),
+            DB::raw("COUNT(CASE lokasi_kantin WHEN 'Fakultas Ekonomi dan Bisnis' THEN 1 ELSE NULL END) AS fkb"),
+            DB::raw("COUNT(CASE lokasi_kantin WHEN 'Asrama Putra' THEN 1 ELSE NULL END) AS asramaputra"),
+            DB::raw("COUNT(CASE lokasi_kantin WHEN 'Asrama Putri' THEN 1 ELSE NULL END) AS asramaputri"),
+            DB::raw("COUNT(CASE lokasi_kantin WHEN 'Gedung Kuliah Umum' THEN 1 ELSE NULL END) AS gku")
+        )
+        ->orderBy('lokasi_kantin', 'asc')
+        ->get();
 
 
-        return view('pages.v2.Dashboard.index', compact('last_act','ip'));
+        $dataFinal = [];
+        foreach($dataGrafik as $data)
+        {
+            array_push($dataFinal, $data->fit, $data->fk, $data->fkb, $data->asramaputra, $data->asramaputri, $data->gku);
+        }
+
+
+        return view('pages.v2.Dashboard.index', compact('ip', 'jumlah_tenant', 'dataFinal' ));
     }
 
     /**

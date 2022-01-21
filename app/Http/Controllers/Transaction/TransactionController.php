@@ -54,7 +54,14 @@ class TransactionController extends Controller
 
                             return $status;
                         })
-                    ->rawColumns(['action', 'status_order'])
+                        ->addColumn('detail', function($tipe)
+                        {
+                            $button = '<button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" id="detail">
+                                                        View Details
+                                        </button>';
+                            return $button;
+                        })
+                    ->rawColumns(['action', 'status_order', 'detail'])
                     ->make(true);
         }
 
@@ -125,5 +132,14 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function view(Request $request)
+    {
+        $id = $request->input('id');
+
+        $model = Transaction_m::with(['tenant', 'menu'])->where('id', $id)->first();
+
+        return response()->json($model);
     }
 }

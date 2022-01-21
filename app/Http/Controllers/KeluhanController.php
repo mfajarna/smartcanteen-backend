@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Laporan;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\LogLaporan\LogLaporan;
+use App\Models\Keluhan_m;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
-class LogLaporanController extends Controller
+class KeluhanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,20 +15,7 @@ class LogLaporanController extends Controller
      */
     public function index()
     {
-        // $model = LogLaporan::with('user')->select(
-        //     DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y') as tanggal"),
-
-        // )->get();
-
-        $model = DB::table('tb_loglaporan')
-                    ->join('users', 'tb_loglaporan.user_id', '=', 'users.id')
-                    ->select(
-                        'users.name',
-                        DB::raw("DATE_FORMAT(tb_loglaporan.created_at, '%M-%d %H:%i:%s') as tanggal")
-                    )
-                    ->orderBy('tb_loglaporan.created_at', 'DESC')
-                    ->paginate(10);
-        return view('pages.v2.Dashboard.Laporan.Loglaporan.index', compact('model'));
+        return abort(404);
     }
 
     /**
@@ -39,7 +25,7 @@ class LogLaporanController extends Controller
      */
     public function create()
     {
-
+        return abort(404);
     }
 
     /**
@@ -50,7 +36,19 @@ class LogLaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'keluhan'   => 'required|string|max:10000'
+        ]);
+
+        $keluhan = new Keluhan_m();
+
+        $keluhan->user_id = Auth::user()->id;
+        $keluhan->keluhan = $request->keluhan;
+
+        $keluhan->save();
+
+        toast()->success('Berhasil Kirim Keluhan dan Saran');
+        return redirect()->route('admin.dashboard.index');
     }
 
     /**
@@ -97,5 +95,4 @@ class LogLaporanController extends Controller
     {
         //
     }
-
 }

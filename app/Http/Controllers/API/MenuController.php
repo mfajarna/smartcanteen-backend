@@ -29,6 +29,7 @@ class MenuController extends Controller
                             ->where('category','like', '%' . $category . '%')
                             ->orderBy('created_at', 'DESC')->get();
             }
+
             if($status)
             {
                  $model = Menu_m::query()

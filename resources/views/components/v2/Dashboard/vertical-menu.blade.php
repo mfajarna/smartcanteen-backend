@@ -28,7 +28,7 @@
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="{{ route('admin.tenant.index') }}" key="t-tui-calendar">Manajemen Tenant</a></li>
                             <li><a href="{{ route('admin.menu.index') }}" key="t-full-calendar">Manajemen Menu</a></li>
-                            <li><a href="#" key="t-full-calendar">Manajemen User</a></li>
+
                         </ul>
                     </li>
                     <li>
@@ -57,6 +57,28 @@
                         </ul>
                     </li>
 
+                    @endif
+
+                    @if (auth()->user()->role === "admin1")
+                        <li class="menu-title" key="t-menu">Menu</li>
+
+                        <li>
+                            <a href="{{ route('admin.dashboard.index') }}" class="waves-effect">
+                                <i class="bx bx-home-circle"></i>
+                                <span key="t-dashboards">Dashboards</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-title" key="t-apps">Manajemen Tenant</li>
+                        <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="bx bx-receipt"></i>
+                            <span key="t-dashboards">Layanan</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="{{ route('admin.tenant.index') }}" key="t-tui-calendar">Tenant Profile</a></li>
+                        </ul>
+                    </li>
                     @endif
 
 

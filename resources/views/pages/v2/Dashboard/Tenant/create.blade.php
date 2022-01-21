@@ -19,7 +19,7 @@
 
     <div class="row">
             <div class="col-12">
-                @include('modal.Tenant.create-tenant')
+                @include('modal.tenant.create-tenant')
                 <div class="card">
                     <div class="card-body">
 

@@ -48,6 +48,9 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
         // Laporan
         Route::resource('laporan', LaporanController::class);
             Route::get('laporan_export/{tgl_awal}/{tgl_akhir}', [LaporanController::class, 'exportexcel'])->name('laporan.exportexcel');
+            Route::get('laporan_export_daily/{tgl_daily}', [LaporanController::class, 'export_daily'])->name('laporan.exportexceldaily');
+            Route::get('laporan_export_month/{month}', [LaporanController::class, 'export_month'])->name('laporan.exportexcelmonth');
+            Route::get('laporan_export_year/{year}', [LaporanController::class, 'export_year'])->name('laporan.exportexcelyear');
             Route::get('laporan_csv/{tgl_awal}/{tgl_akhir}', [LaporanController::class, 'exportcsv'])->name('laporan.exportexcel');
 
 

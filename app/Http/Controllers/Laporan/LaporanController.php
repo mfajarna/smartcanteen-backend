@@ -134,13 +134,34 @@ class LaporanController extends Controller
     public function exportexcel($tgl_awal, $tgl_akhir)
     {
 
-        return Excel::download(new LaporantransaksiExport($tgl_awal, $tgl_akhir), 'laporan_transaksi.xlsx');
+        $status = "range_tanggal";
+
+        return Excel::download(new LaporantransaksiExport($tgl_awal, $tgl_akhir,NULL,$status,NULL,NUll), 'laporan_transaksi.xlsx');
 
     }
 
-    public function export_daily()
+    public function export_daily($tgl_daily)
     {
+        $status = "daily";
+        $tanggal = date('Y-m-d', strtotime($tgl_daily));
 
+        return Excel::download(new LaporantransaksiExport(NULL, NULL, $tanggal,$status,NULL,NULL), 'laporan_transaksi_daily.xlsx');
+    }
+
+    public function export_month($month)
+    {
+        $status = "month";
+        $month_date = date('m', strtotime($month));
+
+        return Excel::download(new LaporantransaksiExport(NULL, NULL, NULL,$status,$month_date,NULL), 'laporan_transaksi_month.xlsx');
+    }
+
+    public function export_year($year)
+    {
+        $status = "year";
+        $year_date = date('Y', strtotime($year));
+
+        return Excel::download(new LaporantransaksiExport(NULL, NULL, NULL,$status,NULL,$year_date), 'laporan_transaksi_year.xlsx');
     }
 
     public function exportcsv($tgl_awal, $tgl_akhir)

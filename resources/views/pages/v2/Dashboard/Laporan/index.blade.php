@@ -117,14 +117,6 @@
                                     <h4 class="card-title mb-2">Filter Range Tanggal Laporan Transaksi</h4>
 
                                     <div class="row mt-4">
-                                        {{-- <div class="mb-3 col-lg-2">
-                                            <label for="example-datetime-local-input">Range Tanggal Awal</label>
-                                            <input class="form-control" type="date" id="tgl_awal">
-                                        </div> --}}
-                                        {{-- <div class="mb-3 col-lg-2">
-                                            <label for="example-datetime-local-input">Range Tanggal Akhir</label>
-                                            <input class="form-control" type="date"  id="tgl_akhir">
-                                        </div> --}}
                                         <div class="col-xl-6 mb-4">
                                             <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container="#datepicker6">
                                                     <input type="text" class="form-control" id="tgl_awal" placeholder="Start Date">
@@ -189,13 +181,13 @@
                                         <div class="col-xl-6 mb-4">
                                             <div class="position-relative" id="datepicker2">
 
-                                                <input type="text" class="form-control" data-date-container="#datepicker2" placeholder="MM yyyy" data-provide="datepicker" data-date-format="MM yyyy" data-date-min-view-mode="1">
+                                                <input type="text" class="form-control" id="month_tanggal" data-date-container="#datepicker2" placeholder="MM yyyy" data-provide="datepicker" data-date-format="MM yyyy" data-date-min-view-mode="1">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6 mb-4">
 
-                                                <a id="btn_export" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                <a id="btn_export_month" target="_blank" class="btn btn-success waves-effect waves-light">
                                                     <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
                                                 </a>
 
@@ -218,13 +210,13 @@
                                         <div class="col-xl-6 mb-4">
                                             <div class="position-relative" id="datepicker5">
 
-                                                <input type="text" class="form-control" data-provide="datepicker"  placeholder="dd M, yyyy" data-date-container="#datepicker5" data-date-format="dd M, yyyy" data-date-min-view-mode="2">
+                                                <input type="text" id="year_tanggal" class="form-control" data-provide="datepicker"  placeholder="dd M, yyyy" data-date-container="#datepicker5" data-date-format="dd M, yyyy" data-date-min-view-mode="2">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6 mb-4">
 
-                                                <a id="btn_export" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                <a id="btn_export_year" target="_blank" class="btn btn-success waves-effect waves-light">
                                                     <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
                                                 </a>
 
@@ -323,11 +315,36 @@
 
                     if(tanggal != "")
                     {
-
+                        location.href='/admin/laporan_export_daily/'+ tanggal
                     }else{
                         alert("Tolong isi filter tanggal daily!")
                     }
                 })
+
+                // jquery daily month
+                $('#btn_export_month').on('click', function(){
+                    var month = $('#month_tanggal').val();
+
+                    if(month != "")
+                    {
+                        location.href='/admin/laporan_export_month/'+ month
+                    }else{
+                        alert("Tolong isi filter Bulan!")
+                    }
+                })
+
+                // jquery daily year
+                $('#btn_export_year').on('click', function(){
+                    var year = $('#year_tanggal').val();
+
+                    if(year != "")
+                    {
+                        location.href='/admin/laporan_export_year/'+ year
+                    }else{
+                        alert("Tolong isi filter Tahun!")
+                    }
+                })
+
 
                 $('#btn_csv').on('click', function(){
 

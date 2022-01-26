@@ -231,6 +231,20 @@
                     data: {id:id},
                     success: function(res)
                     {
+                        $.formattedDate = function(dateToFormat) {
+                            var dateObject = new Date(dateToFormat);
+                            var day = dateObject.getDate();
+                            var month = dateObject.getMonth() + 1;
+                            var year = dateObject.getFullYear();
+                            day = day < 10 ? "0" + day : day;
+                            month = month < 10 ? "0" + month : month;
+                            var formattedDate = day + "-" + month + "-" + year;
+                            return formattedDate;
+                        };
+
+
+                        var formattedDate = $.formattedDate(res.created_at);
+
                         $('#title-tenant').text('Detail Transaksi: ' + res.kode_transaksi )
                         $('#nama_pelanggan').text(res.nama_pelanggan)
                         $('#nim').text(res.nim)
@@ -240,7 +254,7 @@
                         $('#method_pembelian').text(res.method)
                         $('#jumlah_pembelian').text(res.quantity)
                         $('#total_harga').text(res.total)
-                        $('#waktu_pembelian').text(res.created_at)
+                        $('#waktu_pembelian').text(formattedDate)
 
                         if(res.is_active == 1)
                         {

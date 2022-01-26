@@ -19,9 +19,7 @@
 
         {{-- Button View --}}
         <div class="col mb-4">
-            <button  id="buttonview_nonaktif_all" class="btn btn-dark waves-effect waves-light">
-                <i class="mdi mdi-eye-check  align-middle me-1"></i> Lihat
-            </button >
+
         </div>
 
         <div class="row">

@@ -110,60 +110,167 @@
                     </div>
                 </div>
                 <!-- end row -->
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                    <h4 class="card-title mb-2">Filter Range Tanggal Laporan Transaksi</h4>
 
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <form>
-                                <h4 class="card-title mb-2">Filter Laporan Transaksi</h4>
+                                    <div class="row mt-4">
+                                        {{-- <div class="mb-3 col-lg-2">
+                                            <label for="example-datetime-local-input">Range Tanggal Awal</label>
+                                            <input class="form-control" type="date" id="tgl_awal">
+                                        </div> --}}
+                                        {{-- <div class="mb-3 col-lg-2">
+                                            <label for="example-datetime-local-input">Range Tanggal Akhir</label>
+                                            <input class="form-control" type="date"  id="tgl_akhir">
+                                        </div> --}}
+                                        <div class="col-xl-6 mb-4">
+                                            <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container="#datepicker6">
+                                                    <input type="text" class="form-control" id="tgl_awal" placeholder="Start Date">
+                                                    <input type="text" class="form-control" id="tgl_akhir" placeholder="End Date">
 
-                                <div class="row mt-4">
-                                    {{-- <div class="mb-3 col-lg-2">
-                                        <label for="example-datetime-local-input">Range Tanggal Awal</label>
-                                        <input class="form-control" type="date" id="tgl_awal">
-                                    </div> --}}
-                                    {{-- <div class="mb-3 col-lg-2">
-                                        <label for="example-datetime-local-input">Range Tanggal Akhir</label>
-                                        <input class="form-control" type="date"  id="tgl_akhir">
-                                    </div> --}}
-                                    <div class="col-xl-6 mb-4">
-                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container="#datepicker6">
-                                                <input type="text" class="form-control" id="tgl_awal" placeholder="Start Date">
-                                                <input type="text" class="form-control" id="tgl_akhir" placeholder="End Date">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 mb-4">
+
+                                                <a id="btn_export" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
+                                                </a>
+
+                                                <a id="btn_csv" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> CSV
+                                                </a>
 
                                         </div>
                                     </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
 
-                                    <div class="col-xl-6 mb-4">
 
-                                            <a id="btn_export" target="_blank" class="btn btn-success waves-effect waves-light">
-                                                <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
-                                            </a>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-2">Filter Daily Laporan Transaksi</h4>
 
-                                    </div>
+                                <div class="row mt-4">
+                                        <div class="col-xl-6 mb-4">
+                                            <div class="position-relative" id="datepicker1">
+                                                <input type="text" class="form-control" id="daily_tanggal" placeholder="dd M, yyyy" data-date-format="dd M, yyyy" data-date-container="#datepicker1" data-provide="datepicker">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 mb-4">
+
+                                                <a id="btn_export_daily" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
+                                                </a>
+
+                                                <a id="btn_csv_daily" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> CSV
+                                                </a>
+
+                                        </div>
                                 </div>
-
-                            <div class="card-body">
-
                             </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
                             <div class="card-body">
+                                <h4 class="card-title mb-2">Filter Month Laporan Transaksi</h4>
 
+                                <div class="row mt-4">
+                                        <div class="col-xl-6 mb-4">
+                                            <div class="position-relative" id="datepicker2">
+
+                                                <input type="text" class="form-control" data-date-container="#datepicker2" placeholder="MM yyyy" data-provide="datepicker" data-date-format="MM yyyy" data-date-min-view-mode="1">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 mb-4">
+
+                                                <a id="btn_export" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
+                                                </a>
+
+                                                <a id="btn_csv" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> CSV
+                                                </a>
+
+                                        </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
 
+                    <div class="col-6">
+                        <div class="card">
                             <div class="card-body">
+                                <h4 class="card-title mb-2">Filter Year Laporan Transaksi</h4>
 
+                                <div class="row mt-4">
+                                        <div class="col-xl-6 mb-4">
+                                            <div class="position-relative" id="datepicker5">
+
+                                                <input type="text" class="form-control" data-provide="datepicker"  placeholder="dd M, yyyy" data-date-container="#datepicker5" data-date-format="dd M, yyyy" data-date-min-view-mode="2">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 mb-4">
+
+                                                <a id="btn_export" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
+                                                </a>
+
+                                                <a id="btn_csv" target="_blank" class="btn btn-success waves-effect waves-light">
+                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> CSV
+                                                </a>
+
+                                        </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="card-body">
-
-                            </div>
-
-                            </form>
+                <div class="col-6">
+                        <div class="card">
 
                         </div>
                     </div>
-                </div> <!-- end col -->
+                </div>
+                <div class="col-6">
+                        <div class="card">
+
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-6">
+                        <div class="card">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                        <div class="card">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                        <div class="card">
+
+                        </div>
+                    </div>
+                </div>
+
             </div> <!-- end col -->
         </div>
 
@@ -185,6 +292,7 @@
         <script>
             $(document).ready(function () {
 
+                // jquery range tanggal
                 $('#btn_export').on('click', function(){
 
                 var tgl_awal = $('#tgl_awal').val();
@@ -193,6 +301,42 @@
                     if(tgl_awal != "" && tgl_akhir != "")
                     {
                         location.href='/admin/laporan_export/'+ tgl_awal + '/' + tgl_akhir
+
+                        $.ajax({
+                            url: "{{ route('admin.laporan.sendlog')}}",
+                            method: "GET",
+                            success:function(res)
+                            {
+
+                            }
+                        })
+
+                    }else{
+                        alert('Tolong isi filter tanggal!')
+                    }
+
+                })
+
+                // jquery daily tanggal
+                $('#btn_export_daily').on('click', function(){
+                    var tanggal = $('#daily_tanggal').val();
+
+                    if(tanggal != "")
+                    {
+
+                    }else{
+                        alert("Tolong isi filter tanggal daily!")
+                    }
+                })
+
+                $('#btn_csv').on('click', function(){
+
+                var tgl_awal = $('#tgl_awal').val();
+                var tgl_akhir = $('#tgl_akhir').val();
+
+                    if(tgl_awal != "" && tgl_akhir != "")
+                    {
+                        location.href='/admin/laporan_csv/'+ tgl_awal + '/' + tgl_akhir
 
                         $.ajax({
                             url: "{{ route('admin.laporan.sendlog')}}",

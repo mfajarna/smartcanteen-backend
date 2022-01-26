@@ -48,7 +48,8 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
         // Laporan
         Route::resource('laporan', LaporanController::class);
             Route::get('laporan_export/{tgl_awal}/{tgl_akhir}', [LaporanController::class, 'exportexcel'])->name('laporan.exportexcel');
-            Route::get('laporan_csv', [LaporanController::class, 'exportcsv'])->name('laporan.exportexcel');
+            Route::get('laporan_csv/{tgl_awal}/{tgl_akhir}', [LaporanController::class, 'exportcsv'])->name('laporan.exportexcel');
+
 
         Route::resource('log_laporan', LogLaporanController::class);
             Route::get('sendlog', [LaporanController::class, 'sendlog'])->name('laporan.sendlog');

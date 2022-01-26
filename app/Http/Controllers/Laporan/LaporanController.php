@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Laporan;
 
+use App\Exports\LaporantransaksiCsv;
 use App\Exports\LaporantransaksiExport;
 use App\Http\Controllers\Controller;
 use App\Models\LogLaporan\LogLaporan;
@@ -71,7 +72,7 @@ class LaporanController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -82,7 +83,7 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -93,7 +94,7 @@ class LaporanController extends Controller
      */
     public function show($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -104,7 +105,7 @@ class LaporanController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -116,7 +117,7 @@ class LaporanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -127,13 +128,25 @@ class LaporanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort(404);
     }
 
     public function exportexcel($tgl_awal, $tgl_akhir)
     {
 
         return Excel::download(new LaporantransaksiExport($tgl_awal, $tgl_akhir), 'laporan_transaksi.xlsx');
+
+    }
+
+    public function export_daily()
+    {
+
+    }
+
+    public function exportcsv($tgl_awal, $tgl_akhir)
+    {
+
+        return Excel::download(new LaporantransaksiCsv($tgl_awal, $tgl_akhir), 'laporan_transaksi.csv');
 
     }
 
@@ -144,9 +157,6 @@ class LaporanController extends Controller
 
         $model->user_id = Auth::user()->id;
         $model->save();
-
-
-
     }
 
 }

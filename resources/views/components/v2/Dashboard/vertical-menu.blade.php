@@ -41,7 +41,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="waves-effect">
+                        <a href="{{ route('admin.methodpayment.index') }}" class="waves-effect">
                             <i class="bx bx-credit-card-alt"></i>
                             <span key="t-dashboards">Metode Pembayaran</span>
                         </a>

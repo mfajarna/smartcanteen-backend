@@ -6,6 +6,7 @@ use App\Http\Controllers\KeluhanController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Laporan\LaporanController;
 use App\Http\Controllers\Laporan\LogLaporanController;
+use App\Http\Controllers\MethodPayment\MethodPaymentController;
 use App\Http\Controllers\Tenant\TenantController;
 use App\Http\Controllers\Transaction\TransactionController;
 use App\Http\Livewire\Tenant\ViewTenant;
@@ -59,6 +60,9 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
 
         // Keluhan
         Route::resource('keluhan', KeluhanController::class);
+
+        // MethodPayment
+        Route::resource('methodpayment', MethodPaymentController::class);
 
 
     }

@@ -7,6 +7,7 @@ use App\Exports\LaporantransaksiExport;
 use App\Http\Controllers\Controller;
 use App\Models\LogLaporan\LogLaporan;
 use App\Models\transaction\Transaction_m;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -159,9 +160,9 @@ class LaporanController extends Controller
     public function export_year($year)
     {
         $status = "year";
-        $year_date = date('Y', strtotime($year));
 
-        return Excel::download(new LaporantransaksiExport(NULL, NULL, NULL,$status,NULL,$year_date), 'laporan_transaksi_year.xlsx');
+
+        return Excel::download(new LaporantransaksiExport(NULL, NULL, NULL,$status,NULL,$year), 'laporan_transaksi_year.xlsx');
     }
 
     public function exportcsv($tgl_awal, $tgl_akhir)

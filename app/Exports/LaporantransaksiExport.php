@@ -75,8 +75,7 @@ class LaporantransaksiExport implements FromCollection,  WithHeadings
             return DB::table('tb_transactions')
                     ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
                     ->select('tb_transactions.kode_transaksi', 'tb_transactions.nama_pelanggan','tb_menu.name','tb_transactions.created_at','tb_transactions.status')
-                    ->whereYear('tb_transactions.created_at', $this->year)
-                    ->latest()
+                    ->where( DB::raw('YEAR(tb_transactions.created_at)'), '=', $this->year)
                     ->get();
         }
 

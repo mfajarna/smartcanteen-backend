@@ -131,10 +131,6 @@
                                                     <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
                                                 </a>
 
-                                                <a id="btn_csv" target="_blank" class="btn btn-success waves-effect waves-light">
-                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> CSV
-                                                </a>
-
                                         </div>
                                     </div>
                             </div>
@@ -158,10 +154,6 @@
 
                                                 <a id="btn_export_daily" target="_blank" class="btn btn-success waves-effect waves-light">
                                                     <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
-                                                </a>
-
-                                                <a id="btn_csv_daily" target="_blank" class="btn btn-success waves-effect waves-light">
-                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> CSV
                                                 </a>
 
                                         </div>
@@ -191,10 +183,6 @@
                                                     <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
                                                 </a>
 
-                                                <a id="btn_csv" target="_blank" class="btn btn-success waves-effect waves-light">
-                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> CSV
-                                                </a>
-
                                         </div>
                                 </div>
                             </div>
@@ -210,7 +198,7 @@
                                         <div class="col-xl-6 mb-4">
                                             <div class="position-relative" id="datepicker5">
 
-                                                <input type="text" id="year_tanggal" class="form-control" data-provide="datepicker"  placeholder="dd M, yyyy" data-date-container="#datepicker5" data-date-format="dd M, yyyy" data-date-min-view-mode="2">
+                                                <input type="text" id="year_tanggal" class="form-control" data-provide="datepicker"  placeholder="dd M, yyyy" data-date-container="#datepicker5" data-date-format="yyyy" data-date-min-view-mode="2">
                                             </div>
                                         </div>
 
@@ -218,10 +206,6 @@
 
                                                 <a id="btn_export_year" target="_blank" class="btn btn-success waves-effect waves-light">
                                                     <i class="mdi mdi-file-excel  align-middle me-1"></i> EXCEL
-                                                </a>
-
-                                                <a id="btn_csv" target="_blank" class="btn btn-success waves-effect waves-light">
-                                                    <i class="mdi mdi-file-excel  align-middle me-1"></i> CSV
                                                 </a>
 
                                         </div>

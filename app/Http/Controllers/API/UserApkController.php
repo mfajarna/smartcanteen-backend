@@ -14,12 +14,12 @@ class UserApkController extends Controller
     {
         try {
             $validation = $request->validate([
-                'name'      => 'required|string|unique:tb_user_apk,name',
+                'nama'      => 'required|string|unique:tb_user_apk,name',
                 'status'    => 'required|string'
             ]);
 
             $create = UserApk::create([
-                'name'      => $validation['name'],
+                'nama'      => $validation['name'],
                 'status'    => $validation['status'],
             ]);
 

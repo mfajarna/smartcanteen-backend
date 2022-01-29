@@ -12,7 +12,7 @@ class UserApk extends Model
     protected $table = "tb_user_apk";
 
     protected $fillable = [
-        'name',
+        'nama',
         'status'
     ];
 

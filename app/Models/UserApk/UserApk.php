@@ -13,7 +13,7 @@ class UserApk extends Model
 
     protected $fillable = [
         'nama',
-        'status'
+        'is_login'
     ];
 
 

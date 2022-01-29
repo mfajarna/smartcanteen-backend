@@ -15,12 +15,12 @@ class UserApkController extends Controller
         try {
             $validation = $request->validate([
                 'nama'      => 'required|string|unique:tb_user_apk,name',
-                'status'    => 'required|string'
+                'is_login'    => 'required|string'
             ]);
 
             $create = UserApk::create([
-                'nama'      => $validation['name'],
-                'status'    => $validation['status'],
+                'nama'      => $validation['nama'],
+                'is_login'    => $validation['is_login'],
             ]);
 
             return ResponseFormatter::success($create,'Berhasil input data');

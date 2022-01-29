@@ -14,7 +14,7 @@ class UserApkController extends Controller
     {
         try {
             $validation = $request->validate([
-                'nama'      => 'required|string|unique:tb_user_apk,name',
+                'nama'      => 'required|string|unique:tb_user_apk,nama',
                 'is_login'    => 'required|string'
             ]);
 

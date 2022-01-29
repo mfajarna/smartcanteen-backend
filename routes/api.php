@@ -4,6 +4,7 @@ use App\Http\Controllers\API\MenuController;
 use App\Http\Controllers\API\OverallmenuController;
 use App\Http\Controllers\API\TenantController;
 use App\Http\Controllers\API\TransactionController;
+use App\Http\Controllers\API\UserApkController;
 use App\Http\Controllers\API\UsersmenuController;
 use Illuminate\Support\Facades\Route;
 
@@ -80,3 +81,7 @@ Route::post('transactions/user/updateStatus/{id}', [UsersmenuController::class, 
 Route::post('tenant/rating/{id}', [TenantController::class, 'updateRating']);
 Route::post('tenant/updatePerhitunganAkhir/{id}', [TenantController::class, 'updatePerhitunganAkhir']);
 Route::post('tenant/updateTotalJumlahOrder/{id}', [TenantController::class, 'updateTotalJumlahOrder']);
+
+
+// UserAPK Check and Create
+Route::post('userapk', [UserApkController::class, 'validation']);

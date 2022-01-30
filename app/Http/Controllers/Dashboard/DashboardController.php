@@ -37,6 +37,7 @@ class DashboardController extends Controller
             DB::raw("COUNT(CASE lokasi_kantin WHEN 'Asrama Putri' THEN 1 ELSE NULL END) AS asramaputri"),
             DB::raw("COUNT(CASE lokasi_kantin WHEN 'Gedung Kuliah Umum' THEN 1 ELSE NULL END) AS gku")
         )
+        ->where('is_active', 1)
         ->orderBy('lokasi_kantin', 'asc')
         ->get();
 

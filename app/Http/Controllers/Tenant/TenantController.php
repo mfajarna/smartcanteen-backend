@@ -28,7 +28,7 @@ class TenantController extends Controller
 
                             $button .= "<a href='javascript:void(0);' name='edit' id=' ". $tipe->id ." ' class='button text-success'><i class='mdi mdi-pencil font-size-18'></i></a>";
 
-                            $button .= "<a href='javascript:void(0);' name='delete' id='" . $tipe->id ."' class='button text-danger'><i class='mdi mdi-delete font-size-18'></i></a>";
+                            $button .= "<a href='/admin/remove-tenant?id=". $tipe->id ."' name='delete' id='delete' class='button text-danger'><i class='mdi mdi-delete font-size-18'></i></a>";
 
                             $button .= "</div>";
 
@@ -78,38 +78,40 @@ class TenantController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-                'kode_tenant_submit' => 'required|string|max:255|unique:tb_tenant,id_tenant',
-                'nama_pemilik_submit' => 'required|string|max:255',
-                'nama_tenant_submit' => 'required|string|max:255',
-                'email_submit' => 'required|email|unique:tb_tenant,email',
-                'no_telp_submit' => 'required|string|max:12',
-                'lokasi_kantin_submit' => 'required|string',
-                'desc_kantin_submit' => 'required|string|max:10000',
-                'nama_rekening_submit' => 'required|string',
-                'no_rekening_submit' => 'required|string',
-                'nama_bank_submit' => 'required|string',
-                'jangka_waktu_kontrak_submit'  => 'required|string|max:255',
-                'sharing_submit'     => 'required|string',
-                'qris_barcode_submit'  => 'required|file:jpg,jpeg,png|max:2048',
-                'file_kontrak_submit'  => 'required|mimes:pdf|max:2048',
+        $validate = $request->validate([
+                'kode_tenant_submit'            => 'required|string|max:255|unique:tb_tenant,id_tenant',
+                'nama_pemilik_submit'           => 'required|string|max:255',
+                'nama_tenant_submit'            => 'required|string|max:255',
+                'email_submit'                  => 'required|email|unique:tb_tenant,email',
+                'no_telp_submit'                => 'required|string|max:12',
+                'lokasi_kantin_submit'          => 'required|string',
+                'desc_kantin_submit'            => 'required|string|max:10000',
+                'nama_rekening_submit'          => 'required|string',
+                'no_rekening_submit'            => 'required|string',
+                'nama_bank_submit'              => 'required|string',
+                'jangka_waktu_kontrak_submit'   => 'required|string|max:255',
+                'sharing_telu_submit'           => 'required|integer',
+                'sharing_tenant_submit'         => 'required|integer',
+                'qris_barcode_submit'           => 'required|file:jpg,jpeg,png|max:2048',
+                'file_kontrak_submit'           => 'required|mimes:pdf|max:2048',
         ]);
 
 
         $tenant = new Tenant_m();
-        $tenant->id_tenant = $request->kode_tenant_submit;
-        $tenant->nama_pemilik = $request->nama_pemilik_submit;
-        $tenant->nama_tenant = $request->nama_tenant_submit;
-        $tenant->email = $request->email_submit;
-        $tenant->no_telp = $request->no_telp_submit;
-        $tenant->lokasi_kantin = $request->lokasi_kantin_submit;
-        $tenant->desc_kantin = $request->desc_kantin_submit;
-        $tenant->nama_rekening = $request->nama_rekening_submit;
-        $tenant->no_rekening = $request->no_rekening_submit;
-        $tenant->nama_bank = $request->nama_bank_submit;
-        $tenant->jangka_waktu_kontrak = $request->jangka_waktu_kontrak_submit;
-        $tenant->sharing = $request->sharing_submit;
-        $tenant->jangka_waktu_kontrak = $request->jangka_waktu_kontrak_submit;
+        $tenant->id_tenant = $validate['kode_tenant_submit'];
+        $tenant->nama_pemilik = $validate['nama_pemilik_submit'];
+        $tenant->nama_tenant = $validate['nama_tenant_submit'];
+        $tenant->email = $validate['email_submit'];
+        $tenant->no_telp = $validate['no_telp_submit'];
+        $tenant->lokasi_kantin = $validate['lokasi_kantin_submit'];
+        $tenant->desc_kantin = $validate['desc_kantin_submit'];
+        $tenant->nama_rekening = $validate['nama_rekening_submit'];
+        $tenant->no_rekening = $validate['no_rekening_submit'];
+        $tenant->nama_bank = $validate['nama_bank_submit'];
+        $tenant->jangka_waktu_kontrak = $validate['jangka_waktu_kontrak_submit'];
+        $tenant->sharing_telu = $validate['sharing_telu_submit'];
+        $tenant->sharing_tenant = $validate['sharing_tenant_submit'];
+        $tenant->jangka_waktu_kontrak = $validate['jangka_waktu_kontrak_submit'];
 
 
         $tenant->password = Hash::make('Admin123');
@@ -174,7 +176,26 @@ class TenantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Tenant_m::findOrFail($id);
+
+        $model->delete();
+
+
+        toast()->success('Berhasil Hapus Data Tenant');
+        return redirect()->route('admin.tenant.index');
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->input('id');
+
+        $model = Tenant_m::findOrFail($id);
+
+        $model->delete();
+
+
+        toast()->success('Berhasil Hapus Data Tenant');
+        return redirect()->route('admin.tenant.index');
     }
 
     public function view(Request $request)

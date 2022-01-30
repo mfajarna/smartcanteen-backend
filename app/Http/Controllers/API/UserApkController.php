@@ -14,16 +14,30 @@ class UserApkController extends Controller
     {
         try {
             $validation = $request->validate([
-                'nama'      => 'required|string|unique:tb_user_apk,nama',
+                'nama'      => 'required|string',
                 'is_login'    => 'required|string'
             ]);
 
-            $create = UserApk::create([
-                'nama'      => $validation['nama'],
-                'is_login'    => $validation['is_login'],
-            ]);
+            $nama = $validation['nama'];
 
-            return ResponseFormatter::success($create,'Berhasil input data');
+            $model = UserApk::where('nama', '=', $nama)->firstOrFail();
+
+            if($model)
+            {
+                $model->is_login = "1";
+                $model->save();
+
+                return ResponseFormatter::success($model,'Berhasil Update data');
+            }else{
+                $create = UserApk::create([
+                    'nama' => $validation['nama'],
+                    'is_login' => $validation['is_login']
+                ]);
+
+                return ResponseFormatter::success($create, 'Berhasil Input data');
+            }
+
+
 
         }catch(Exception $e)
         {

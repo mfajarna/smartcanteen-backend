@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableTbUserApkTable extends Migration
+class AddColumnSharingToTbTenant extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateTableTbUserApkTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_user_apk', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('nama')->nullable();
-            $table->string('is_login')->nullable();
-
-            $table->timestamps();
+        Schema::table('tb_tenant', function (Blueprint $table) {
+            $table->integer('sharing_telu')->after('sharing')->nullable();
+            $table->integer('sharing_tenant')->after('sharing')->nullable();
         });
     }
 
@@ -30,6 +26,8 @@ class CreateTableTbUserApkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_user_apk');
+        Schema::table('tb_tenant', function (Blueprint $table) {
+            //
+        });
     }
 }

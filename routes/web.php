@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
         Route::resource('tenant', TenantController::class);
             Route::get('view', [TenantController::class,'view'])->name('tenant.view');
             Route::post('tenant-create',  [TenantController::class,'store'])->name('tenant.store');
+            Route::get('remove-tenant', [TenantController::class,'delete'])->name('tenant.delete');
 
         // Menu
         Route::resource('menu', FoodController::class);

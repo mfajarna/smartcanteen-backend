@@ -44,7 +44,8 @@ class Tenant_m extends Authenticatable
         'perhitungan_akhir',
         'total_jumlah_order',
         'jangka_waktu_kontrak',
-        'sharing',
+        'sharing_telu',
+        'sharing_tenant',
         'qris_barcode',
         'file_kontrak'
     ];

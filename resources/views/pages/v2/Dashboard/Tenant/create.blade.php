@@ -43,8 +43,6 @@
 
         $('#Finish').on('click', function(){
 
-            $('#SubmitTenantForm').modal('show')
-
             var kode_tenant = $('#kode_tenant').val();
             var nama_pemilik = $('#nama_pemilik').val();
             var email = $('#email').val();
@@ -56,22 +54,32 @@
             var desc_kantin = $('#desc_kantin').val();
             var lokasi_kantin = $('#lokasi_kantin').find(":selected").text();
             var jangka_waktu_kontrak = $('#jangka_waktu_kontrak').val();
-            var sharing = $('#sharing').val();
-
+            var sharing_telu = $('#sharing_telu').val();
+            var sharing_tenant = $('#sharing_tenant').val();
             let _token   = $('meta[name="csrf-token"]').attr('content');
 
-            $('#nama_pemilik_submit').val(nama_pemilik);
-            $('#email_submit').val(email);
-            $('#no_telp_submit').val(no_telp);
-            $('#nama_bank_submit').val(nama_bank);
-            $('#nama_rekening_submit').val(nama_rekening);
-            $('#no_rekening_submit').val(no_rekening);
-            $('#nama_tenant_submit').val(nama_tenant);
-            $('textarea#desc_kantin_submit').val(desc_kantin);
-            $('#lokasi_kantin_submit').val(lokasi_kantin)
-            $('#jangka_waktu_kontrak_submit').val(jangka_waktu_kontrak);
-            $('#sharing_submit').val(sharing);
+            if(kode_tenant == "" || nama_pemilik == "" || email == "" || no_telp == "" || nama_bank == "" || nama_rekening == "" || no_rekening == "" || desc_kantin == "" || jangka_waktu_kontrak == "" || sharing_telu == "" || sharing_tenant == "" )
+            {
+                alert('Tolong isi dokumen yang kosong!')
 
+                return false;
+            }
+            else{
+                $('#SubmitTenantForm').modal('show')
+
+                $('#nama_pemilik_submit').val(nama_pemilik);
+                $('#email_submit').val(email);
+                $('#no_telp_submit').val(no_telp);
+                $('#nama_bank_submit').val(nama_bank);
+                $('#nama_rekening_submit').val(nama_rekening);
+                $('#no_rekening_submit').val(no_rekening);
+                $('#nama_tenant_submit').val(nama_tenant);
+                $('textarea#desc_kantin_submit').val(desc_kantin);
+                $('#lokasi_kantin_submit').val(lokasi_kantin)
+                $('#jangka_waktu_kontrak_submit').val(jangka_waktu_kontrak);
+                $('#sharing_telu_submit').val(sharing_telu);
+                $('#sharing_tenant_submit').val(sharing_tenant);
+            }
         })
     })
 

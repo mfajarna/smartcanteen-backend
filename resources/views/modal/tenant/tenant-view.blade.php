@@ -47,6 +47,14 @@
                                 Status Tenant :
                                 <span class="badge badge-pill badge-soft-success font-size-11" id="status_tenant"></span>
                             </span>
+                            <span class="mb-2 text-xs">
+
+                                <a href="#" id="barcode_qris" class="fw-medium text-primary">Lihat Barcode Qris</a>
+                            </span>
+                            <span class="mb-2 text-xs">
+
+                                <a href="#" id="file_kontrak" class="fw-medium text-primary">Lihat File Kontrak </a>
+                            </span>
                         </div>
                     </li>
                 </ul>

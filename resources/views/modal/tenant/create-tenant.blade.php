@@ -159,7 +159,7 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="basicpill-pancard-input">Jangka Waktu Kontrak</label>
-                                <input type="text" name="jangka_waktu_kontrak_submit" class="form-control" id="jangka_waktu_kontrak_submit" value="{{ old('jangka_waktu_kontrak_submit') }}" placeholder="Masukan Jangka Waktu Kontrak" readonly="true" required>
+                                <input type="number" name="jangka_waktu_kontrak_submit" class="form-control" id="jangka_waktu_kontrak_submit" value="{{ old('jangka_waktu_kontrak_submit') }}" placeholder="Masukan Jangka Waktu Kontrak" readonly="true" required>
 
                                     @if ($errors->has('jangka_waktu_kontrak_submit'))
                                         <p class="text-red-500 mb-3 text-sm">
@@ -171,16 +171,27 @@
 
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label for="basicpill-vatno-input">% Sharing</label>
-                                 <input type="text" name="sharing_submit" class="form-control" id="sharing_submit" value="{{ old('sharing_submit') }}" placeholder="Masukan % Sharing" readonly="true" required>
+                                <label for="basicpill-vatno-input">Sharing Tel-U</label>
+                                 <input type="number" name="sharing_telu_submit" class="form-control" id="sharing_telu_submit" value="{{ old('sharing_telu_submit') }}" placeholder="Masukan % Sharing" readonly="true" required>
 
-                                    @if ($errors->has('sharing_submit'))
+                                    @if ($errors->has('sharing_telu_submit'))
                                         <p class="text-red-500 mb-3 text-sm">
-                                            {{ $errors->first('sharing_submit') }}
+                                            {{ $errors->first('sharing_telu_submit') }}
                                         </p>
                                     @endif
 
                                 </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="basicpill-vatno-input">Sharing Tenant</label>
+                            <input type="number" name="sharing_tenant_submit" class="form-control" id="sharing_tenant_submit" value="{{ old('sharing_tenant_submit') }}" placeholder="Masukan % Sharing" readonly="true" required>
+
+                            @if ($errors->has('sharing_tenant_submit'))
+                                <p class="text-red-500 mb-3 text-sm">
+                                    {{ $errors->first('sharing_tenant_submit') }}
+                                </p>
+                            @endif
+
                         </div>
                     </div>
                     <h5 class="font-size-14 mt-4"><i class="mdi mdi-file-upload text-primary"></i> Upload Dokumen</h5>
@@ -189,12 +200,14 @@
                             <div class="mb-3 mt-2">
                                 <label for="kode_tenant">Qris Barcode</label>
                                 <input class="form-control" type="file" id="qris_barcode_submit" name="qris_barcode_submit" required>
+                                <span class="text-muted">File: jpg,jpeg,png, max size: 2mb</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3 mt-2">
                                 <label for="nama_pemilik">File Kontrak</label>
                                 <input class="form-control" type="file" id="file_kontrak_submit" name="file_kontrak_submit" required>
+                                <span class="text-muted">File: png, max size: 2mb</span>
                             </div>
                         </div>
                     </div>

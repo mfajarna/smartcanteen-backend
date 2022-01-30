@@ -64,6 +64,7 @@
                             <div class="mb-3">
                                 <label for="basicpill-pancard-input">Nama Kantin</label>
                                 <input type="text" name="nama_tenant" class="form-control" id="nama_tenant" placeholder="Masukan Nama Kantin" required>
+                                <span class="text-muted">Contoh: Warung Kantin Pecel Bu iis</span>
                             </div>
                         </div>
 
@@ -98,18 +99,34 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="basicpill-pancard-input">Jangka Waktu Kontrak</label>
-                                <input type="text" name="jangka_waktu_kontrak" class="form-control" id="jangka_waktu_kontrak" placeholder="Masukan Jangka Waktu Kontrak" required>
+                                <input type="number" name="jangka_waktu_kontrak" class="form-control" id="jangka_waktu_kontrak" placeholder="Masukan Jangka Waktu Kontrak" required>
+                                <span class="text-muted">*Isikan dalam format bulan</span>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label for="basicpill-vatno-input">% Sharing</label>
-                                 <input type="text" name="sharing" class="form-control" id="sharing" placeholder="Masukan % Sharing" required>
+                                <label for="basicpill-vatno-input">Sharing Tel-U</label>
+                                 <input type="number" name="sharing_telu" class="form-control" id="sharing_telu" placeholder="Masukan Jumlah Sharing Tel-U" required>
+                                <span class="text-muted">*Isikan dalam format persen, contoh: 80</span>
                             </div>
                         </div>
                     </div>
-                    <h5 class="font-size-14 mt-4"><i class="mdi mdi-file-upload text-primary"></i> Upload Dokumen</h5>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="basicpill-vatno-input">Sharing Tenant</label>
+                                 <input type="number" name="sharing_tenant" class="form-control" id="sharing_tenant" placeholder="Masukan Jumlah Sharing Tenant" required>
+                                <span class="text-muted">*Isikan dalam format persen, contoh: 80</span>
+                            </div>
+                        </div>
+                    </div>
+
 
             </section>
             <h3>Confirm Detail</h3>

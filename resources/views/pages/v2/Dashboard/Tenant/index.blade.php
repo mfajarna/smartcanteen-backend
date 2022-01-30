@@ -131,6 +131,11 @@
                     ]
                 });
 
+                t.on('click', '#delete', function(){
+                    return confirm('Apakah anda yakin untuk menghapus data?');
+                })
+
+
                 t.on('click', '#detail', function(){
                     $tr = $(this).closest('tr');
                         if($($tr).hasClass('child')){
@@ -158,6 +163,16 @@
                             $('#jenis_bank').text(res.nama_bank)
                             $('#no_rekening').text(res.no_rekening)
                             $('#nama_rekening').text(res.nama_rekening)
+
+
+                            $('#file_kontrak').on('click', function(){
+                                window.open("/storage/"+ res.file_kontrak, '_blank')
+                            })
+
+                            $('#barcode_qris').on('click', function(){
+                                window.open("/storage/"+ res.qris_barcode, '_blank')
+                            })
+
                             if(res.is_active == 1)
                             {
                                 $('#status_tenant').text('Active')

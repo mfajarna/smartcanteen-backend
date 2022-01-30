@@ -20,7 +20,7 @@ class UserApkController extends Controller
 
             $nama = $validation['nama'];
 
-            $model = UserApk::where('nama', '=', $nama)->firstOrFail();
+            $model = UserApk::where('nama', '=', $nama)->first();
 
             if($model)
             {

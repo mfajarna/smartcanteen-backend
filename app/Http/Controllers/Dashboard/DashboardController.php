@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Tenant_m;
+use App\Models\UserApk\UserApk;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -48,8 +49,10 @@ class DashboardController extends Controller
             array_push($dataFinal, $data->fit, $data->fk, $data->fkb, $data->asramaputra, $data->asramaputri, $data->gku);
         }
 
+        $usersApk = UserApk::latest()->count();
 
-        return view('pages.v2.Dashboard.index', compact('ip', 'jumlah_tenant', 'dataFinal' ));
+
+        return view('pages.v2.Dashboard.index', compact('ip', 'jumlah_tenant', 'dataFinal', 'usersApk' ));
     }
 
     /**

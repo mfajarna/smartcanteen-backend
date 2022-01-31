@@ -119,8 +119,8 @@
                                     <div class="row mt-4">
                                         <div class="col-xl-6 mb-4">
                                             <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-container="#datepicker6">
-                                                    <input type="text" class="form-control" id="tgl_awal" placeholder="Start Date">
-                                                    <input type="text" class="form-control" id="tgl_akhir" placeholder="End Date">
+                                                    <input type="text" class="form-control" id="tgl_awal" placeholder="Dari Tanggal">
+                                                    <input type="text" class="form-control" id="tgl_akhir" placeholder="Sampai Tanggal">
 
                                             </div>
                                         </div>
@@ -146,7 +146,7 @@
                                 <div class="row mt-4">
                                         <div class="col-xl-6 mb-4">
                                             <div class="position-relative" id="datepicker1">
-                                                <input type="text" class="form-control" id="daily_tanggal" placeholder="dd M, yyyy" data-date-format="dd M, yyyy" data-date-container="#datepicker1" data-provide="datepicker">
+                                                <input type="text" class="form-control" id="daily_tanggal" placeholder="Masukan tanggal untuk cetak laporan perhari" data-date-format="dd M, yyyy" data-date-container="#datepicker1" data-provide="datepicker">
                                             </div>
                                         </div>
 
@@ -173,7 +173,7 @@
                                         <div class="col-xl-6 mb-4">
                                             <div class="position-relative" id="datepicker2">
 
-                                                <input type="text" class="form-control" id="month_tanggal" data-date-container="#datepicker2" placeholder="MM yyyy" data-provide="datepicker" data-date-format="MM yyyy" data-date-min-view-mode="1">
+                                                <input type="text" class="form-control" id="month_tanggal" data-date-container="#datepicker2" placeholder="Pilih bulan untuk cetak laporan perbulan" data-provide="datepicker" data-date-format="MM yyyy" data-date-min-view-mode="1">
                                             </div>
                                         </div>
 
@@ -198,7 +198,7 @@
                                         <div class="col-xl-6 mb-4">
                                             <div class="position-relative" id="datepicker5">
 
-                                                <input type="text" id="year_tanggal" class="form-control" data-provide="datepicker"  placeholder="dd M, yyyy" data-date-container="#datepicker5" data-date-format="yyyy" data-date-min-view-mode="2">
+                                                <input type="text" id="year_tanggal" class="form-control" data-provide="datepicker"  placeholder="Pilih tahun untuk cetak laporan pertahun" data-date-container="#datepicker5" data-date-format="yyyy" data-date-min-view-mode="2">
                                             </div>
                                         </div>
 

@@ -38,7 +38,7 @@
                                 <thead class="table-light">
                                 <tr>
                                     <th class="text-center">Kode Tenant</th>
-                                    <th class="text-center">Nama Tenant</th>
+                                    <th class="text-center">Nama Kantin</th>
                                     <th class="text-center">Nama Pemilik</th>
                                     <th class="text-center">Lokasi Kantin</th>
                                     <th class="text-center">Status</th>

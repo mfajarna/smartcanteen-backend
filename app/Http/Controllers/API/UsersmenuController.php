@@ -199,6 +199,12 @@ class UsersmenuController extends Controller
                         ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
                         ->where('tb_transactions.nim', $nim)
                         ->where('tb_transactions.status', $status)
+                        ->select(
+                            'tb_tenant.nama_kantin',
+                            'tb_tenant.desc_kantin',
+                            'tb_transactions.quantity',
+                            'tb_tenant.profile_photo_path'
+                        )
                         ->groupBy('tb_tenant.nama_tenant')
                         ->get();
 

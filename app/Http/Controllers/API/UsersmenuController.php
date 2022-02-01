@@ -200,7 +200,7 @@ class UsersmenuController extends Controller
                         ->where('tb_transactions.nim', $nim)
                         ->where('tb_transactions.status', $status)
                         ->select(
-                            'tb_tenant.nama_kantin',
+                            'tb_tenant.nama_tenant',
                             'tb_tenant.desc_kantin',
                             'tb_transactions.quantity',
                             'tb_tenant.profile_photo_path'

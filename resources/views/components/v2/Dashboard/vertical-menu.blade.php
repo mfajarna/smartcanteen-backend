@@ -81,6 +81,27 @@
                     </li>
                     @endif
 
+                    @if (auth()->user()->role === "admin2")
+                    <li class="menu-title" key="t-menu">Menu</li>
+
+                        <li>
+                            <a href="{{ route('admin.dashboard.index') }}" class="waves-effect">
+                                <i class="bx bx-home-circle"></i>
+                                <span key="t-dashboards">Dashboards</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="bx bxs-report"></i>
+                                <span key="t-dashboards">Laporan</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('admin.laporan.index') }}" key="t-full-calendar">Laporan Transaksi</a></li>
+                                <li><a href="{{ route('admin.log_laporan.index') }}" key="t-full-calendar">Log Laporan</a></li>
+                            </ul>
+                    </li>
+                    @endif
+
 
                 </ul>
             </div>

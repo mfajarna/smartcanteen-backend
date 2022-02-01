@@ -64,8 +64,8 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
 
         // MethodPayment
         Route::resource('methodpayment', MethodPaymentController::class);
-
-
     }
 );
+
+
 

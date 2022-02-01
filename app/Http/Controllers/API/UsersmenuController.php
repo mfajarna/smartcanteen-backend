@@ -187,10 +187,21 @@ class UsersmenuController extends Controller
             $status = $request->input('status');
             $nim = $request->input('nim');
 
-            $model = Transaction_m::with(['menu','tenant'])
-                     ->where('nim', $nim)
-                     ->where('status', $status)
-                     ->get();
+            // $model = Transaction_m::with(['menu','tenant'])
+            //          ->where('nim', $nim)
+            //          ->where('status', $status)
+            //          ->orderBy('')
+            //          ->get();
+
+
+            $model = DB::table('tb_transactions')
+                        ->join('tb_tenant', 'tb_transactions.id_tenant', '=', 'tb_tenant.id')
+                        ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
+                        ->where('tb_transactions.nim', $nim)
+                        ->where('tb_transactions.status', $status)
+                        ->orderBy('tb_tenant.nama_tenant')
+                        ->get();
+
 
             return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
         }catch(Exception $e)

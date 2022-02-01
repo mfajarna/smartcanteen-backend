@@ -14,8 +14,9 @@ class UserApkController extends Controller
     {
         try {
             $validation = $request->validate([
-                'nama'      => 'required|string',
-                'is_login'    => 'required|string'
+                'nama'              => 'required|string',
+                'is_login'          => 'required|string',
+                'device_token'      => 'required|string'
             ]);
 
             $nama = $validation['nama'];
@@ -24,14 +25,18 @@ class UserApkController extends Controller
 
             if($model)
             {
-                $model->is_login = "1";
+                $model->is_login     = "1";
+                $model->device_token = $validation['device_token'];
+
                 $model->save();
+
 
                 return ResponseFormatter::success($model,'Berhasil Update data');
             }else{
                 $create = UserApk::create([
-                    'nama' => $validation['nama'],
-                    'is_login' => $validation['is_login']
+                    'nama'              => $validation['nama'],
+                    'device_token'      => $validation['device_token'],
+                    'is_login'          => $validation['is_login']
                 ]);
 
                 return ResponseFormatter::success($create, 'Berhasil Input data');

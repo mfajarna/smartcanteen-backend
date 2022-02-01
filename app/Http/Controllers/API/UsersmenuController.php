@@ -202,7 +202,7 @@ class UsersmenuController extends Controller
                         ->select(
                             'tb_tenant.nama_tenant',
                             'tb_tenant.desc_kantin',
-                            'tb_transactions.quantity',
+                            DB::raw('SUM(tb_transactions.quantity)'),
                             'tb_tenant.profile_photo_path'
                         )
                         ->groupBy('tb_tenant.nama_tenant')

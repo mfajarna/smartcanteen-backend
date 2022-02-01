@@ -26,6 +26,7 @@ class Transaction_m extends Model
             'phoneNumber',
             'method',
             'quantity',
+            'is_cash',
             'total',
     ];
 

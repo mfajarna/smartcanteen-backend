@@ -53,6 +53,7 @@ class TransactionController extends Controller
                         'created_at' => $value['created_at'],
                         'total' => $value['total'],
                         'catatan' => $value['catatan'],
+                        'is_cash' => $value['is_cash'],
                         'phoneNumber' => $value['phoneNumber']
 
                 ]);

@@ -202,6 +202,7 @@ class UsersmenuController extends Controller
                         ->select(
                             'tb_tenant.nama_tenant',
                             'tb_tenant.desc_kantin',
+                            'tb_transaction.status',
                             DB::raw('SUM(tb_transactions.quantity) as jumlah_pesanan'),
                             'tb_tenant.profile_photo_path'
                         )

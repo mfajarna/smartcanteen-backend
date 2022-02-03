@@ -54,7 +54,7 @@ class UserApkController extends Controller
     {   
         try{
             $username = $request->input('nama');
-            $model = UserApk::where('nama', $username)->get()->first();
+            $model = UserApk::where('nama', $username)->get();
     
             return ResponseFormatter::success($model,'Berhasil Ambil data');
         }catch(Exception $e)

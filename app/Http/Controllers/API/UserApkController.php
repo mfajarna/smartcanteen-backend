@@ -53,8 +53,8 @@ class UserApkController extends Controller
     public function getDataUser(Request $request)
     {   
         try{
-            $username = $request->input('username');
-            $model = UserApk::where('username', $username)->first();
+            $username = $request->input('nama');
+            $model = UserApk::where('nama', $username)->first();
     
             return ResponseFormatter::success($model,'Berhasil Ambil data');
         }catch(Exception $e)

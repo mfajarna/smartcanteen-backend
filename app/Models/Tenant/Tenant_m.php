@@ -47,7 +47,8 @@ class Tenant_m extends Authenticatable
         'sharing_telu',
         'sharing_tenant',
         'qris_barcode',
-        'file_kontrak'
+        'file_kontrak',
+        'device_token'
     ];
 
         /**

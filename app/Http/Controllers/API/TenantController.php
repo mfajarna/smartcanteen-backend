@@ -75,6 +75,7 @@ class TenantController extends Controller
                 'status' => 'required|string',
                 'is_active' => 'required|string',
                 'password' => 'required|string',
+                'device_token'  => 'required|string'
             ]);
 
             $tenant = Tenant_m::create([
@@ -92,6 +93,7 @@ class TenantController extends Controller
                 'is_active' => "1",
                 'rating' => 0.0,
                 'password' => Hash::make($data['password']),
+                'device_token'  => $data['device_token']
             ]);
 
             $tokenResult = $tenant->createToken('authToken')->plainTextToken;
@@ -252,6 +254,31 @@ class TenantController extends Controller
         {
              return ResponseFormatter::error($e->getMessage(),'Gagal Update Data rating');
         }
+    }
+
+    public function deviceToken(Request $request)
+    {
+
+        try{
+            $device_token = $request->input('device_token');
+            $emailTenant = $request->input('email');
+    
+            $model = Tenant_m::where('email', '=', $emailTenant)->first();
+    
+            if($model)
+            {
+                $model->device_token = $device_token;
+                $model->save();
+    
+                return ResponseFormatter::success($model->device_token,'Berhasil Update data');
+            }else{
+                return ResponseFormatter::error('Data tenant tidak ada');
+            }
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        }
+
     }
 
 

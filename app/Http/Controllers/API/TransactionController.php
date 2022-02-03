@@ -54,7 +54,7 @@ class TransactionController extends Controller
                         'total' => $value['total'],
                         'catatan' => $value['catatan'],
                         'is_cash' => $value['is_cash'],
-                        'phoneNumber' => $value['phoneNumber']
+                        'phoneNumber' => $value['phoneNumber'],
 
                 ]);
             }

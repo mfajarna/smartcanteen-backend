@@ -67,6 +67,7 @@ Route::get('users/menu/fetch/byTenant', [UsersmenuController::class, 'fetchByTen
 
 // Route API Get Tenant
 Route::get('tenant/fetch/several', [TenantController::class, 'getTenant']);
+Route::post('tenant/update/device_token', [TenantController::class, 'deviceToken']);
 
 // Route API Transaction
 Route::get('transactions/getKode', [TransactionController::class, 'getKode']);

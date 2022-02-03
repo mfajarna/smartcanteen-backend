@@ -49,4 +49,17 @@ class UserApkController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Gagal Input Data User');
         }
     }
+
+    public function getDataUser(Request $request)
+    {   
+        try{
+            $username = $request->input('username');
+            $model = UserApk::where('username', $username)->first();
+    
+            return ResponseFormatter::success($model,'Berhasil Ambil data');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data User');
+        }
+    }
 }

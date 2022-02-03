@@ -85,3 +85,4 @@ Route::post('tenant/updateTotalJumlahOrder/{id}', [TenantController::class, 'upd
 
 // UserAPK Check and Create
 Route::post('userapk', [UserApkController::class, 'validation']);
+Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\DepositController;
 use App\Http\Controllers\API\MenuController;
 use App\Http\Controllers\API\OverallmenuController;
 use App\Http\Controllers\API\TenantController;
@@ -87,3 +88,8 @@ Route::post('tenant/updateTotalJumlahOrder/{id}', [TenantController::class, 'upd
 // UserAPK Check and Create
 Route::post('userapk', [UserApkController::class, 'validation']);
 Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);
+
+
+// Deposit Balanced
+Route::get('deposit_user', [DepositController::class, 'create']);
+Route::get('notif', [DepositController::class, 'notifikasi']);

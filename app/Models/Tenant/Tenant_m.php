@@ -2,6 +2,7 @@
 
 namespace App\Models\Tenant;
 
+use App\Models\Balance\TenantBalance;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -91,4 +92,10 @@ class Tenant_m extends Authenticatable
      {
          return Carbon::parse($value)->timestamp;
      }
+
+
+    public function balance_tenant()
+    {
+        return $this->hasMany(TenantBalance::class);
+    }
 }

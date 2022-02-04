@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', LandingController::class);
-
+Route::get('ipaymu', [MethodPaymentController::class, 'testing']);
 
 Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', 'role:superadmin|admin1|admin2']],
     function()
@@ -64,7 +64,10 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
 
         // MethodPayment
         Route::resource('methodpayment', MethodPaymentController::class);
+
+        
     }
+    
 );
 
 

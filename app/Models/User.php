@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Balance\UserBalance;
 use App\Models\LogLaporan\LogLaporan;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -75,4 +76,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Keluhan_m::class);
     }
+
 }

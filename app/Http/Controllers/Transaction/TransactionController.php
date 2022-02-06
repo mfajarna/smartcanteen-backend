@@ -19,6 +19,7 @@ class TransactionController extends Controller
         $transaction_pending = Transaction_m::where('status', 'PENDING')->count();
         $total_transaction = Transaction_m::all()->count();
         $date = date('Y-m-d');
+        
         $transaction_day = Transaction_m::whereDate('created_at' , '=', $date)
                                             ->where('status', 'SUCCESS')
                                             ->count();

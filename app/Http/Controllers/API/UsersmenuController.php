@@ -196,9 +196,16 @@ class UsersmenuController extends Controller
                             'tb_tenant.nama_tenant',
                             'tb_tenant.desc_kantin',
                             'tb_transactions.status',
+                            'tb_transactions.quantity',
+                            'tb_transactions.total',
                             DB::raw('SUM(tb_transactions.quantity) as jumlah_pesanan'),
+                            DB::raw('SUM(tb_transactions.total) as total_harga'),
                             'tb_tenant.profile_photo_path',
-                            'tb_transactions.created_at'
+                            'tb_transactions.created_at',
+                            'tb_menu.picturePath',
+                            'tb_menu.name',
+                            
+
                         )
                         ->groupBy('tb_transactions.created_at')
                         ->get();
@@ -210,6 +217,7 @@ class UsersmenuController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Transaksi Users');
         }
     }
+
 
     public function cancelStatusOrder(Request $request, $id)
     {

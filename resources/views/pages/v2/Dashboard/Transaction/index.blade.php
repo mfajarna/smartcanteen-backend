@@ -1,6 +1,8 @@
 @extends('layouts.v2.app')
 
 
+
+
 @section('title', 'Dashboard')
 
 @section('title-content', 'Manajemen Transaksi')
@@ -19,6 +21,7 @@
 @section('content')
 
 @include('modal.transactions.transaction-view')
+
     <div class="row">
         <div class="col-xl-12">
             <div class="row">

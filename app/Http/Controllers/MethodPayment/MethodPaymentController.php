@@ -148,6 +148,7 @@ class MethodPaymentController extends Controller
 
     public function notify(Request $request)
     {
+
         $trx_id = $request->trx_id;
         $status = $request->status;
    
@@ -156,9 +157,9 @@ class MethodPaymentController extends Controller
         if($model)
         {
             if($status == "berhasil"){
-                // if trx success
+                return response()->json("berhasil");
             }else{
-                // do stuff
+                return response()->json("gagal");
             }
         }
 

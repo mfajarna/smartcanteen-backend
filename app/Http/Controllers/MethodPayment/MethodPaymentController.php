@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MethodPayment;
 
 use App\Http\Controllers\Controller;
+use App\Models\Balance\UserBalance;
 use App\Models\HistoryDeposit;
 use Illuminate\Http\Request;
 
@@ -158,10 +159,34 @@ class MethodPaymentController extends Controller
         {
             if($status == "berhasil"){
 
-                $model->status = 1;
-                $model->save();
+                $user_id = $model['user_id'];
+                $nominal_deposit = $model['nominal_deposit'];
 
-                return response()->json("berhasil");
+                $user_balance = UserBalance::find($user_id)->first();
+
+                if($user_balance)
+                {
+                    $saldo = $user_balance['balanced'];
+
+                    $user_balance->balanced = $saldo + $nominal_deposit;
+                    $user_balance->save();
+
+                    $model->status = 1;
+                    $model->save();
+
+                    return response()->json("berhasil update amount");
+                }else{
+                    $user = new UserBalance;
+                    $user->user_id = $user_id;
+                    $user->balanced = $nominal_deposit;
+                    $user->save();
+
+                    $model->status = 1;
+                    $model->save();
+
+                    return response()->json("berhasil membuat data saldo!");
+                }
+
             }else{
                 return response()->json("gagal");
             }

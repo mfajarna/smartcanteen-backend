@@ -143,20 +143,16 @@ class MethodPaymentController extends Controller
 
         return $res['Data'];
 
-        // if($err) {
-        //     echo $err;
-        // } else {
-    
-        //     //Response
-        //     $ret = json_decode($ret);
-        //     if($ret->Status == 200) {
-        //         $sessionId  = $ret->Data->SessionID;
-        //         $url        =  $ret->Data->Url;
-        //         header('Location:' . $url);
-        //     } else {
-        //         echo $ret;
-        //     }
-        //     //End Response
-        // }
+    }
+
+    public function notify(Request $request)
+    {
+        $trx_id = $request->trx_id;
+        $sid = $request->sid;
+        $status = $request->status;
+        $via = $request->via;
+
+        
+        
     }
 }

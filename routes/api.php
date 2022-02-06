@@ -92,4 +92,4 @@ Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);
 
 // Deposit Balanced
 Route::get('deposit_user', [DepositController::class, 'create']);
-Route::get('notif', [DepositController::class, 'notifikasi']);
+Route::get('notify', [DepositController::class, 'notifikasi']);

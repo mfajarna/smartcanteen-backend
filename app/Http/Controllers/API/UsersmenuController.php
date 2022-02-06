@@ -187,11 +187,6 @@ class UsersmenuController extends Controller
             $status = $request->input('status');
             $nim = $request->input('nim');
 
-            // $model = Transaction_m::with(['menu','tenant'])
-            //          ->where('nim', $nim)
-            //          ->where('status', $status)
-            //          ->orderBy('')
-            //          ->get();
 
 
             $model = DB::table('tb_transactions')
@@ -204,9 +199,10 @@ class UsersmenuController extends Controller
                             'tb_tenant.desc_kantin',
                             'tb_transactions.status',
                             DB::raw('SUM(tb_transactions.quantity) as jumlah_pesanan'),
-                            'tb_tenant.profile_photo_path'
+                            'tb_tenant.profile_photo_path',
+                            'tb_transactions.created_at'
                         )
-                        ->groupBy('tb_tenant.nama_tenant')
+                        ->groupBy('tb_transactions.created_at')
                         ->get();
 
 

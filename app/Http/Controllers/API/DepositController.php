@@ -102,40 +102,7 @@ class DepositController extends Controller
     public function notifikasi(Request $request)
     {
         try{
-            $trx_id = $request->input('trx_id');
-            $sid = $request->input('sid');
-            $status = $request->input('status');
-            $via = $request->input('via');
-    
-    
-            $transaction = HistoryDeposit::where('trx_id', $trx_id)->first();
-            if($transaction)
-            {
-                $transaction_berhasil = HistoryDeposit::where('trx_id', $trx_id)
-                                                    ->where('status', 'berhasil')
-                                                    ->first();
 
-                $transaction_gagal = HistoryDeposit::where('trx_id', $trx_id)
-                                                    ->where('status', 'gagal')
-                                                    ->first();
-                                                    
-                if($transaction_berhasil){
-                    $model_berhasil = new HistoryDeposit;
-                    $model_berhasil->status = 1;
-                    $model_berhasil->save();
-
-                    return ResponseFormatter::success($model_berhasil, 'Berhasil Update Status');
-                }if($transaction_gagal){
-                    $model_gagal = new HistoryDeposit;
-                    $model_gagal->status = 2;
-                    $model_gagal->save();
-
-                    return ResponseFormatter::success($model_gagal, 'Berhasil Update Status');
-                }
-                
-            }else{
-                return ResponseFormatter::error($transaction,'Transaksi Tidak Ada');
-            }
 
         }catch(Exception $e)
         {

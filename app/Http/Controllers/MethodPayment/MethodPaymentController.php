@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MethodPayment;
 
 use App\Http\Controllers\Controller;
+use App\Models\HistoryDeposit;
 use Illuminate\Http\Request;
 
 class MethodPaymentController extends Controller
@@ -148,9 +149,18 @@ class MethodPaymentController extends Controller
     public function notify(Request $request)
     {
         $trx_id = $request->trx_id;
-        $sid = $request->sid;
         $status = $request->status;
-        $via = $request->via;
+   
+        $model = HistoryDeposit::where('trx_id', $trx_id)->first();
+
+        if($model)
+        {
+            if($status == "berhasil"){
+                // if trx success
+            }else{
+                // do stuff
+            }
+        }
 
         
         

@@ -37,7 +37,10 @@ class DepositController extends Controller
             $body['paymentMethod']  = $payment_method;
             $body['paymentChannel']  = $payment_chanel;
 
-            $body['notifyUrl']  = 'https://mywebsite.com/notify';
+            $link_notif = 'http://27.112.78.169/notify/';
+
+            $body['notifyUrl']  = $link_notif;
+            
     
             //End Request Body//
         
@@ -77,16 +80,16 @@ class DepositController extends Controller
             $res = json_decode($ret, true);
 
             
-            $model_deposit = new HistoryDeposit;
-            $model_deposit->user_id = 1;
-            $model_deposit->nominal_deposit = $nominal_deposit;
-            $model_deposit->payment_id = $payment_method_id;
-            $model_deposit->payment_no = $res['Data']['PaymentNo'];
-            $model_deposit->payment_name = $res['Data']['PaymentName'];
-            $model_deposit->trx_id = $res['Data']['TransactionId'];
-            $model_deposit->expired = $res['Data']['Expired'];
+            // $model_deposit = new HistoryDeposit;
+            // $model_deposit->user_id = 1;
+            // $model_deposit->nominal_deposit = $nominal_deposit;
+            // $model_deposit->payment_id = $payment_method_id;
+            // $model_deposit->payment_no = $res['Data']['PaymentNo'];
+            // $model_deposit->payment_name = $res['Data']['PaymentName'];
+            // $model_deposit->trx_id = $res['Data']['TransactionId'];
+            // $model_deposit->expired = $res['Data']['Expired'];
             
-            $model_deposit->save();
+            // $model_deposit->save();
 
            
             
@@ -97,17 +100,5 @@ class DepositController extends Controller
         {
             return ResponseFormatter::error($e->getMessage(),'Something went wrong');
         }
-    }
-
-    public function notifikasi(Request $request)
-    {
-        try{
-
-
-        }catch(Exception $e)
-        {
-            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
-        }
-
     }
 }

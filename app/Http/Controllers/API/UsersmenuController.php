@@ -187,31 +187,72 @@ class UsersmenuController extends Controller
             $status = $request->input('status');
             $nim = $request->input('nim');
 
-            $model = DB::table('tb_transactions')
+            $dataAllTransactions = DB::table('tb_transactions')
+                        ->join('tb_tenant', 'tb_transactions.id_tenant', '=', 'tb_tenant.id')
+                        ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
+                        ->where('tb_transactions.nim', $nim)
+                        ->where('tb_transactions.status', $status)
+                        ->select(
+                            'tb_transactions.status',
+                            'tb_transactions.created_at',
+
+                        )
+                        ->groupBy('tb_transactions.created_at')
+                        ->get();
+
+            $dataTenant = DB::table('tb_transactions')
                         ->join('tb_tenant', 'tb_transactions.id_tenant', '=', 'tb_tenant.id')
                         ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
                         ->where('tb_transactions.nim', $nim)
                         ->where('tb_transactions.status', $status)
                         ->select(
                             'tb_tenant.nama_tenant',
-                            'tb_tenant.desc_kantin',
-                            'tb_transactions.status',
-                            'tb_transactions.quantity',
-                            'tb_transactions.total',
-                            DB::raw('SUM(tb_transactions.quantity) as jumlah_pesanan'),
-                            DB::raw('SUM(tb_transactions.total) as total_harga'),
-                            'tb_tenant.profile_photo_path',
                             'tb_transactions.created_at',
-                            'tb_menu.picturePath',
-                            'tb_menu.name',
+                            'tb_transactions.quantity'
                             
 
                         )
-                        ->groupBy('tb_transactions.created_at')
+                        ->orderBy('tb_transactions.created_at', 'asc')
+                        
                         ->get();
+            
+                    
+           
+
+            $arrTrx = [];
+
+            
+                        
+            foreach($dataAllTransactions as $index => $val)
+            {
+                $arrTrx[] = 
+                    [
+                        'data_transaksi' => [
+                            'status'   =>  $val->status,
+                        ],
+                        "waktu order" => $val->created_at,
+                        "nama_kantin"  => "Kantin bu naj",
+                        "data order" => [
+                           'menu' => [
+                               [
+                                   'nama_menu' => 'menu 1'
+                               ],
+                               [
+                                   'nama_menu' => 'menu 2'
+                               ]
+                           ]
+                        ]
+                    ]
+                ;
+
+            }
 
 
-            return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
+
+
+
+
+            return ResponseFormatter::success($dataTenant,'Berhasil Mengambil Pesanan Order');
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Transaksi Users');

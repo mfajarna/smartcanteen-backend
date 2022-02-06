@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/', LandingController::class);
 Route::get('ipaymu', [MethodPaymentController::class, 'testing']);
-Route::get('notify', [MethodPaymentController::class, 'notify']);
+Route::post('notify', [MethodPaymentController::class, 'notify']);
 
 Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', 'role:superadmin|admin1|admin2']],
     function()

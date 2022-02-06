@@ -159,10 +159,12 @@ class MethodPaymentController extends Controller
         {
             if($status == "berhasil"){
 
-                return response()->json($model);
+               
 
-                // $user_id = $model['user_id'];
+                $user_id = $model['user_id'];
                 // $nominal_deposit = $model['nominal_deposit'];
+
+                return response()->json($user_id);
 
                 // $user_balance = UserBalance::find($user_id)->first();
 

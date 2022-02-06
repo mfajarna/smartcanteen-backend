@@ -159,16 +159,10 @@ class MethodPaymentController extends Controller
         {
             if($status == "berhasil"){
 
-               
-
                 $user_id = $model['user_id'];
                 $nominal_deposit = $model['nominal_deposit'];
 
-                
-
                 $user_balance = UserBalance::where('user_id',$user_id)->first();
-
-               
 
                 if($user_balance)
                 {
@@ -194,7 +188,11 @@ class MethodPaymentController extends Controller
                 }
 
             }else{
-                return response()->json("gagal");
+
+                $model->status = 2;
+                $model->save();
+
+                return response()->json("gagal melakukan transaksi saldo");
             }
         }
 

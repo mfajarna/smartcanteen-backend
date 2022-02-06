@@ -16,6 +16,11 @@ class DepositController extends Controller
         try{
             $nominal_deposit = $request->input('nominal_deposit');
             $payment_name = $request->input('payment_name');
+
+            $user_id = $request->input('user_id');
+            $nama_user = $request->input('nama_user');
+            $phone = $request->input('phoneNumber');
+            $email = $request->input('email');
     
             $payment_name = PaymentMethod::where('name', '=', $payment_name)->first();
             $payment_method_id = $payment_name->id;
@@ -29,9 +34,9 @@ class DepositController extends Controller
             $method       = 'POST'; //method
     
             
-            $body['name'] = "kojay";
-            $body['phone'] = "08138232";
-            $body['email'] = "invasionfajar@gmail.com";
+            $body['name'] = $nama_user;
+            $body['phone'] = $phone;
+            $body['email'] = $email;
             $body['amount'] = $nominal_deposit;
 
             $body['paymentMethod']  = $payment_method;
@@ -81,7 +86,7 @@ class DepositController extends Controller
 
             
             $model_deposit = new HistoryDeposit;
-            $model_deposit->user_id = 1;
+            $model_deposit->user_id = $user_id;
             $model_deposit->nominal_deposit = $nominal_deposit;
             $model_deposit->payment_id = $payment_method_id;
             $model_deposit->payment_no = $res['Data']['PaymentNo'];
@@ -91,10 +96,6 @@ class DepositController extends Controller
             
             $model_deposit->save();
 
-           
-            
-    
-    
             return ResponseFormatter::success($res, 'Berhasil ambil Data Menu');
         }catch(Exception $e)
         {

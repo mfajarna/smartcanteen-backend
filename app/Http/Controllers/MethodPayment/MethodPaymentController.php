@@ -168,30 +168,30 @@ class MethodPaymentController extends Controller
 
                 $user_balance = UserBalance::where('user_id',$user_id)->first();
 
-                return response()->json($user_balance);
+               
 
-                // if($user_balance)
-                // {
-                //     $saldo = $user_balance['balanced'];
+                if($user_balance)
+                {
+                    $saldo = $user_balance['balanced'];
 
-                //     $user_balance->balanced = $saldo + $nominal_deposit;
-                //     $user_balance->save();
+                    $user_balance->balanced = $saldo + $nominal_deposit;
+                    $user_balance->save();
 
-                //     $model->status = 1;
-                //     $model->save();
+                    $model->status = 1;
+                    $model->save();
 
-                //     return response()->json("berhasil update amount");
-                // }else{
-                //     $user = new UserBalance;
-                //     $user->user_id = $user_id;
-                //     $user->balanced = $nominal_deposit;
-                //     $user->save();
+                    return response()->json("berhasil update amount");
+                }else{
+                    $user = new UserBalance;
+                    $user->user_id = $user_id;
+                    $user->balanced = $nominal_deposit;
+                    $user->save();
 
-                //     $model->status = 1;
-                //     $model->save();
+                    $model->status = 1;
+                    $model->save();
 
-                //     return response()->json("berhasil membuat data saldo!");
-                // }
+                    return response()->json("berhasil membuat data saldo!");
+                }
 
             }else{
                 return response()->json("gagal");

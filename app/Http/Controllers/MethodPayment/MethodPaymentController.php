@@ -159,33 +159,35 @@ class MethodPaymentController extends Controller
         {
             if($status == "berhasil"){
 
-                $user_id = $model['user_id'];
-                $nominal_deposit = $model['nominal_deposit'];
+                return response()->json($model);
 
-                $user_balance = UserBalance::find($user_id)->first();
+                // $user_id = $model['user_id'];
+                // $nominal_deposit = $model['nominal_deposit'];
 
-                if($user_balance)
-                {
-                    $saldo = $user_balance['balanced'];
+                // $user_balance = UserBalance::find($user_id)->first();
 
-                    $user_balance->balanced = $saldo + $nominal_deposit;
-                    $user_balance->save();
+                // if($user_balance)
+                // {
+                //     $saldo = $user_balance['balanced'];
 
-                    $model->status = 1;
-                    $model->save();
+                //     $user_balance->balanced = $saldo + $nominal_deposit;
+                //     $user_balance->save();
 
-                    return response()->json("berhasil update amount");
-                }else{
-                    $user = new UserBalance;
-                    $user->user_id = $user_id;
-                    $user->balanced = $nominal_deposit;
-                    $user->save();
+                //     $model->status = 1;
+                //     $model->save();
 
-                    $model->status = 1;
-                    $model->save();
+                //     return response()->json("berhasil update amount");
+                // }else{
+                //     $user = new UserBalance;
+                //     $user->user_id = $user_id;
+                //     $user->balanced = $nominal_deposit;
+                //     $user->save();
 
-                    return response()->json("berhasil membuat data saldo!");
-                }
+                //     $model->status = 1;
+                //     $model->save();
+
+                //     return response()->json("berhasil membuat data saldo!");
+                // }
 
             }else{
                 return response()->json("gagal");

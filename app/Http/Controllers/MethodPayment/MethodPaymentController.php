@@ -162,11 +162,13 @@ class MethodPaymentController extends Controller
                
 
                 $user_id = $model['user_id'];
-                // $nominal_deposit = $model['nominal_deposit'];
+                $nominal_deposit = $model['nominal_deposit'];
 
-                return response()->json($user_id);
+                
 
-                // $user_balance = UserBalance::find($user_id)->first();
+                $user_balance = UserBalance::where('user_id',$user_id)->first();
+
+                return response()->json($user_balance);
 
                 // if($user_balance)
                 // {

@@ -187,8 +187,6 @@ class UsersmenuController extends Controller
             $status = $request->input('status');
             $nim = $request->input('nim');
 
-
-
             $model = DB::table('tb_transactions')
                         ->join('tb_tenant', 'tb_transactions.id_tenant', '=', 'tb_tenant.id')
                         ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')

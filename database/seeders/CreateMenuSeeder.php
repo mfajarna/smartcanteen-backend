@@ -24,9 +24,21 @@ class CreateMenuSeeder extends Seeder
                 'ratingMenu' => 5,
                 'picturePath' => NULL,
                 'category_menu' => 'Popular',
-                'kode_menu' => 'TELU/MENU/001',
+                'kode_menu' => 'TELU/MENU/0001',
                 'is_active' => 'active'
-            ]
+            ],
+            [
+                'id_tenant' => 2,
+                'name' => 'Dummy Minuman',
+                'category' => 'Minuman',
+                'ingredients' => 'Bahan Mantap',
+                'price' => 20000,
+                'ratingMenu' => 5,
+                'picturePath' => NULL,
+                'category_menu' => 'Popular',
+                'kode_menu' => 'TELU/MENU/0002',
+                'is_active' => 'active'
+            ],
         ];
 
         Menu_m::insert($menus);

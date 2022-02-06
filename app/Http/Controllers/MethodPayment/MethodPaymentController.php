@@ -157,6 +157,10 @@ class MethodPaymentController extends Controller
         if($model)
         {
             if($status == "berhasil"){
+
+                $model->status = 1;
+                $model->save();
+
                 return response()->json("berhasil");
             }else{
                 return response()->json("gagal");

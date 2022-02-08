@@ -78,6 +78,7 @@ Route::post('transactions/add', [TransactionController::class, 'addTransaction']
 // Route API Transactions By User
 Route::get('transactions/user/fetch', [UsersmenuController::class,'checkTransactionUsers']); // Fetch Transactions Order on User
 Route::post('transactions/user/updateStatus/{id}', [UsersmenuController::class, 'cancelStatusOrder']); // Update Status Cancel
+Route::get('transactions/user/detail', [UsersmenuController::class, 'detailTransaction']);
 
 // Users Input About Rating
 Route::post('tenant/rating/{id}', [TenantController::class, 'updateRating']);

@@ -193,70 +193,81 @@ class UsersmenuController extends Controller
                         ->where('tb_transactions.nim', $nim)
                         ->where('tb_transactions.status', $status)
                         ->select(
+                            'tb_transactions.id',
+                            'tb_transactions.id_tenant',
+                            'tb_transactions.id_menu',
                             'tb_transactions.status',
+                            'tb_transactions.total',
+                            'tb_transactions.quantity',
                             'tb_transactions.created_at',
-
-                        )
-                        ->groupBy('tb_transactions.created_at')
-                        ->get();
-
-            $dataTenant = DB::table('tb_transactions')
-                        ->join('tb_tenant', 'tb_transactions.id_tenant', '=', 'tb_tenant.id')
-                        ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
-                        ->where('tb_transactions.nim', $nim)
-                        ->where('tb_transactions.status', $status)
-                        ->select(
                             'tb_tenant.nama_tenant',
-                            'tb_transactions.created_at',
-                            'tb_transactions.quantity'
-                            
+                            'tb_tenant.profile_photo_path',
+                            'tb_menu.name',
+                            'tb_menu.picturePath'
 
                         )
-                        ->orderBy('tb_transactions.created_at', 'asc')
-                        
+                        ->orderBy('tb_transactions.created_at')
                         ->get();
-            
-                    
-           
+    
 
-            $arrTrx = [];
-
-            
-                        
-            foreach($dataAllTransactions as $index => $val)
-            {
-                $arrTrx[] = 
-                    [
-                        'data_transaksi' => [
-                            'status'   =>  $val->status,
-                        ],
-                        "waktu order" => $val->created_at,
-                        "nama_kantin"  => "Kantin bu naj",
-                        "data order" => [
-                           'menu' => [
-                               [
-                                   'nama_menu' => 'menu 1'
-                               ],
-                               [
-                                   'nama_menu' => 'menu 2'
-                               ]
-                           ]
-                        ]
-                    ]
-                ;
-
-            }
-
-
-
-
-
-
-            return ResponseFormatter::success($dataTenant,'Berhasil Mengambil Pesanan Order');
+            return ResponseFormatter::success($dataAllTransactions,'Berhasil Mengambil Pesanan Order');
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Transaksi Users');
         }
+    }
+
+    public function detailTransaction(Request $request)
+    {
+
+        try{
+            $id_transaction = $request->input('id_transaksi');
+
+            $model = DB::table('tb_transactions')
+                            ->join('tb_tenant', 'tb_transactions.id_tenant', '=', 'tb_tenant.id')
+                            ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
+                            ->where('tb_transactions.id', $id_transaction)
+                            ->select(
+                                'tb_transactions.kode_transaksi',
+                                'tb_transactions.nama_pelanggan',
+                                'tb_transactions.nim',
+                                'tb_transactions.status',
+                                'tb_transactions.is_cash',
+                                'tb_transactions.method',
+                                'tb_transactions.total',
+                                'tb_transactions.phoneNumber',
+                                'tb_transactions.quantity',
+                                'tb_transactions.created_at',
+                                'tb_tenant.nama_tenant',
+                                'tb_tenant.lokasi_kantin',
+                                'tb_tenant.device_token',
+                                'tb_tenant.profile_photo_path',
+                                'tb_menu.name',
+                                'tb_menu.picturePath',
+                                'tb_menu.ratingMenu'
+
+                            )
+                            ->first();
+    
+            if($model)
+            {
+                return ResponseFormatter::success(
+                    $model,
+                    'Berhasil Ambil Data Transaksi'
+                );
+            }else{
+                return ResponseFormatter::error([
+                    null,
+                    'Data Tidak Ada',
+                    404
+                ]);
+            }
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        }
+
+
     }
 
 

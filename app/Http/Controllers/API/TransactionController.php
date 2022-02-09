@@ -73,7 +73,7 @@ class TransactionController extends Controller
             $status = $request->input('status');
             $id_tenant = $request->input('id_tenant');
 
-            $model = Transaction_m::with('menu')
+            $model = Transaction_m::with(['menu','user'])
                                  ->where('id_tenant', Auth::user()->id)
                                  ->where('status', $status)
                                  ->get();

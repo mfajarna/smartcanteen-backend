@@ -4,6 +4,7 @@ namespace App\Models\transaction;
 
 use App\Models\Menu\Menu_m;
 use App\Models\Tenant\Tenant_m;
+use App\Models\UserApk\UserApk;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,6 +34,11 @@ class Transaction_m extends Model
     public function menu()
     {
         return $this->hasOne(Menu_m::class, 'id', 'id_menu');
+    }
+
+    public function user()
+    {
+        return $this->hasMany(UserApk::class, 'id', 'id_user');
     }
 
     public function tenant()

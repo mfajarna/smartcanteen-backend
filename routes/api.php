@@ -61,6 +61,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('transactions/user/detail', [UsersmenuController::class, 'detailTransaction']);
 
 
+    Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);
+
     // Route API Transaction
     Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
     Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
@@ -93,7 +95,7 @@ Route::post('tenant/updateTotalJumlahOrder/{id}', [TenantController::class, 'upd
 
 // UserAPK Check and Create
 Route::post('userapk', [UserApkController::class, 'validation']);
-Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);
+
 
 
 // Deposit Balanced

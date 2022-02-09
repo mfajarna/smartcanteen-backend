@@ -5,12 +5,20 @@ namespace App\Models\UserApk;
 use App\Models\HistoryDeposit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
 
-class UserApk extends Model
+class UserApk extends Authenticatable
 {
     use HasFactory;
+    use HasApiTokens;
+    use HasProfilePhoto;
+    use Notifiable;
 
     protected $table = "tb_user_apk";
+    protected $guard = 'userapks';
 
     protected $fillable = [
         'nama',

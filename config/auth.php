@@ -43,6 +43,10 @@ return [
         'tenant_m' => [
             'driver' => 'session',
             'provider' => 'tenant_ms'
+        ],
+        'userapk' => [
+            'driver'    => 'session',
+            'provider'  => 'userapks'
         ]
     ],
 
@@ -72,6 +76,11 @@ return [
         'tenant_ms' => [
             'driver' => 'eloquent',
             'model' => App\Models\Tenant\Tenant_m::class,
+        ],
+
+        'userapks' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\UserApk\UserApk::class,
         ],
     ],
 

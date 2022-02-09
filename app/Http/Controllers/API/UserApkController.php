@@ -25,21 +25,32 @@ class UserApkController extends Controller
 
             if($model)
             {
+
+                $tokenResult = $model->createToken('authToken')->plainTextToken;
                 $model->is_login     = "1";
                 $model->device_token = $validation['device_token'];
 
                 $model->save();
 
 
-                return ResponseFormatter::success($model,'Berhasil Update data');
+                return ResponseFormatter::success([
+                    'access_token' => $tokenResult,
+                    'token_type' => 'Bearer',
+                    'user' => $model
+                ], 'Authentication');
             }else{
+                $tokenResult = $model->createToken('authToken')->plainTextToken;
                 $create = UserApk::create([
                     'nama'              => $validation['nama'],
                     'device_token'      => $validation['device_token'],
                     'is_login'          => $validation['is_login']
                 ]);
 
-                return ResponseFormatter::success($create, 'Berhasil Input data');
+                return ResponseFormatter::success([
+                    'access_token' => $tokenResult,
+                    'token_type' => 'Bearer',
+                    'user' => $create
+                ], 'Authentication');
             }
 
 

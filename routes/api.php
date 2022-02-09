@@ -54,6 +54,17 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('transactions/tenant/fetch', [TransactionController::class, 'checkOrderByTenant']); // Check Transaction order by tenant
     Route::post('transactions/tenant/updateStatus/{id}', [TransactionController::class, 'changeStatusOrder']); // Update Status Transactions
 
+    
+    // Route API Transactions By User
+    Route::get('transactions/user/fetch', [UsersmenuController::class,'checkTransactionUsers']); // Fetch Transactions Order on User
+    Route::post('transactions/user/updateStatus/{id}', [UsersmenuController::class, 'cancelStatusOrder']); // Update Status Cancel
+    Route::get('transactions/user/detail', [UsersmenuController::class, 'detailTransaction']);
+
+
+    // Route API Transaction
+    Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
+    Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
+
 
 });
 
@@ -70,15 +81,9 @@ Route::get('users/menu/fetch/byTenant', [UsersmenuController::class, 'fetchByTen
 Route::get('tenant/fetch/several', [TenantController::class, 'getTenant']);
 Route::post('tenant/update/device_token', [TenantController::class, 'deviceToken']);
 
-// Route API Transaction
-Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
-Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
 
 
-// Route API Transactions By User
-Route::get('transactions/user/fetch', [UsersmenuController::class,'checkTransactionUsers']); // Fetch Transactions Order on User
-Route::post('transactions/user/updateStatus/{id}', [UsersmenuController::class, 'cancelStatusOrder']); // Update Status Cancel
-Route::get('transactions/user/detail', [UsersmenuController::class, 'detailTransaction']);
+
 
 // Users Input About Rating
 Route::post('tenant/rating/{id}', [TenantController::class, 'updateRating']);

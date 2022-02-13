@@ -205,8 +205,11 @@ class UsersmenuController extends Controller
                             DB::raw('SUM(tb_transactions.quantity) as quantity'),
                             'tb_transactions.created_at',
                             'tb_tenant.nama_tenant',
+                            'tb_tenant.lokasi_kantin',
                             'tb_transactions.id_tenant',
                             'tb_tenant.profile_photo_path',
+                            'tb_tenant.device_token',
+                            
                         )
                         ->orderBy('tb_transactions.created_at')
                         ->groupBy('tb_transactions.id_tenant')
@@ -245,14 +248,9 @@ class UsersmenuController extends Controller
                                 'tb_transactions.phoneNumber',
                                 'tb_transactions.quantity',
                                 'tb_transactions.created_at',
-                                'tb_tenant.nama_tenant',
-                                'tb_tenant.lokasi_kantin',
-                                'tb_tenant.device_token',
                                 'tb_tenant.profile_photo_path',
                                 'tb_menu.name',
                                 'tb_menu.picturePath',
-                                'tb_menu.ratingMenu'
-
                             )
                             ->get();
     

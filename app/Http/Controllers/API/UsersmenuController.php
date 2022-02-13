@@ -6,6 +6,7 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\Menu\Menu_m;
 use App\Models\transaction\Transaction_m;
+use Database\Seeders\TransactionSeeder;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -199,21 +200,17 @@ class UsersmenuController extends Controller
                         ->where('tb_transactions.status', $status)
                         ->select(
                             'tb_transactions.id',
-                            'tb_transactions.id_tenant',
-                            'tb_transactions.id_menu',
                             'tb_transactions.status',
                             'tb_transactions.total',
-                            'tb_transactions.quantity',
+                            DB::raw('SUM(tb_transactions.quantity) as quantity'),
                             'tb_transactions.created_at',
                             'tb_tenant.nama_tenant',
+                            'tb_transactions.id_tenant',
                             'tb_tenant.profile_photo_path',
-                            'tb_menu.name',
-                            'tb_menu.picturePath'
-
                         )
                         ->orderBy('tb_transactions.created_at')
+                        ->groupBy('tb_transactions.id_tenant')
                         ->get();
-    
 
             return ResponseFormatter::success($dataAllTransactions,'Berhasil Mengambil Pesanan Order');
         }catch(Exception $e)
@@ -226,12 +223,17 @@ class UsersmenuController extends Controller
     {
 
         try{
-            $id_transaction = $request->input('id_transaksi');
+            $id_tenant = $request->input('id_tenant');
+            $status = $request->input('status');
+            $nim = $request->input('nim');
+
 
             $model = DB::table('tb_transactions')
                             ->join('tb_tenant', 'tb_transactions.id_tenant', '=', 'tb_tenant.id')
                             ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
-                            ->where('tb_transactions.id', $id_transaction)
+                            ->where('tb_transactions.id_tenant', $id_tenant)
+                            ->where('tb_transactions.nim', $nim)
+                            ->where('tb_transactions.status', $status)
                             ->select(
                                 'tb_transactions.kode_transaksi',
                                 'tb_transactions.nama_pelanggan',
@@ -252,7 +254,7 @@ class UsersmenuController extends Controller
                                 'tb_menu.ratingMenu'
 
                             )
-                            ->first();
+                            ->get();
     
             if($model)
             {

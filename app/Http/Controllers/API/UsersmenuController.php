@@ -276,15 +276,19 @@ class UsersmenuController extends Controller
     }
 
 
-    public function cancelStatusOrder(Request $request, $id)
+    public function cancelStatusOrder(Request $request)
     {
         try{
-            $model = Transaction_m::findOrFail($id);
 
-            $model->status = $request->status;
-            $model->save();
+            $kode_transaksi = $request->input('kode_transaksi');
 
-             if($model)
+            $status = $request->status;
+
+            $model = Transaction_m::where("kode_transaksi", $kode_transaksi)->update(["status" => $status]);
+
+
+
+                if($model)
             {
                 return ResponseFormatter::success(
                     $model,

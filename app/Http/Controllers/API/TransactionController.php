@@ -85,6 +85,29 @@ class TransactionController extends Controller
         }
     }
 
+    public function changeStatusByTenant(Request $request)
+    {
+        $status = $request->status;
+        $kode_transaksi = $request->kode_transaksi;
+
+
+        $model = Transaction_m::where('kode_transaksi', $kode_transaksi)->update(['status' => $status]);
+
+        if($model)
+        {
+            return ResponseFormatter::success(
+                $model,
+                'Status berhasil diubah oleh tenant'
+            );
+        }else{
+            return ResponseFormatter::error([
+                null,
+                'Data Tidak Ada',
+                404
+            ]);
+        }
+    }
+
     public function changeStatusOrder(Request $request, $id)
     {
         try{

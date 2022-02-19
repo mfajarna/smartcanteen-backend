@@ -53,8 +53,8 @@ Route::middleware('auth:sanctum')->group(function(){
     // Transactions Tenant Side
     Route::get('transactions/tenant/fetch', [TransactionController::class, 'checkOrderByTenant']); // Check Transaction order by tenant
     Route::post('transactions/tenant/updateStatus/{id}', [TransactionController::class, 'changeStatusOrder']); // Update Status Transactions
+    Route::post('transactions/tenant/changeStatus', [TransactionController::class, 'changeStatusByTenant']);
 
-    
     // Route API Transactions By User
     Route::get('transactions/user/fetch', [UsersmenuController::class,'checkTransactionUsers']); // Fetch Transactions Order on User
     Route::post('transactions/user/updateStatus', [UsersmenuController::class, 'cancelStatusOrder']); // Update Status Cancel

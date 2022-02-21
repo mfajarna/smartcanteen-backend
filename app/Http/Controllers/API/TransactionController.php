@@ -8,6 +8,7 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\transaction\Transaction_m;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -71,12 +72,33 @@ class TransactionController extends Controller
     {
         try{
             $status = $request->input('status');
-            $id_tenant = $request->input('id_tenant');
+            $id_tenant = $request->id_tenant;
 
-            $model = Transaction_m::with(['menu','user'])
-                                 ->where('id_tenant', $id_tenant)
-                                 ->where('status', $status)
-                                 ->get();
+            // $model = Transaction_m::with(['menu','user'])
+            //                     //  ->where('id_tenant', Auth::user()->id)
+            //                      ->where('id_tenant', Auth::user()->id)
+            //                      ->where('status', $status)
+            //                      ->groupBy('kode_transaksi')
+            //                      ->get();
+
+            $model = DB::table('tb_transactions')
+                        ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
+                        ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
+                        ->where('tb_transactions.id_tenant', $id_tenant)
+                        ->where('tb_transactions.status', $status)
+                        ->select(
+                            'tb_transactions.kode_transaksi',
+                            'tb_transactions.status',
+                            'tb_transactions.total',
+                            DB::raw('SUM(tb_transactions.quantity) as quantity'),
+                            'tb_transactions.created_at',
+                            'tb_user_apk.device_token',
+                            'tb_user_apk.nama',
+                            
+                        )
+                        ->groupBy('tb_transactions.kode_transaksi')
+                        ->get();
+
 
             return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
 
@@ -84,6 +106,7 @@ class TransactionController extends Controller
              return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Orderan');
         }
     }
+    
 
     public function changeStatusOrder(Request $request, $id)
     {

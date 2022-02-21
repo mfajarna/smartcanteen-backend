@@ -50,9 +50,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('overall/getLastCountOrder', [OverallmenuController::class, 'getLastCountOrder']);
 
 
-    // Transactions Tenant Side
-    Route::get('transactions/tenant/fetch', [TransactionController::class, 'checkOrderByTenant']); // Check Transaction order by tenant
-    Route::post('transactions/tenant/updateStatus/{id}', [TransactionController::class, 'changeStatusOrder']); // Update Status Transactions
+
 
     
     // Route API Transactions By User
@@ -63,7 +61,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);
 
-
+    // Route API Transaction
+    Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
+    Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
 
 
 });
@@ -100,6 +100,6 @@ Route::post('userapk', [UserApkController::class, 'validation']);
 Route::get('deposit_user', [DepositController::class, 'create']);
 
 
-// Route API Transaction
-Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
-Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
+    // Transactions Tenant Side
+    Route::get('transactions/tenant/fetch', [TransactionController::class, 'checkOrderByTenant']); // Check Transaction order by tenant
+    Route::post('transactions/tenant/updateStatus/{id}', [TransactionController::class, 'changeStatusOrder']); // Update Status Transactions

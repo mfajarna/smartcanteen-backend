@@ -8,7 +8,6 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\transaction\Transaction_m;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -73,10 +72,12 @@ class TransactionController extends Controller
         try{
             $status = $request->input('status');
             $id_tenant = $request->input('id_tenant');
-            $kode_transaksi= $request->kode_transaksi;
 
+            $model = Transaction_m::with(['menu','user'])
+                                 ->where('id_tenant', Auth::user()->id)
+                                 ->where('status', $status)
+                                 ->get();
 
-            $model = Transaction_m::where('kode_transaksi', '=' ,$kode_transaksi)->latest()->get();
             return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
 
         }catch(Exception $e){

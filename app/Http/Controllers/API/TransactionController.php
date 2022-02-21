@@ -108,17 +108,22 @@ class TransactionController extends Controller
     }
 
 
-    public function changeStatusOrder(Request $request, $id)
+    public function changeStatusOrder(Request $request)
     {
         try{
-            $transactions = Transaction_m::findOrFail($id);
-            $transactions->status = $request->status;
-            $transactions->save();
 
-            if($transactions)
+            $kode_transaksi = $request->input('kode_transaksi');
+
+            $status = $request->status;
+
+            $model = Transaction_m::where("kode_transaksi", $kode_transaksi)->update(["status" => $status]);
+
+
+
+                if($model)
             {
                 return ResponseFormatter::success(
-                    $transactions,
+                    $model,
                     'Status berhasil diubah'
                 );
             }else{
@@ -130,7 +135,7 @@ class TransactionController extends Controller
             }
         }catch(Exception $e)
         {
-            return ResponseFormatter::error($e->getMessage(),'Gagal Update Status Order');
+            return ResponseFormatter::error($e->getMessage(),'Gagal Update Status');
         }
     }
 

@@ -84,7 +84,7 @@ class TransactionController extends Controller
             $model = DB::table('tb_transactions')
                         ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
                         ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
-                        ->where('tb_transactions.id_tenant', $id_tenant)
+                        ->where('id_tenant', Auth::user()->id)
                         ->where('tb_transactions.status', $status)
                         ->select(
                             'tb_transactions.kode_transaksi',
@@ -106,7 +106,7 @@ class TransactionController extends Controller
              return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Orderan');
         }
     }
-    
+
 
     public function changeStatusOrder(Request $request, $id)
     {

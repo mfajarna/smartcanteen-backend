@@ -84,7 +84,7 @@ class TransactionController extends Controller
             $model = DB::table('tb_transactions')
                         ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
                         ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
-                        ->where('id_tenant', Auth::user()->id)
+                        ->where('tb_transactions.id_tenant', Auth::user()->id)
                         ->where('tb_transactions.status', $status)
                         ->select(
                             'tb_transactions.kode_transaksi',

@@ -94,6 +94,9 @@ class TransactionController extends Controller
                             'tb_transactions.created_at',
                             'tb_user_apk.device_token',
                             'tb_user_apk.nama',
+                            'tb_transactions.phoneNumber',
+                            'tb_transactions.nim',
+                            'tb_transaction.nama_pelanggan'
                             
                         )
                         ->groupBy('tb_transactions.kode_transaksi')

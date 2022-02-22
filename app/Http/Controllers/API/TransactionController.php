@@ -100,7 +100,7 @@ class TransactionController extends Controller
                             
                         )
                         ->groupBy('tb_transactions.kode_transaksi')
-                        ->get();
+                        ->paginate(5);
 
 
             return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
@@ -108,6 +108,42 @@ class TransactionController extends Controller
         }catch(Exception $e){
              return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Orderan');
         }
+    }
+
+    public function detailOderByTenant(Request $request)
+    {
+
+        try{
+            $kode_transaksi = $request->kode_transaksi;
+
+            $model = DB::table('tb_transactions')
+                            ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
+                            ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
+                            ->where('tb_transactions.id_tenant', Auth::user()->id)
+                            ->where('tb_transactions.kode_transaksi', $kode_transaksi)
+                            ->select(
+                                'tb_transactions.kode_transaksi',
+                                'tb_transactions.nama_pelanggan',
+                                'tb_transactions.nim',
+                                'tb_transactions.status',
+                                'tb_transactions.is_cash',
+                                'tb_transactions.method',
+                                'tb_transactions.total',
+                                'tb_transactions.phoneNumber',
+                                'tb_transactions.quantity',
+                                'tb_transactions.created_at',
+                                'tb_tenant.profile_photo_path',
+                                'tb_menu.name',
+                                'tb_menu.picturePath',
+                            )
+                            ->get();
+
+                return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order Detail');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Orderan');
+        }
+
     }
 
 

@@ -74,13 +74,6 @@ class TransactionController extends Controller
             $status = $request->input('status');
             $id_tenant = $request->id_tenant;
 
-            // $model = Transaction_m::with(['menu','user'])
-            //                     //  ->where('id_tenant', Auth::user()->id)
-            //                      ->where('id_tenant', Auth::user()->id)
-            //                      ->where('status', $status)
-            //                      ->groupBy('kode_transaksi')
-            //                      ->get();
-
             $model = DB::table('tb_transactions')
                         ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
                         ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
@@ -126,14 +119,13 @@ class TransactionController extends Controller
                                 'tb_transactions.nama_pelanggan',
                                 'tb_transactions.nim',
                                 'tb_transactions.status',
-                                'tb_transactions.is_cash',
-                                'tb_transactions.method',
                                 'tb_transactions.total',
                                 'tb_transactions.phoneNumber',
                                 'tb_transactions.quantity',
                                 'tb_transactions.created_at',
                                 'tb_menu.name',
                                 'tb_menu.picturePath',
+                                'tb_user_apk.device_token'
                             )
                             ->get();
 

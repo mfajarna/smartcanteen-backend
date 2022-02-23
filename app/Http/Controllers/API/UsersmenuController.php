@@ -199,6 +199,7 @@ class UsersmenuController extends Controller
                         ->where('tb_transactions.nim', $nim)
                         ->where('tb_transactions.status', $status)
                         ->select(
+                            'tb_transactions.kode_transaksi',
                             'tb_transactions.id',
                             'tb_transactions.status',
                             'tb_transactions.total',
@@ -212,7 +213,7 @@ class UsersmenuController extends Controller
                             
                         )
                         ->orderBy('tb_transactions.created_at')
-                        ->groupBy('tb_transactions.id_tenant')
+                        ->groupBy('tb_transactions.kode_transaksi')
                         ->get();
 
             return ResponseFormatter::success($dataAllTransactions,'Berhasil Mengambil Pesanan Order');
@@ -226,7 +227,7 @@ class UsersmenuController extends Controller
     {
 
         try{
-            $id_tenant = $request->input('id_tenant');
+            $kode_transaksi = $request->input('kode_transaksi');
             $status = $request->input('status');
             $nim = $request->input('nim');
 
@@ -234,7 +235,7 @@ class UsersmenuController extends Controller
             $model = DB::table('tb_transactions')
                             ->join('tb_tenant', 'tb_transactions.id_tenant', '=', 'tb_tenant.id')
                             ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
-                            ->where('tb_transactions.id_tenant', $id_tenant)
+                            ->where('tb_transactions.kode_transaksi', $kode_transaksi)
                             ->where('tb_transactions.nim', $nim)
                             ->where('tb_transactions.status', $status)
                             ->select(

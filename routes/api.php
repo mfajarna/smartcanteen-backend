@@ -56,10 +56,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('transactions/tenant/detailOrder', [TransactionController::class, 'detailOderByTenant']);
 
     
-    // Route API Transactions By User
-    Route::get('transactions/user/fetch', [UsersmenuController::class,'checkTransactionUsers']); // Fetch Transactions Order on User
-    Route::post('transactions/user/updateStatus', [UsersmenuController::class, 'cancelStatusOrder']); // Update Status Cancel
-    Route::get('transactions/user/detail', [UsersmenuController::class, 'detailTransaction']);
+
 
 
     Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);
@@ -101,3 +98,9 @@ Route::post('userapk', [UserApkController::class, 'validation']);
 
 // Deposit Balanced
 Route::get('deposit_user', [DepositController::class, 'create']);
+
+
+    // Route API Transactions By User
+    Route::get('transactions/user/fetch', [UsersmenuController::class,'checkTransactionUsers']); // Fetch Transactions Order on User
+    Route::post('transactions/user/updateStatus', [UsersmenuController::class, 'cancelStatusOrder']); // Update Status Cancel
+    Route::get('transactions/user/detail', [UsersmenuController::class, 'detailTransaction']);

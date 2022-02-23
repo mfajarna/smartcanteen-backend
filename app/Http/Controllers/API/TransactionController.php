@@ -132,7 +132,6 @@ class TransactionController extends Controller
                                 'tb_transactions.phoneNumber',
                                 'tb_transactions.quantity',
                                 'tb_transactions.created_at',
-                                'tb_tenant.profile_photo_path',
                                 'tb_menu.name',
                                 'tb_menu.picturePath',
                             )

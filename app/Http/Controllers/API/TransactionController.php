@@ -22,7 +22,7 @@ class TransactionController extends Controller
                 $value_code = substr($find_code,13);
                 $code = (int) $value_code;
                 $code = $code + 1;
-                $return_value = "TELU/TRNS/".str_pad($code,4,"0",STR_PAD_LEFT);
+                $return_value = "TELU/TRNS/".str_pad($code,5,"0",STR_PAD_LEFT);
             }else{
                 $return_value = "TELU/TRNS/0001";
             }

@@ -19,7 +19,7 @@ class TransactionController extends Controller
 
             if($find_code)
             {
-                $value_code = substr($find_code,14);
+                $value_code = substr($find_code,12);
                 $code = (int) $value_code;
                 $code = $code + 1;
                 $return_value = "TELU/TRNS/".str_pad($code,4,"0",STR_PAD_LEFT);

@@ -18,7 +18,7 @@ class UserApk extends Authenticatable
     use Notifiable;
 
     protected $table = "tb_user_apk";
-    protected $guard = 'userapks';
+    protected $guard = 'userapk';
 
     protected $fillable = [
         'nama',

@@ -23,6 +23,7 @@ class UserApkController extends Controller
 
             $model = UserApk::where('nama', '=', $nama)->first();
 
+
             if($model)
             {
 
@@ -39,12 +40,14 @@ class UserApkController extends Controller
                     'user' => $model
                 ], 'Authentication');
             }else{
-                $tokenResult = $model->createToken('authToken')->plainTextToken;
+                
                 $create = UserApk::create([
                     'nama'              => $validation['nama'],
                     'device_token'      => $validation['device_token'],
                     'is_login'          => $validation['is_login']
                 ]);
+
+                $tokenResult = $create->createToken('authToken')->plainTextToken;
 
                 return ResponseFormatter::success([
                     'access_token' => $tokenResult,

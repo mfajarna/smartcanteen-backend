@@ -12,6 +12,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class TenantController extends Controller
 {
@@ -279,6 +280,20 @@ class TenantController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Something went wrong');
         }
 
+    }
+
+    public function fetchTenant(Request $request)
+    {
+
+        try{
+            $model = Tenant_m::where('id', Auth::user()->id)->get();
+
+
+            return ResponseFormatter::success($model,'Berhasil fetch data');
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        }
     }
 
 

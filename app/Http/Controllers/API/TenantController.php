@@ -284,9 +284,10 @@ class TenantController extends Controller
 
     public function fetchTenant(Request $request)
     {
-
         try{
-            $model = Tenant_m::where('id', Auth::user()->id)->get();
+            
+            $id = $request->id;
+            $model = Tenant_m::where('id', $id)->first();
 
 
             return ResponseFormatter::success($model,'Berhasil fetch data');

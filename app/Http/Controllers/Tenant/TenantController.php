@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
+use Zxing\QrReader;
 
 class TenantController extends Controller
 {
@@ -122,10 +123,17 @@ class TenantController extends Controller
         $tenant->is_active = 1;
 
         $path_qris = $request->file('qris_barcode_submit')->store('assets/file/qris', 'public');
+        
         $path_kontrak = $request->file('file_kontrak_submit')->store('assets/file/file_kontrak', 'public');
 
         $tenant->qris_barcode = $path_qris;
         $tenant->file_kontrak = $path_kontrak;
+
+
+        $qrcode = new QrReader('storage/' .$path_qris);
+        $text = $qrcode->text();
+
+        $tenant->qr_string = $text;
 
         $tenant->save();
 
@@ -206,4 +214,19 @@ class TenantController extends Controller
 
         return response()->json($model);
     }
+
+    public function qrcode(Request $request)
+    {
+
+        $name = 'storage/assets/file/qris/qrcode1.jpeg';
+
+        // storage/assets/file/qris/boUniXdzj3517MI8bESbKAgHGE0Axwe8HBJj2qqU.png
+
+        $qrcode = new QrReader($name);
+        $text = $qrcode->text();
+
+
+        return view('pages.v2.Dashboard.Tenant.qrcode', compact('text'));
+    }
+
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Laporan\LaporanController;
 use App\Http\Controllers\Laporan\LogLaporanController;
 use App\Http\Controllers\MethodPayment\MethodPaymentController;
 use App\Http\Controllers\Tenant\TenantController;
+use App\Http\Controllers\TestingController;
 use App\Http\Controllers\Transaction\TransactionController;
 use App\Http\Livewire\Tenant\ViewTenant;
 use App\Models\LogLaporan\LogLaporan;
@@ -39,6 +40,10 @@ Route::group(['prefix' => 'admin', 'as'  => 'admin.', 'middleware' => ['auth', '
             Route::get('view', [TenantController::class,'view'])->name('tenant.view');
             Route::post('tenant-create',  [TenantController::class,'store'])->name('tenant.store');
             Route::get('remove-tenant', [TenantController::class,'delete'])->name('tenant.delete');
+            Route::get('qrcode', [TenantController::class, 'qrcode'])->name('tenant.qrcode');
+          
+
+            Route::resource('testing', TestingController::class);
 
         // Menu
         Route::resource('menu', FoodController::class);

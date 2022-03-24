@@ -10,6 +10,7 @@ use Database\Seeders\TransactionSeeder;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class UsersmenuController extends Controller
 {
@@ -306,5 +307,31 @@ class UsersmenuController extends Controller
         {
             return ResponseFormatter::error($e->getMessage(),'Gagal Update Status');
         }
+    }
+
+    public function uploadBuktiBayar(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Photo Fails', 401);
+        }
+
+        if ($request->file('file')) {
+
+            $file = $request->file->store('assets/user', 'public');
+
+            //store your file into database
+
+            $transaksi = Transaction_m::find($id);
+            $transaksi->photo_bukti_pembayaran = $file;
+            $transaksi->update();
+
+            return ResponseFormatter::success([$file],'File successfully uploaded');
+        }
+
+
     }
 }

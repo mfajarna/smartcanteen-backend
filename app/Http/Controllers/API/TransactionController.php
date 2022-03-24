@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\transaction\Transaction_m;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class TransactionController extends Controller
 {
@@ -93,7 +94,8 @@ class TransactionController extends Controller
                             'tb_transactions.method',
                             'tb_transactions.is_cash',
                             'tb_transactions.catatan',
-                            'tb_menu.category'
+                            'tb_menu.category',
+                            'tb_transactions.photo_bukti_pembayaran'
                             
                         )
                         ->groupBy('tb_transactions.kode_transaksi')
@@ -129,7 +131,8 @@ class TransactionController extends Controller
                                 'tb_transactions.created_at',
                                 'tb_menu.name',
                                 'tb_menu.picturePath',
-                                'tb_user_apk.device_token'
+                                'tb_user_apk.device_token',
+                                'tb_transactions.photo_bukti_pembayaran'
                             )
                             ->get();
 
@@ -172,6 +175,8 @@ class TransactionController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Gagal Update Status');
         }
     }
+
+
 
 
 }

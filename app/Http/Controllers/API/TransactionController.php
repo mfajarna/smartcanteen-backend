@@ -129,6 +129,7 @@ class TransactionController extends Controller
                                 'tb_transactions.phoneNumber',
                                 'tb_transactions.quantity',
                                 'tb_transactions.created_at',
+                                'tb_transactions.is_cash',
                                 'tb_menu.name',
                                 'tb_menu.picturePath',
                                 'tb_user_apk.device_token',

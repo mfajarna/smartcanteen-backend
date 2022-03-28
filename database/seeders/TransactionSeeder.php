@@ -30,6 +30,7 @@ class TransactionSeeder extends Seeder
                 'updated_at'    => date("Y-m-d H:i:s"),
                 'catatan'       => 'Tidak ada',
                 'phoneNumber'   => '08123123213'
+            
 
 
             ]

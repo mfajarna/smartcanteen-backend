@@ -61,7 +61,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('transactions/user/fetch', [UsersmenuController::class,'checkTransactionUsers']); // Fetch Transactions Order on User
     Route::post('transactions/user/updateStatus', [UsersmenuController::class, 'cancelStatusOrder']); // Update Status Cancel
     Route::get('transactions/user/detail', [UsersmenuController::class, 'detailTransaction']);
-    Route::post('transactions/user/upload-bukti-bayar', [UsersmenuController::class, 'uploadBuktiBayar']);
+    Route::post('transactions/user/upload-bukti-bayar/{id}', [UsersmenuController::class, 'uploadBuktiBayar']);
 
 
     Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);

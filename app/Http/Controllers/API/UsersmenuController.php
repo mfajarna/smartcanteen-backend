@@ -106,7 +106,8 @@ class UsersmenuController extends Controller
                             'tb_menu.picturePath',
                             'tb_menu.is_active',
                             'tb_menu.category_menu',
-                            'tb_tenant.device_token'
+                            'tb_tenant.device_token',
+                            'tb_tenant.qr_string'
                         ])
                         ->orderBy('tb_menu.created_at', 'desc')
                         ->paginate(5);

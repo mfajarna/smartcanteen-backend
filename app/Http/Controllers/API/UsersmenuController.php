@@ -333,7 +333,24 @@ class UsersmenuController extends Controller
 
             return ResponseFormatter::success([$file],'File successfully uploaded');
         }
+    }
 
+    public function checkBuktiBayar(Request $request, $id)
+    {
+        try{
 
+            $model = Transaction_m::where('id', $id)->first();
+            if($model)
+            {
+            
+            return ResponseFormatter::success($model->photo_bukti_pembayaran,'Berhasil mengambil data upload bukti pembayaran');
+            }else{
+                return ResponseFormatter::error('Data tidak ada');
+            }
+            
+
+        }catch(Exception $e){
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        }
     }
 }

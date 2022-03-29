@@ -208,7 +208,6 @@ class UsersmenuController extends Controller
                             'tb_transactions.total',
                             DB::raw('SUM(tb_transactions.quantity) as quantity'),
                             'tb_transactions.created_at',
-                            'tb_transactions.photo_bukti_pembayaran',
                             'tb_tenant.qr_string',
                             'tb_tenant.nama_tenant',
                             'tb_tenant.lokasi_kantin',

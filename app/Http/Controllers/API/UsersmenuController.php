@@ -9,6 +9,7 @@ use App\Models\transaction\Transaction_m;
 use Database\Seeders\TransactionSeeder;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -312,28 +313,42 @@ class UsersmenuController extends Controller
         }
     }
 
-    public function uploadBuktiBayar(Request $request, $id)
+    public function uploadBuktiBayar(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|image:jpeg,png,jpg|max:2048',
-        ]);
 
-        if ($validator->fails()) {
-            return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Photo Fails', 401);
+        try{
+
+            $kode_transaksi = $request->kode_transaksi;
+
+            $validator = Validator::make($request->all(), [
+                'file'  => 'required|image:jpeg,png,jpg|max:2048',
+            ]);
+
+
+            if ($validator->fails()) {
+                return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Photo Fails', 401);
+            }
+
+            if ($request->file('file')) {
+
+                $file = $request->file->store('assets/ktp', 'public');
+
+
+
+                $model = Transaction_m::where('kode_transaksi', $kode_transaksi)->first();
+                $model->photo_bukti_pembayaran = $file;
+
+                $model->update();
+
+                return ResponseFormatter::success([$file],'File successfully uploaded');
+            }
+
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
         }
 
-        if ($request->file('file')) {
 
-            $file = $request->file->store('assets/user', 'public');
-
-            //store your file into database
-
-            $transaksi = Transaction_m::find($id);
-            $transaksi->photo_bukti_pembayaran = $file;
-            $transaksi->update();
-
-            return ResponseFormatter::success([$file],'File successfully uploaded');
-        }
     }
 
     public function checkBuktiBayar(Request $request, $id)

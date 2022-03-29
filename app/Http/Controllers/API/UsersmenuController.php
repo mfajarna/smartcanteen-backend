@@ -208,6 +208,8 @@ class UsersmenuController extends Controller
                             'tb_transactions.total',
                             DB::raw('SUM(tb_transactions.quantity) as quantity'),
                             'tb_transactions.created_at',
+                            'tb_transactions.photo_bukti_pembayaran',
+                            'tb_tenant.qr_string',
                             'tb_tenant.nama_tenant',
                             'tb_tenant.lokasi_kantin',
                             'tb_transactions.id_tenant',
@@ -319,19 +321,9 @@ class UsersmenuController extends Controller
         try{
 
             $kode_transaksi = $request->kode_transaksi;
-
-            $validator = Validator::make($request->all(), [
-                'file'  => 'required|image:jpeg,png,jpg|max:2048',
-            ]);
+            $file = $request->file;
 
 
-            if ($validator->fails()) {
-                return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Photo Fails', 401);
-            }
-
-            if ($request->file('file')) {
-
-                $file = $request->file->store('assets/ktp', 'public');
 
 
 
@@ -341,7 +333,7 @@ class UsersmenuController extends Controller
                 $model->update();
 
                 return ResponseFormatter::success([$file],'File successfully uploaded');
-            }
+        
 
         }catch(Exception $e)
         {

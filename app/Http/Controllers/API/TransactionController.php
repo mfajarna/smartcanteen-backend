@@ -99,7 +99,7 @@ class TransactionController extends Controller
                             
                         )
                         ->groupBy('tb_transactions.kode_transaksi')
-                        ->paginate(5);
+                        ->get();
 
 
             return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');

@@ -14,7 +14,7 @@ class AddColumnPhotoPembayaranToTbTransactionsTable extends Migration
     public function up()
     {
         Schema::table('tb_transactions', function (Blueprint $table) {
-            $table->string('photo_bukti_pembayaran')->nullable();
+            $table->longText('photo_bukti_pembayaran')->nullable();
         });
     }
 

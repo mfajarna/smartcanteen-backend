@@ -323,16 +323,12 @@ class UsersmenuController extends Controller
             $kode_transaksi = $request->kode_transaksi;
             $file = $request->file;
 
+            $model = Transaction_m::where('kode_transaksi', $kode_transaksi)->first();
+            $model->photo_bukti_pembayaran = $file;
 
+            $model->update();
 
-
-
-                $model = Transaction_m::where('kode_transaksi', $kode_transaksi)->first();
-                $model->photo_bukti_pembayaran = $file;
-
-                $model->update();
-
-                return ResponseFormatter::success([$file],'File successfully uploaded');
+            return ResponseFormatter::success([$file],'File successfully uploaded');
         
 
         }catch(Exception $e)

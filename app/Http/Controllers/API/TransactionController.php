@@ -75,34 +75,76 @@ class TransactionController extends Controller
             $status = $request->input('status');
             $id_tenant = $request->id_tenant;
 
-            $model = DB::table('tb_transactions')
-                        ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
-                        ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
-                        ->where('tb_transactions.id_tenant', Auth::user()->id)
-                        ->where('tb_transactions.status', $status)
-                        ->select(
-                            'tb_transactions.kode_transaksi',
-                            'tb_transactions.status',
-                            'tb_transactions.total',
-                            DB::raw('SUM(tb_transactions.quantity) as quantity'),
-                            'tb_transactions.created_at',
-                            'tb_user_apk.device_token',
-                            'tb_user_apk.nama',
-                            'tb_transactions.phoneNumber',
-                            'tb_transactions.nim',
-                            'tb_transactions.nama_pelanggan',
-                            'tb_transactions.method',
-                            'tb_transactions.is_cash',
-                            'tb_transactions.catatan',
-                            'tb_menu.category',
-                            'tb_transactions.photo_bukti_pembayaran'
-                            
-                        )
-                        ->groupBy('tb_transactions.kode_transaksi')
-                        ->get();
+            if($status == "PENDING")
+            {
+
+                $model = DB::table('tb_transactions')
+                ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
+                ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
+                ->where('tb_transactions.id_tenant', Auth::user()->id)
+                ->where('tb_transactions.status', $status)
+                ->select(
+                    'tb_transactions.kode_transaksi',
+                    'tb_transactions.status',
+                    'tb_transactions.total',
+                    DB::raw('SUM(tb_transactions.quantity) as quantity'),
+                    'tb_transactions.created_at',
+                    'tb_user_apk.device_token',
+                    'tb_user_apk.nama',
+                    'tb_transactions.phoneNumber',
+                    'tb_transactions.nim',
+                    'tb_transactions.nama_pelanggan',
+                    'tb_transactions.method',
+                    'tb_transactions.is_cash',
+                    'tb_transactions.catatan',
+                    'tb_menu.category',
+                    'tb_transactions.photo_bukti_pembayaran'
+                )
+                ->groupBy('tb_transactions.kode_transaksi')
+                ->get();
 
 
-            return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
+                $update = Transaction_m::where('id_tenant', Auth::user()->id)
+                                        ->where('status', $status)
+                                        ->first();
+                                        
+                $update->photo_bukti_pembayaran = null;
+                $update->save();
+
+                return ResponseFormatter::success($model,'Berhasil Update photo bukti bayar order');
+
+            }else{
+
+                $model = DB::table('tb_transactions')
+                ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
+                ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
+                ->where('tb_transactions.id_tenant', Auth::user()->id)
+                ->where('tb_transactions.status', $status)
+                ->select(
+                    'tb_transactions.kode_transaksi',
+                    'tb_transactions.status',
+                    'tb_transactions.total',
+                    DB::raw('SUM(tb_transactions.quantity) as quantity'),
+                    'tb_transactions.created_at',
+                    'tb_user_apk.device_token',
+                    'tb_user_apk.nama',
+                    'tb_transactions.phoneNumber',
+                    'tb_transactions.nim',
+                    'tb_transactions.nama_pelanggan',
+                    'tb_transactions.method',
+                    'tb_transactions.is_cash',
+                    'tb_transactions.catatan',
+                    'tb_menu.category',
+                    'tb_transactions.photo_bukti_pembayaran'
+                )
+                ->groupBy('tb_transactions.kode_transaksi')
+                ->get();
+
+
+                return ResponseFormatter::success($model,'Berhasil Mengambil Pesanan Order');
+            }
+
+
 
         }catch(Exception $e){
              return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Orderan');

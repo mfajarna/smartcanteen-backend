@@ -71,38 +71,16 @@
                     <div class="mt-3 d-grid">
                       <button class="btn btn-danger waves-effect waves-light" type="submit" value="Login">Log In</button>
                     </div>
-                    <div class="mt-4 text-center">
-                      <h5 class="font-size-14 mb-3">Sign in with</h5>
-                      <ul class="list-inline">
-                        <li class="list-inline-item">
-                          <a href="javascript::void()" class="social-list-item bg-primary text-white border-primary">
-                            <i class="mdi mdi-facebook"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="javascript::void()" class="social-list-item bg-info text-white border-info">
-                            <i class="mdi mdi-twitter"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="javascript::void()" class="social-list-item bg-danger text-white border-danger">
-                            <i class="mdi mdi-google"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="mt-4 text-center">
+                    {{-- <div class="mt-4 text-center">
                       <a href="auth-recoverpw-1.php" class="text-muted">
                         <i class="mdi mdi-lock me-1"></i> Forgot your password? </a>
-                    </div>
+                    </div> --}}
                   </form>
                 </div>
               </div>
             </div>
             <div class="mt-5 text-center">
               <div>
-                <p>Don't have an account ? <a href="auth-register-1.php" class="fw-medium text-danger"> Signup now </a>
-                </p>
                 <p>© <script>
                     document.write(new Date().getFullYear())
                   </script> Smart Canteen Telkom University. Crafted with <i class="mdi mdi-heart text-danger"></i> </p>

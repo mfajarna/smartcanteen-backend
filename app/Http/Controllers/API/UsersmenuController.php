@@ -251,6 +251,7 @@ class UsersmenuController extends Controller
                                 'tb_transactions.phoneNumber',
                                 'tb_transactions.quantity',
                                 'tb_transactions.created_at',
+                                'tb_transactions.photo_bukti_pembayaran',
                                 'tb_tenant.qr_string',
                                 'tb_tenant.profile_photo_path',
                                 'tb_menu.name',

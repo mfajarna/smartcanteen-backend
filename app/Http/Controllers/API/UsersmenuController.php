@@ -58,6 +58,7 @@ class UsersmenuController extends Controller
                             'tb_tenant.lokasi_kantin',
                             'tb_tenant.status',
                             'tb_tenant.is_active',
+                            'tb_tenant.qr_string',
                             'tb_tenant.desc_kantin',
                             'tb_tenant.rating',
                             'tb_menu.name',

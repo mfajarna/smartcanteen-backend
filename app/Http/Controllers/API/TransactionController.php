@@ -98,7 +98,6 @@ class TransactionController extends Controller
                     'tb_transactions.is_cash',
                     'tb_transactions.catatan',
                     'tb_menu.category',
-                    'tb_transactions.photo_bukti_pembayaran'
                 )
                 ->groupBy('tb_transactions.kode_transaksi')
                 ->get();

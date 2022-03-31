@@ -328,6 +328,8 @@ class UsersmenuController extends Controller
             $model = Transaction_m::where('kode_transaksi', $kode_transaksi)
                                     ->where('id_tenant', $id_tenant)
                                     ->first();
+
+                                    
             $model->photo_bukti_pembayaran = $file;
 
             $model->update();

@@ -207,7 +207,7 @@
                             <div class="mb-3 mt-2">
                                 <label for="nama_pemilik">File Kontrak</label>
                                 <input class="form-control" type="file" id="file_kontrak_submit" name="file_kontrak_submit" required>
-                                <span class="text-muted">File: png, max size: 2mb</span>
+                                <span class="text-muted">File: pdf, max size: 2mb</span>
                             </div>
                         </div>
                     </div>

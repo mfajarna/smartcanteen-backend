@@ -13,20 +13,24 @@
         <!-- Responsive datatable examples -->
         <link href="{{ asset('/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
+        <link href="{{ asset('/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('/assets/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('/assets/libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('/assets/libs/@chenfengyuan/datepicker/datepicker.min.css') }}">
 @endpush
 
 @section('content')
 
     <div class="row">
             <div class="col-12">
-                @include('modal.tenant.create-tenant')
                 <div class="card">
                     <div class="card-body">
 
                         <h4 class="card-title mb-2">Tambah Tenant Baru</h4>
                         <p class="card-title-desc">tolong isi semua data dibawah ini</p>
 
-                        @include('components.v2.Dashboard.Tenant.form')
+                        @include('components.v2.Dashboard.Tenant.form2')
             </div> <!-- end col -->
         </div>
 
@@ -36,52 +40,58 @@
 
 <script src="{{ asset('/assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('/assets/js/pages/form-wizard.init.js') }}"></script>
+<script src="{{ asset('/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('/assets/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
+<script src="{{ asset('/assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+<script src="{{ asset('/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+<script src="{{ asset('/assets/libs/@chenfengyuan/datepicker/datepicker.min.js') }}"></script>
 
 <script>
-    $(document).ready(function () {
+    // $(document).ready(function () {
 
 
-        $('#Finish').on('click', function(){
+    //     $('#Finish').on('click', function(){
 
-            var kode_tenant = $('#kode_tenant').val();
-            var nama_pemilik = $('#nama_pemilik').val();
-            var email = $('#email').val();
-            var no_telp = $('#no_telp').val();
-            var nama_bank = $('#nama_bank').val();
-            var nama_rekening = $('#nama_rekening').val();
-            var no_rekening = $('#no_rekening').val();
-            var nama_tenant = $('#nama_tenant').val();
-            var desc_kantin = $('#desc_kantin').val();
-            var lokasi_kantin = $('#lokasi_kantin').find(":selected").text();
-            var jangka_waktu_kontrak = $('#jangka_waktu_kontrak').val();
-            var sharing_telu = $('#sharing_telu').val();
-            var sharing_tenant = $('#sharing_tenant').val();
-            let _token   = $('meta[name="csrf-token"]').attr('content');
+    //         var kode_tenant = $('#kode_tenant').val();
+    //         var nama_pemilik = $('#nama_pemilik').val();
+    //         var email = $('#email').val();
+    //         var no_telp = $('#no_telp').val();
+    //         var nama_bank = $('#nama_bank').val();
+    //         var nama_rekening = $('#nama_rekening').val();
+    //         var no_rekening = $('#no_rekening').val();
+    //         var nama_tenant = $('#nama_tenant').val();
+    //         var desc_kantin = $('#desc_kantin').val();
+    //         var lokasi_kantin = $('#lokasi_kantin').find(":selected").text();
+    //         var jangka_waktu_kontrak = $('#jangka_waktu_kontrak').val();
+    //         var sharing_telu = $('#sharing_telu').val();
+    //         var sharing_tenant = $('#sharing_tenant').val();
+    //         let _token   = $('meta[name="csrf-token"]').attr('content');
 
-            if(kode_tenant == "" || nama_pemilik == "" || email == "" || no_telp == "" || nama_bank == "" || nama_rekening == "" || no_rekening == "" || desc_kantin == "" || jangka_waktu_kontrak == "" || sharing_telu == "" || sharing_tenant == "" )
-            {
-                alert('Tolong isi dokumen yang kosong!')
+    //         if(kode_tenant == "" || nama_pemilik == "" || email == "" || no_telp == "" || nama_bank == "" || nama_rekening == "" || no_rekening == "" || desc_kantin == "" || jangka_waktu_kontrak == "" || sharing_telu == "" || sharing_tenant == "" )
+    //         {
+    //             alert('Tolong isi dokumen yang kosong!')
 
-                return false;
-            }
-            else{
-                $('#SubmitTenantForm').modal('show')
+    //             return false;
+    //         }
+    //         else{
+    //             $('#SubmitTenantForm').modal('show')
 
-                $('#nama_pemilik_submit').val(nama_pemilik);
-                $('#email_submit').val(email);
-                $('#no_telp_submit').val(no_telp);
-                $('#nama_bank_submit').val(nama_bank);
-                $('#nama_rekening_submit').val(nama_rekening);
-                $('#no_rekening_submit').val(no_rekening);
-                $('#nama_tenant_submit').val(nama_tenant);
-                $('textarea#desc_kantin_submit').val(desc_kantin);
-                $('#lokasi_kantin_submit').val(lokasi_kantin)
-                $('#jangka_waktu_kontrak_submit').val(jangka_waktu_kontrak);
-                $('#sharing_telu_submit').val(sharing_telu);
-                $('#sharing_tenant_submit').val(sharing_tenant);
-            }
-        })
-    })
+    //             $('#nama_pemilik_submit').val(nama_pemilik);
+    //             $('#email_submit').val(email);
+    //             $('#no_telp_submit').val(no_telp);
+    //             $('#nama_bank_submit').val(nama_bank);
+    //             $('#nama_rekening_submit').val(nama_rekening);
+    //             $('#no_rekening_submit').val(no_rekening);
+    //             $('#nama_tenant_submit').val(nama_tenant);
+    //             $('textarea#desc_kantin_submit').val(desc_kantin);
+    //             $('#lokasi_kantin_submit').val(lokasi_kantin)
+    //             $('#jangka_waktu_kontrak_submit').val(jangka_waktu_kontrak);
+    //             $('#sharing_telu_submit').val(sharing_telu);
+    //             $('#sharing_tenant_submit').val(sharing_tenant);
+    //         }
+    //     })
+    // })
 
 
 </script>

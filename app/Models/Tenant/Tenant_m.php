@@ -50,7 +50,9 @@ class Tenant_m extends Authenticatable
         'qris_barcode',
         'file_kontrak',
         'device_token',
-        'qr_string'
+        'qr_string',
+        'tanggal_dari_terms',
+        'sampai_tanggal_terms'
     ];
 
         /**

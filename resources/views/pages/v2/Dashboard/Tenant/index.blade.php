@@ -163,7 +163,9 @@
                             $('#jenis_bank').text(res.nama_bank)
                             $('#no_rekening').text(res.no_rekening)
                             $('#nama_rekening').text(res.nama_rekening)
-
+                            $('#email_tenant').text(res.email)
+                            $('#dari_tanggal_terms').text(res.tanggal_dari_terms)
+                            $('#sampai_tanggal_terms').text(res.sampai_tanggal_terms)
 
                             $('#file_kontrak').on('click', function(){
                                 window.open("/storage/"+ res.file_kontrak, '_blank')

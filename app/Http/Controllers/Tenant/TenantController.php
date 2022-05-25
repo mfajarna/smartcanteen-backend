@@ -79,6 +79,7 @@ class TenantController extends Controller
      */
     public function store(Request $request)
     {
+
         $validate = $request->validate([
                 'kode_tenant_submit'            => 'required|string|max:255|unique:tb_tenant,id_tenant',
                 'nama_pemilik_submit'           => 'required|string|max:255',
@@ -95,6 +96,8 @@ class TenantController extends Controller
                 'sharing_tenant_submit'         => 'required|integer',
                 'qris_barcode_submit'           => 'required|file:jpg,jpeg,png|max:2048',
                 'file_kontrak_submit'           => 'required|mimes:pdf|max:2048',
+                'tanggal_dari_terms'            => 'required',
+                'sampai_tanggal_terms'          => 'required'
         ]);
 
 
@@ -113,9 +116,11 @@ class TenantController extends Controller
         $tenant->sharing_telu = $validate['sharing_telu_submit'];
         $tenant->sharing_tenant = $validate['sharing_tenant_submit'];
         $tenant->jangka_waktu_kontrak = $validate['jangka_waktu_kontrak_submit'];
+        $tenant->tanggal_dari_terms = $validate['tanggal_dari_terms'];
+        $tenant->sampai_tanggal_terms = $validate['sampai_tanggal_terms'];
 
 
-        $tenant->password = Hash::make('Admin123');
+        $tenant->password = Hash::make('Tenant123');
         $tenant->rating = 0;
         $tenant->perhitungan_akhir = 0;
         $tenant->total_jumlah_order = 0;
@@ -137,9 +142,15 @@ class TenantController extends Controller
 
         $tenant->save();
 
+        if($tenant)
+        {
+            toast()->success('Berhasil Menyimpan Data');
+            return redirect()->route('admin.tenant.index');
+        }else{
+            toast()->error('Gagal Menyimpan Data');
+            return redirect()->route('admin.tenant.index');
+        }
 
-        toast()->success('Berhasil Menyimpan Data');
-        return redirect()->route('admin.tenant.index');
     }
 
     /**
@@ -217,7 +228,10 @@ class TenantController extends Controller
 
     public function qrcode(Request $request)
     {
+        // For Production
+        // $name = 'storage/app/public/assets/file/qris/qrcode1.jpeg';
 
+        // For Local
         $name = 'storage/assets/file/qris/qrcode1.jpeg';
 
         // storage/assets/file/qris/boUniXdzj3517MI8bESbKAgHGE0Axwe8HBJj2qqU.png

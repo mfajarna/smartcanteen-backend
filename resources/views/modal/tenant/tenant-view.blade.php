@@ -12,6 +12,11 @@
                             <h5 class="mb-2">Informasi Tenant</h5>
 
                             <span class="mb-2 text-xs">
+                                Email Tenant :
+                                <span class="text-dark font-weight-bold ms-sm-2" id="email_tenant"></span>
+                            </span>
+
+                            <span class="mb-2 text-xs">
                                 Nama Tenant :
                                 <span class="text-dark font-weight-bold ms-sm-2" id="nama_tenant"></span>
                             </span>
@@ -47,6 +52,16 @@
                                 Status Tenant :
                                 <span class="badge badge-pill badge-soft-success font-size-11" id="status_tenant"></span>
                             </span>
+                            <span class="mb-2 text-xs">
+                                Contact Term :
+                                <div class="col">
+                                    <span class="text-dark font-weight-bold ms-sm-2" id="dari_tanggal_terms"></span>
+                                      -  
+                                    <span class="text-dark font-weight-bold ms-sm-2" id="sampai_tanggal_terms"></span>
+                                </div>
+
+                            </span>
+
                             <span class="mb-2 text-xs">
 
                                 <a href="#" id="barcode_qris" class="fw-medium text-primary">Lihat Barcode Qris</a>

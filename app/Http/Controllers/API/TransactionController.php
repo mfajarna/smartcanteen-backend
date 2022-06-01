@@ -107,7 +107,7 @@ class TransactionController extends Controller
                                         ->where('status', $status)
                                         ->first();
                                         
-                $update->photo_bukti_pembayaran = null;
+                $update->photo_bukti_pembayaran = "";
                 $update->save();
 
                 return ResponseFormatter::success($model,'Berhasil Update photo bukti bayar order');

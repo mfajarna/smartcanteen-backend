@@ -30,6 +30,7 @@ class Transaction_m extends Model
             'is_cash',
             'total',
             'photo_bukti_pembayaran',
+            'no_table'
     ];
 
     public function menu()

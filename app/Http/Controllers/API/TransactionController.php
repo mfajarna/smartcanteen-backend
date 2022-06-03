@@ -57,6 +57,7 @@ class TransactionController extends Controller
                         'catatan' => $value['catatan'],
                         'is_cash' => $value['is_cash'],
                         'phoneNumber' => $value['phoneNumber'],
+                        'no_table'  => $value['no_table']
 
                 ]);
             }
@@ -155,6 +156,7 @@ class TransactionController extends Controller
 
         try{
             $kode_transaksi = $request->kode_transaksi;
+            $no_table = $request->no_table;
 
             $model = DB::table('tb_transactions')
                             ->join('tb_user_apk', 'tb_transactions.id_user', '=', 'tb_user_apk.id')
@@ -163,6 +165,7 @@ class TransactionController extends Controller
                             ->where('tb_transactions.kode_transaksi', $kode_transaksi)
                             ->select(
                                 'tb_transactions.kode_transaksi',
+                                'tb_transactions.no_table',
                                 'tb_transactions.nama_pelanggan',
                                 'tb_transactions.nim',
                                 'tb_transactions.status',

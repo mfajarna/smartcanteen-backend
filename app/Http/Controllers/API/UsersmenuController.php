@@ -236,6 +236,7 @@ class UsersmenuController extends Controller
             $kode_transaksi = $request->input('kode_transaksi');
             $status = $request->input('status');
             $nim = $request->input('nim');
+            $no_table = $request->input('no_table');
 
 
             $model = DB::table('tb_transactions')
@@ -246,6 +247,7 @@ class UsersmenuController extends Controller
                             ->where('tb_transactions.status', $status)
                             ->select(
                                 'tb_transactions.kode_transaksi',
+                                'tb_transactions.no_table',
                                 'tb_transactions.nama_pelanggan',
                                 'tb_transactions.nim',
                                 'tb_transactions.status',

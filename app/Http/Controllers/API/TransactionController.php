@@ -111,7 +111,14 @@ class TransactionController extends Controller
                 $update->photo_bukti_pembayaran = null;
                 $update->save();
 
-                return ResponseFormatter::success($model,'Berhasil Update photo bukti bayar order');
+                if($model && $update)
+                {
+                    return ResponseFormatter::success('Berhasil Update photo bukti bayar order');
+                }else{
+                    return ResponseFormatter::error('Gagal Ambil Data Orderan');
+                }
+
+                
 
             }else{
 
@@ -147,7 +154,7 @@ class TransactionController extends Controller
 
 
         }catch(Exception $e){
-             return ResponseFormatter::error($e->getMessage(),'Gagal Ambil Data Orderan');
+             return ResponseFormatter::error($e->getMessage(),'Something went wrong');
         }
     }
 

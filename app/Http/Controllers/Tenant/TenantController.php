@@ -124,7 +124,7 @@ class TenantController extends Controller
         $tenant->rating = 0;
         $tenant->perhitungan_akhir = 0;
         $tenant->total_jumlah_order = 0;
-        $tenant->status = "Tersedia";
+        $tenant->status = "active";
         $tenant->is_active = 1;
 
         $path_qris = $request->file('qris_barcode_submit')->store('assets/file/qris', 'public');

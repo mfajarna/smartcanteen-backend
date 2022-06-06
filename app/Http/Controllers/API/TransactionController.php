@@ -104,14 +104,14 @@ class TransactionController extends Controller
                 ->get();
 
 
-                $update = Transaction_m::where('id_tenant', Auth::user()->id)
-                                        ->where('status', $status)
-                                        ->first();
+                // $update = Transaction_m::where('id_tenant', Auth::user()->id)
+                //                         ->where('status', $status)
+                //                         ->first();
                                         
-                $update->photo_bukti_pembayaran = null;
-                $update->save();
+                // $update->photo_bukti_pembayaran = null;
+                // $update->save();
 
-                if($model && $update)
+                if($model)
                 {
                     return ResponseFormatter::success('Berhasil Update photo bukti bayar order');
                 }else{

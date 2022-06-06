@@ -16,7 +16,7 @@ class UserApkSeeder extends Seeder
     {
         $users = [
             [
-                'nama' => 'Admin Kojay',
+                'nama' => 'Admin',
                 'is_login'  => 1,
                 'device_token' => 'random'
             ]

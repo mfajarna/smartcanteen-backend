@@ -113,7 +113,7 @@ class TransactionController extends Controller
 
                 if($model)
                 {
-                    return ResponseFormatter::success('Berhasil Update photo bukti bayar order');
+                    return ResponseFormatter::success($model,'Berhasil get orderan dengan status '.$status.'');
                 }else{
                     return ResponseFormatter::error('Gagal Ambil Data Orderan');
                 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\DepositController;
 use App\Http\Controllers\API\MenuController;
 use App\Http\Controllers\API\OverallmenuController;
+use App\Http\Controllers\API\QrisController;
 use App\Http\Controllers\API\TenantController;
 use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserApkController;
@@ -68,11 +69,13 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('userapk/fetch', [UserApkController::class, 'getDataUser']);
 
     // Route API Transaction
-    Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
+    // Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
     Route::post('transactions/add', [TransactionController::class, 'addTransaction']);
 
 
 });
+
+Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
 
 Route::post('tenantauth', [TenantController::class, 'register']);
 Route::post('tenantlogin', [TenantController::class, 'login']);
@@ -104,3 +107,6 @@ Route::post('userapk', [UserApkController::class, 'validation']);
 
 // Deposit Balanced
 Route::get('deposit_user', [DepositController::class, 'create']);
+
+// Qris API
+Route::post('redirect_qris', [QrisController::class, 'postJsonFromQris']); 

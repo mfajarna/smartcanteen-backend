@@ -28,7 +28,7 @@ class CreateMenuSeeder extends Seeder
                 'is_active' => 'active'
             ],
             [
-                'id_tenant' => 2,
+                'id_tenant' => 1,
                 'name' => 'Dummy Minuman',
                 'category' => 'Minuman',
                 'ingredients' => 'Bahan Mantap',

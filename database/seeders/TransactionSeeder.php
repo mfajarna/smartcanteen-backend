@@ -16,13 +16,13 @@ class TransactionSeeder extends Seeder
     {
         $transactions = [
             [
-                'kode_transaksi' => '#trans/0001',
+                'kode_transaksi' => '40926705180059',
                 'id_user'       => NULL,
                 'nama_pelanggan' => 'Kojay',
                 'nim'           => '6705180059',
                 'id_menu'       => 1,
                 'id_tenant'     => 1,
-                'status'        => 'SUCCESS',
+                'status'        => 'PENDING',
                 'method'        => 'Dine In',
                 'quantity'      => 10,
                 'total'         => 10000,

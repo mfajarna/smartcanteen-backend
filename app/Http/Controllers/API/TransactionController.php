@@ -13,26 +13,55 @@ use Illuminate\Support\Facades\Validator;
 
 class TransactionController extends Controller
 {
-    public function getKode()
-    {
-       try{
-            $find_code = Transaction_m::max('kode_transaksi');
 
-            if($find_code)
-            {
-                $value_code = substr($find_code,11);
-                $code = (int) $value_code;
-                $code = $code + 1;
-                $return_value = "TELU/TRNS/".str_pad($code,4,"0",STR_PAD_LEFT);
-            }else{
-                $return_value = "TELU/TRNS/0001";
-            }
-            return ResponseFormatter::success($return_value,'Berhasil Mengambil Kode Transaksi '. $return_value);
-        }catch(Exception $e)
-        {
-            return ResponseFormatter::error($e->getMessage(),'Gagal Mengambil Kode Transaksi');
-        }
+
+    public function checkDuplicateKodeTransaksi($kode_transaksi, $nama)
+    {
+        $model = Transaction_m::where('kode_transaksi', $kode_transaksi)
+                                ->where('nama', $nama)
+                                ->where('status', "PENDING")
+                                ->first();
     }
+
+    public function getKode(Request $request)
+    {
+    try{    
+        $nim = $request->nim;
+        $nama = $request->nama;
+        $cost = 0;
+        $result= 0;
+
+
+     
+        $cost = rand(1000,10000);
+        $result = $cost . $nim;
+
+
+        // cek model database
+        $model = Transaction_m::where('kode_transaksi', $result)
+        ->where('nim', $nim)
+        ->where('status', "PENDING")
+        ->first();
+
+        if($model)
+        {
+            $cost = rand(1000,10000);
+            $result = $cost . $nim;
+        }
+
+        if($result)
+        {
+            return ResponseFormatter::success($result,'Berhasil Mengambil Kode Transaksi '. $result);
+        }else{
+            return ResponseFormatter::error('Tidak bisa mengambil data kode transaksi');
+        }
+        
+    }catch(Exception $e)
+    {
+        return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+    }
+    }
+
 
     public function addTransaction(Request $request)
     {
@@ -210,7 +239,7 @@ class TransactionController extends Controller
 
 
 
-                if($model)
+            if($model)
             {
                 return ResponseFormatter::success(
                     $model,

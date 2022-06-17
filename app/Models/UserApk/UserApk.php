@@ -23,6 +23,7 @@ class UserApk extends Authenticatable
     protected $fillable = [
         'nama',
         'is_login',
+        'nim',
         'device_token'
     ];
 

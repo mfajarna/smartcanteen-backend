@@ -15,8 +15,10 @@ class UserApkController extends Controller
         try {
             $validation = $request->validate([
                 'nama'              => 'required|string',
+                'nim'               => 'required|string',
                 'is_login'          => 'required|string',
-                'device_token'      => 'required|string'
+                'device_token'      => 'required|string',
+                
             ]);
 
             $nama = $validation['nama'];
@@ -33,7 +35,6 @@ class UserApkController extends Controller
 
                 $model->save();
 
-
                 return ResponseFormatter::success([
                     'access_token' => $tokenResult,
                     'token_type' => 'Bearer',
@@ -44,7 +45,8 @@ class UserApkController extends Controller
                 $create = UserApk::create([
                     'nama'              => $validation['nama'],
                     'device_token'      => $validation['device_token'],
-                    'is_login'          => $validation['is_login']
+                    'is_login'          => $validation['is_login'],
+                    'nim'               => $validation['nim'],
                 ]);
 
                 $tokenResult = $create->createToken('authToken')->plainTextToken;

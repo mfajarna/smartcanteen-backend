@@ -31,8 +31,6 @@ class TransactionController extends Controller
         $cost = 0;
         $result= 0;
 
-
-     
         $cost = rand(1000,10000);
         $result = $cost . $nim;
 
@@ -87,7 +85,6 @@ class TransactionController extends Controller
                         'is_cash' => $value['is_cash'],
                         'phoneNumber' => $value['phoneNumber'],
                         'no_table'  => $value['no_table']
-
                 ]);
             }
 

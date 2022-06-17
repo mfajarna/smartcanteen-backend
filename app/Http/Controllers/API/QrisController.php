@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
+use App\Models\DumpQris_m;
 
 class QrisController extends Controller
 {
@@ -16,9 +17,29 @@ class QrisController extends Controller
             $rawPostData = file_get_contents("php://input");
 
             $decode = json_decode($rawPostData);
-            
-            return ResponseFormatter::success($decode, 'Success post data');
 
+            $model = new DumpQris_m();
+            $model->type = $decode->type;
+            $model->status = $decode->status;
+            $model->datetime = $decode->datetime;
+            $model->merchant_id = $decode->merchant_id;
+            $model->reference_label = $decode->reference_label;
+            $model->invoice_no = $decode->invoice_no;
+            $model->amount = $decode->amount;
+            $model->mdr = $decode->mdr;
+            $model->issue_name = $decode->issuer_name;
+            $model->customer_name = $decode->customer_name;
+            $model->store_label = $decode->store_label;
+            $model->terminal_label = $decode->terminal_label;
+            $model->save();
+
+            if($model)
+            {
+                return ResponseFormatter::success($model, 'Success save dump qris data');
+            }
+            else{
+                return ResponseFormatter::error("oops",'Failed to save dump qris data');
+            }
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Something went wrong');

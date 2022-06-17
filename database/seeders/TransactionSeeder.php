@@ -25,6 +25,7 @@ class TransactionSeeder extends Seeder
                 'status'        => 'PENDING',
                 'method'        => 'Dine In',
                 'quantity'      => 10,
+                'kode_uniq'     => 234,
                 'total'         => 10000,
                 'created_at'    => date("Y-m-d H:i:s"),
                 'updated_at'    => date("Y-m-d H:i:s"),

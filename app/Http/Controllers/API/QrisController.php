@@ -45,4 +45,34 @@ class QrisController extends Controller
             return ResponseFormatter::error($e->getMessage(),'Something went wrong');
         }
     }
+
+    public function getDumpQris(Request $request)
+    {
+        try{
+            $invoice_no = $request->invoice_no;
+            $status = $request->status;
+
+            $model = DumpQris_m::all();
+
+            if($invoice_no)
+            {
+                $model = DumpQris_m::where('invoice_no', $invoice_no)->get();
+            }
+
+            if($status)
+            {
+                $model = DumpQris_m::where('status', $status)->get();
+            }
+
+            if($model)
+            {
+                return ResponseFormatter::success($model, 'Success get data dump data qris');
+            }else{
+                return ResponseFormatter::error("oops",'Failed to save dump qris data');
+            }
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        }
+    }
 }

@@ -110,3 +110,4 @@ Route::get('deposit_user', [DepositController::class, 'create']);
 
 // Qris API
 Route::post('redirect_qris', [QrisController::class, 'postJsonFromQris']); 
+Route::get('getDumpQris', [QrisController::class,'getDumpQris']);

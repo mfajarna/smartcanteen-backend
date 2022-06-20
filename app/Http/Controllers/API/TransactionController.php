@@ -173,6 +173,7 @@ class TransactionController extends Controller
                     'tb_transactions.method',
                     'tb_transactions.is_cash',
                     'tb_transactions.catatan',
+                    'tb_transactions.kode_uniq',
                     'tb_menu.category',
                 )
                 ->groupBy('tb_transactions.kode_transaksi')
@@ -216,6 +217,7 @@ class TransactionController extends Controller
                     'tb_transactions.method',
                     'tb_transactions.is_cash',
                     'tb_transactions.catatan',
+                    'tb_transactions.kode_uniq',
                     'tb_menu.category',
                     'tb_transactions.photo_bukti_pembayaran'
                 )
@@ -257,6 +259,7 @@ class TransactionController extends Controller
                                 'tb_transactions.created_at',
                                 'tb_transactions.is_cash',
                                 'tb_transactions.catatan',
+                                'tb_transactions.kode_uniq',
                                 'tb_menu.name',
                                 'tb_menu.picturePath',
                                 'tb_user_apk.device_token',

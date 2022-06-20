@@ -111,7 +111,7 @@ class TransactionController extends Controller
             $result = [];
 
             $kode_uniq = rand(1000,10000);
-            $total_cost = $total_cost . $kode_uniq;
+            // $total_cost = $total_cost . $kode_uniq;
             
 
             foreach($menu as $key => $value)

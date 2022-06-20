@@ -37,7 +37,6 @@ class QrisController extends Controller
             $modelTransactions = Transaction_m::where('total_order', $decode->amount)
                                                 ->where('status', 'PENDING')
                                                 ->update([
-                                                    'status' => $decode->status, 
                                                     'status_pembayaran_qris' => $decode->status]);
                                                 
 

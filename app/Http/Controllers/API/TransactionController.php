@@ -128,6 +128,8 @@ class TransactionController extends Controller
                         'quantity' => $value['quantity'],
                         'created_at' => $value['created_at'],
                         'total' => $value['total'],
+                        'tax'   => $value['tax'],
+                        'kode_uniq' => $value['kode_uniq'],
                         'catatan' => $value['catatan'],
                         'is_cash' => $value['is_cash'],
                         'phoneNumber' => $value['phoneNumber'],

@@ -32,6 +32,7 @@ class Transaction_m extends Model
             'photo_bukti_pembayaran',
             'no_table',
             'kode_uniq',
+            'tax'
     ];
 
     public function menu()

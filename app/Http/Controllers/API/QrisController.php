@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Models\DumpQris_m;
+use App\Models\transaction\Transaction_m;
 
 class QrisController extends Controller
 {
@@ -33,9 +34,15 @@ class QrisController extends Controller
             $model->terminal_label = $decode->terminal_label;
             $model->save();
 
-            if($model)
+            $modelTransactions = Transaction_m::where('kode_uniq', $decode->amount)
+                                                ->where('status', 'PENDING')
+                                                ->update(['status' => $decode->status]);
+
+            
+
+            if($model && $modelTransactions)
             {
-                return ResponseFormatter::success($model, 'Success save dump qris data');
+                return ResponseFormatter::success(["Data" => $model, "Transaction" => $modelTransactions], 'Success save dump qris data');
             }
             else{
                 return ResponseFormatter::error("oops",'Failed to save dump qris data');

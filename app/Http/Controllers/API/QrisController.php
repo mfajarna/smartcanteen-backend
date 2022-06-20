@@ -34,7 +34,7 @@ class QrisController extends Controller
             $model->terminal_label = $decode->terminal_label;
             $model->save();
 
-            $modelTransactions = Transaction_m::where('total', $decode->amount)
+            $modelTransactions = Transaction_m::where('total_order', $decode->amount)
                                                 ->where('status', 'PENDING')
                                                 ->update(['status' => $decode->status]);
 

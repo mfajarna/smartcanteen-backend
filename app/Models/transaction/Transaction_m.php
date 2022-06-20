@@ -33,7 +33,8 @@ class Transaction_m extends Model
             'no_table',
             'kode_uniq',
             'tax',
-            'total_order'
+            'total_order',
+            'status_pembayaran_qris'
     ];
 
     public function menu()

@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('tenant/logout', [TenantController::class, 'logout']);
     Route::post('tenant/update/status', [TenantController::class, 'updateStatus']);
     Route::get('getTenant', [TenantController::class, 'fetchTenant']);
+    Route::get('tenant/getStatusTenant', [TenantController::class,'getStatusTenant']);
 
 
     // Route API Menu

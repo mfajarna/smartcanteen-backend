@@ -298,4 +298,25 @@ class TenantController extends Controller
     }
 
 
+    public function getStatusTenant(Request $request)
+    {
+        try{
+            $id_tenant = $request->id_tenant;
+
+            $model = Tenant_m::where('id_tenant', $id_tenant)->first();
+            
+            if($model)
+            {
+                return ResponseFormatter::success($model,'Berhasil fetch data');
+            }else{
+                return ResponseFormatter::error("oops",'Something went wrong');
+            }
+
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        }
+    }
+
+
 }

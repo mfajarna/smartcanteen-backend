@@ -133,7 +133,8 @@ class TransactionController extends Controller
                         'catatan' => $value['catatan'],
                         'is_cash' => $value['is_cash'],
                         'phoneNumber' => $value['phoneNumber'],
-                        'no_table'  => $value['no_table']
+                        'no_table'  => $value['no_table'],
+                        'total_order'    => $value['total_order']
                 ]);
             }
 
@@ -171,6 +172,7 @@ class TransactionController extends Controller
                     'tb_transactions.nim',
                     'tb_transactions.nama_pelanggan',
                     'tb_transactions.method',
+                    'tb_transactions.total_order',
                     'tb_transactions.is_cash',
                     'tb_transactions.catatan',
                     'tb_transactions.kode_uniq',
@@ -216,6 +218,7 @@ class TransactionController extends Controller
                     'tb_transactions.nama_pelanggan',
                     'tb_transactions.method',
                     'tb_transactions.is_cash',
+                    'tb_transactions.total_order',
                     'tb_transactions.catatan',
                     'tb_transactions.kode_uniq',
                     'tb_menu.category',
@@ -259,6 +262,7 @@ class TransactionController extends Controller
                                 'tb_transactions.created_at',
                                 'tb_transactions.is_cash',
                                 'tb_transactions.catatan',
+                                'tb_transactions.total_order',
                                 'tb_transactions.kode_uniq',
                                 'tb_menu.name',
                                 'tb_menu.picturePath',

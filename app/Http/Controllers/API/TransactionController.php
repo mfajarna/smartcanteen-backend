@@ -55,9 +55,49 @@ class TransactionController extends Controller
         }
         
     }catch(Exception $e)
-    {
-        return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        {
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        }
     }
+
+    public function getUniqKode(Request $request)
+    {
+        try{
+            $nim = $request->nim;
+            $cost = rand(100,999);
+
+            $model = Transaction_m::where('nim', $nim)
+            ->where('kode_uniq', $cost)
+            ->where('status', 'PENDING')
+            ->first();
+
+            function checkDuplicateCost($nim, $cost)
+            {
+                $model = Transaction_m::where('nim', $nim)
+                                        ->where('kode_uniq', $cost)
+                                        ->where('status', 'PENDING')
+                                        ->first();
+
+                if($model)
+                {
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+
+            // cek duplicate
+            while(!checkDuplicateCost($nim, $cost)){
+                $cost = rand(100,999);
+            }
+
+
+            return ResponseFormatter::success($cost,'Berhasil Mengambil Kode Uniq');
+
+        }catch(Exception $e)
+        {
+            return ResponseFormatter::error($e->getMessage(),'Something went wrong');
+        }
     }
 
 
@@ -65,7 +105,14 @@ class TransactionController extends Controller
     {
         try{
             $menu = $request->all();
+            $kode_transaksi = $menu['kode_transaksi'];
+            $status = "PENDING";
+            $kode_uniq = 0;
             $result = [];
+
+            $kode_uniq = rand(1000,10000);
+            $total_cost = $total_cost . $kode_uniq;
+            
 
             foreach($menu as $key => $value)
             {

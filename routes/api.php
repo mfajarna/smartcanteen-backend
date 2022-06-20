@@ -76,6 +76,7 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 Route::get('transactions/getKode', [TransactionController::class, 'getKode']);
+Route::get('transactions/getUniqCost', [TransactionController::class, 'getUniqKode']);
 
 Route::post('tenantauth', [TenantController::class, 'register']);
 Route::post('tenantlogin', [TenantController::class, 'login']);
@@ -90,20 +91,13 @@ Route::get('users/menu/fetch/byTenant', [UsersmenuController::class, 'fetchByTen
 Route::get('tenant/fetch/several', [TenantController::class, 'getTenant']);
 Route::post('tenant/update/device_token', [TenantController::class, 'deviceToken']);
 
-
-
-
-
 // Users Input About Rating
 Route::post('tenant/rating/{id}', [TenantController::class, 'updateRating']);
 Route::post('tenant/updatePerhitunganAkhir/{id}', [TenantController::class, 'updatePerhitunganAkhir']);
 Route::post('tenant/updateTotalJumlahOrder/{id}', [TenantController::class, 'updateTotalJumlahOrder']);
 
-
 // UserAPK Check and Create
 Route::post('userapk', [UserApkController::class, 'validation']);
-
-
 
 // Deposit Balanced
 Route::get('deposit_user', [DepositController::class, 'create']);

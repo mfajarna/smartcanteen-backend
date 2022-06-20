@@ -105,7 +105,7 @@ class TransactionController extends Controller
     {
         try{
             $menu = $request->all();
-            $kode_transaksi = $menu['kode_transaksi'];
+
             $status = "PENDING";
             $kode_uniq = 0;
             $result = [];

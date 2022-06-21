@@ -50,7 +50,7 @@ class QrisController extends Controller
             ->where('status', 'PENDING')
             ->first();
 
-            dd($transactions);
+            return ResponseFormatter::success($transactions, 'Success save dump qris data');
             
             // get id user from transactions table
             $id_user = $transactions->id_user;

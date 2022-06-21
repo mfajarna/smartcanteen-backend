@@ -69,17 +69,17 @@ class QrisController extends Controller
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://fcm.googleapis.com/fcm/send',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>'{
-            "to": "d5VmCyCrQnSt8h_jLkrH-b:APA91bFPtWitRItTfcS7jCAhIUz6I71omX2w1Mj62hjPSdHkLzE8FO7bSXBHnfPxq0iadjq2ubLpUYaiz9W7tKBAgxJtSLIMFH5NTM6MpIBxiUTSQWL5HtCA6NtMTRBl-CbgN8sEvfmB",
-            
+              CURLOPT_URL => 'https://fcm.googleapis.com/fcm/send',
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => '',
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 0,
+              CURLOPT_FOLLOWLOCATION => true,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => 'POST',
+              CURLOPT_POSTFIELDS =>'{
+              "to": "d5VmCyCrQnSt8h_jLkrH-b:APA91bFPtWitRItTfcS7jCAhIUz6I71omX2w1Mj62hjPSdHkLzE8FO7bSXBHnfPxq0iadjq2ubLpUYaiz9W7tKBAgxJtSLIMFH5NTM6MpIBxiUTSQWL5HtCA6NtMTRBl-CbgN8sEvfmB",
+              
                 "data" : {
                     "type" : "Setting"
                 },
@@ -87,23 +87,23 @@ class QrisController extends Controller
                 "priority" : "high",
                 "notification":{
                     "android_channel_id": "default-channel-id",
-                    "title": "Notifikasi Pembayaran QRIS SmartCanteen",
+                    "title": "Order Pesanan",
                     "body": "Pelanggan Memesan Menu Anda"
-                }
-
-
-
+                 }
+            
+            
+            
             }',
-            CURLOPT_HTTPHEADER => array(
+              CURLOPT_HTTPHEADER => array(
                 'Authorization: key=AAAAmc0dakQ:APA91bECUaR9WbE_tTHJkSJ2KlcYbGThlF-h8RoQDAdgZerbZPIkbV3UKsn1Pg-Nto24LAd32cerbsf8JZQ7lUbfzFV7GxgocRSZNkA18ksUiLZoDWHZmhDB_HPKB8Vh2mWXd-cvelH0',
                 'Content-Type: application/json'
-            ),
+              ),
             ));
-
+            
             $response = curl_exec($curl);
-
-
+            
             curl_close($curl);
+            // echo $response;
 
             return ResponseFormatter::success($response, 'Success get data dump data qris');
                                                 

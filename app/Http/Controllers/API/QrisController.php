@@ -78,7 +78,7 @@ class QrisController extends Controller
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => 'POST',
               CURLOPT_POSTFIELDS =>'{
-              "to": "d5VmCyCrQnSt8h_jLkrH-b:APA91bFPtWitRItTfcS7jCAhIUz6I71omX2w1Mj62hjPSdHkLzE8FO7bSXBHnfPxq0iadjq2ubLpUYaiz9W7tKBAgxJtSLIMFH5NTM6MpIBxiUTSQWL5HtCA6NtMTRBl-CbgN8sEvfmB",
+              "to": "'.$device_token.'",
               
                 "data" : {
                     "type" : "Setting"

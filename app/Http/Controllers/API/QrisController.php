@@ -21,29 +21,29 @@ class QrisController extends Controller
             $decode = json_decode($rawPostData);
             $status = $decode->status;
 
-            // $model = new DumpQris_m();
-            // $model->type = $decode->type;
-            // $model->status = $decode->status;
-            // $model->datetime = $decode->datetime;
-            // $model->merchant_id = $decode->merchant_id;
-            // $model->reference_label = $decode->reference_label;
-            // $model->invoice_no = $decode->invoice_no;
-            // $model->amount = $decode->amount;
-            // $model->mdr = $decode->mdr;
-            // $model->issue_name = $decode->issuer_name;
-            // $model->customer_name = $decode->customer_name;
-            // $model->store_label = $decode->store_label;
-            // $model->terminal_label = $decode->terminal_label;
-            // $model->save();
+            $model = new DumpQris_m();
+            $model->type = $decode->type;
+            $model->status = $decode->status;
+            $model->datetime = $decode->datetime;
+            $model->merchant_id = $decode->merchant_id;
+            $model->reference_label = $decode->reference_label;
+            $model->invoice_no = $decode->invoice_no;
+            $model->amount = $decode->amount;
+            $model->mdr = $decode->mdr;
+            $model->issue_name = $decode->issuer_name;
+            $model->customer_name = $decode->customer_name;
+            $model->store_label = $decode->store_label;
+            $model->terminal_label = $decode->terminal_label;
+            $model->save();
 
 
 
             // Adding update status field to transactions
-            // $modelTransactions = Transaction_m::where('total_order', $decode->amount)
-            //                                     ->where('status', 'PENDING')
-            //                                     ->update([
-            //                                         'status_pembayaran_qris' => $status
-            //                                     ]);
+            $modelTransactions = Transaction_m::where('total_order', $decode->amount)
+                                                ->where('status', 'PENDING')
+                                                ->update([
+                                                    'status_pembayaran_qris' => $status
+                                                ]);
 
             // Collection Transactions by total order
             $transactions = Transaction_m::where('total_order', $decode->amount)
@@ -87,8 +87,8 @@ class QrisController extends Controller
                 "priority" : "high",
                 "notification":{
                     "android_channel_id": "default-channel-id",
-                    "title": "Order Pesanan",
-                    "body": "Pelanggan Memesan Menu Anda"
+                    "title": "Pembayaran Qris SmartCanteen",
+                    "body": "Pelanggan dengan kode_transaksi '.$kode_transaksi.' telah melakukan transaksi dengan status '.$status.'"
                  }
             
             
@@ -105,16 +105,16 @@ class QrisController extends Controller
             curl_close($curl);
             // echo $response;
 
-            return ResponseFormatter::success($response, 'Success get data dump data qris');
+
                                                 
 
-            // if($model && $modelTransactions && $response)
-            // {
-            //     return ResponseFormatter::success(["Data" => $model, "Transaction" => $modelTransactions], 'Success save dump qris data');
-            // }
-            // else{
-            //     return ResponseFormatter::error("oops data tidak ada",'Failed to save dump qris data');
-            // }
+            if($model && $modelTransactions && $response)
+            {
+                return ResponseFormatter::success(["Data" => $model, "Transaction" => $modelTransactions, "notification firebase" => $response], 'Success save dump qris data');
+            }
+            else{
+                return ResponseFormatter::error("oops data tidak ada",'Failed to save dump qris data');
+            }
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Something went wrong');

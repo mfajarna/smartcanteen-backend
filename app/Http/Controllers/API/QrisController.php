@@ -21,34 +21,36 @@ class QrisController extends Controller
             $decode = json_decode($rawPostData);
             $status = $decode->status;
 
-            $model = new DumpQris_m();
-            $model->type = $decode->type;
-            $model->status = $decode->status;
-            $model->datetime = $decode->datetime;
-            $model->merchant_id = $decode->merchant_id;
-            $model->reference_label = $decode->reference_label;
-            $model->invoice_no = $decode->invoice_no;
-            $model->amount = $decode->amount;
-            $model->mdr = $decode->mdr;
-            $model->issue_name = $decode->issuer_name;
-            $model->customer_name = $decode->customer_name;
-            $model->store_label = $decode->store_label;
-            $model->terminal_label = $decode->terminal_label;
-            $model->save();
+            // $model = new DumpQris_m();
+            // $model->type = $decode->type;
+            // $model->status = $decode->status;
+            // $model->datetime = $decode->datetime;
+            // $model->merchant_id = $decode->merchant_id;
+            // $model->reference_label = $decode->reference_label;
+            // $model->invoice_no = $decode->invoice_no;
+            // $model->amount = $decode->amount;
+            // $model->mdr = $decode->mdr;
+            // $model->issue_name = $decode->issuer_name;
+            // $model->customer_name = $decode->customer_name;
+            // $model->store_label = $decode->store_label;
+            // $model->terminal_label = $decode->terminal_label;
+            // $model->save();
 
 
 
             // Adding update status field to transactions
-            $modelTransactions = Transaction_m::where('total_order', $decode->amount)
-                                                ->where('status', 'PENDING')
-                                                ->update([
-                                                    'status_pembayaran_qris' => $status
-                                                ]);
+            // $modelTransactions = Transaction_m::where('total_order', $decode->amount)
+            //                                     ->where('status', 'PENDING')
+            //                                     ->update([
+            //                                         'status_pembayaran_qris' => $status
+            //                                     ]);
 
             // Collection Transactions by total order
             $transactions = Transaction_m::where('total_order', $decode->amount)
             ->where('status', 'PENDING')
             ->first();
+
+            dd($transactions);
             
             // get id user from transactions table
             $id_user = $transactions->id_user;
@@ -98,6 +100,7 @@ class QrisController extends Controller
             ));
 
             $response = curl_exec($curl);
+            echo $response;
 
             curl_close($curl);
                                                 

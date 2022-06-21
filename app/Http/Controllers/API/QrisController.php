@@ -66,8 +66,6 @@ class QrisController extends Controller
             // Find Device Token from User APK Table
             $device_token = $user_apk->device_token;
 
-            return ResponseFormatter::success(['id_user' => $id_user, 'kode_transaksi' => $kode_transaksi, 'device_token' => $device_token], 'Success save dump qris data');
-
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -103,18 +101,18 @@ class QrisController extends Controller
             ));
 
             $response = curl_exec($curl);
-            echo $response;
+            return $response;
 
             curl_close($curl);
                                                 
 
-            if($model && $modelTransactions && $response)
-            {
-                return ResponseFormatter::success(["Data" => $model, "Transaction" => $modelTransactions], 'Success save dump qris data');
-            }
-            else{
-                return ResponseFormatter::error("oops data tidak ada",'Failed to save dump qris data');
-            }
+            // if($model && $modelTransactions && $response)
+            // {
+            //     return ResponseFormatter::success(["Data" => $model, "Transaction" => $modelTransactions], 'Success save dump qris data');
+            // }
+            // else{
+            //     return ResponseFormatter::error("oops data tidak ada",'Failed to save dump qris data');
+            // }
         }catch(Exception $e)
         {
             return ResponseFormatter::error($e->getMessage(),'Something went wrong');

@@ -58,7 +58,7 @@ class QrisController extends Controller
             // get kode_transaksi from transactions table
             $kode_transaksi = $transactions->kode_transaksi;
 
-            return ResponseFormatter::success(['id_user' => $id_user, 'kode_transaksi' => $kode_transaksi], 'Success save dump qris data');
+
 
             // Collection User APK
             $user_apk = UserApk::findOrFail($id_user);
@@ -66,6 +66,7 @@ class QrisController extends Controller
             // Find Device Token from User APK Table
             $device_token = $user_apk->device_token;
 
+            return ResponseFormatter::success(['id_user' => $id_user, 'kode_transaksi' => $kode_transaksi, 'device_token' => $device_token], 'Success save dump qris data');
 
             $curl = curl_init();
 

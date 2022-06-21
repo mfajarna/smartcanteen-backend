@@ -78,7 +78,7 @@ class QrisController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS =>'{
-            "to": '.$device_token.',
+            "to": "d5VmCyCrQnSt8h_jLkrH-b:APA91bFPtWitRItTfcS7jCAhIUz6I71omX2w1Mj62hjPSdHkLzE8FO7bSXBHnfPxq0iadjq2ubLpUYaiz9W7tKBAgxJtSLIMFH5NTM6MpIBxiUTSQWL5HtCA6NtMTRBl-CbgN8sEvfmB",
             
                 "data" : {
                     "type" : "Setting"
@@ -88,7 +88,7 @@ class QrisController extends Controller
                 "notification":{
                     "android_channel_id": "default-channel-id",
                     "title": "Notifikasi Pembayaran QRIS SmartCanteen",
-                    "body": "Pesanan dengan kode transaksi: ' .$kode_transaksi. ', status pembayaran qris: '. $status .' "
+                    "body": "Pelanggan Memesan Menu Anda"
                 }
 
 

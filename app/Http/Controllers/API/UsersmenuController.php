@@ -247,7 +247,7 @@ class UsersmenuController extends Controller
                             ->join('tb_menu', 'tb_transactions.id_menu', '=', 'tb_menu.id')
                             ->where('tb_transactions.kode_transaksi', $kode_transaksi)
                             ->where('tb_transactions.nim', $nim)
-                            ->where('tb_transactions.status', $status)
+                            // ->where('tb_transactions.status', $status)
                             ->select(
                                 'tb_transactions.kode_transaksi',
                                 'tb_transactions.no_table',
